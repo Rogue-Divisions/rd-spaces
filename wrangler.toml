@@ -1,0 +1,11 @@
+name = "rd-spaces"
+compatibility_date = "2025-01-01"
+
+[assets]
+directory = "./public"
+not_found_handling = "404-page"
+
+# Custom Domain — Cloudflare auto-manages the DNS record.
+routes = [
+  { pattern = "spaces.roguedivisions.com", custom_domain = true }
+]
