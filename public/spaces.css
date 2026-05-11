@@ -5,15 +5,18 @@
    ============================================================ */
 
 /* --- Fonts (Poppins, local) ------------------------------------ */
-@font-face { font-family:"Poppins"; font-weight:300; font-style:normal; font-display:swap; src:url("fonts/Poppins-Light.ttf") format("truetype"); }
-@font-face { font-family:"Poppins"; font-weight:400; font-style:normal; font-display:swap; src:url("fonts/Poppins-Regular.ttf") format("truetype"); }
-@font-face { font-family:"Poppins"; font-weight:400; font-style:italic; font-display:swap; src:url("fonts/Poppins-Italic.ttf") format("truetype"); }
-@font-face { font-family:"Poppins"; font-weight:500; font-style:normal; font-display:swap; src:url("fonts/Poppins-Medium.ttf") format("truetype"); }
-@font-face { font-family:"Poppins"; font-weight:500; font-style:italic; font-display:swap; src:url("fonts/Poppins-MediumItalic.ttf") format("truetype"); }
-@font-face { font-family:"Poppins"; font-weight:600; font-style:normal; font-display:swap; src:url("fonts/Poppins-SemiBold.ttf") format("truetype"); }
-@font-face { font-family:"Poppins"; font-weight:600; font-style:italic; font-display:swap; src:url("fonts/Poppins-SemiBoldItalic.ttf") format("truetype"); }
-@font-face { font-family:"Poppins"; font-weight:700; font-style:normal; font-display:swap; src:url("fonts/Poppins-Bold.ttf") format("truetype"); }
-@font-face { font-family:"Poppins"; font-weight:800; font-style:normal; font-display:swap; src:url("fonts/Poppins-ExtraBold.ttf") format("truetype"); }
+/* Poppins — Latin-subset WOFF2, ~11 KB per weight vs ~155 KB original TTF.
+   Subset includes basic Latin + Latin Extended A + punctuation + currency.
+   font-display: swap renders system font first, swaps to Poppins when loaded. */
+@font-face { font-family:"Poppins"; font-weight:300; font-style:normal; font-display:swap; src:url("/fonts/Poppins-Light.woff2") format("woff2"); }
+@font-face { font-family:"Poppins"; font-weight:400; font-style:normal; font-display:swap; src:url("/fonts/Poppins-Regular.woff2") format("woff2"); }
+@font-face { font-family:"Poppins"; font-weight:400; font-style:italic; font-display:swap; src:url("/fonts/Poppins-Italic.woff2") format("woff2"); }
+@font-face { font-family:"Poppins"; font-weight:500; font-style:normal; font-display:swap; src:url("/fonts/Poppins-Medium.woff2") format("woff2"); }
+@font-face { font-family:"Poppins"; font-weight:500; font-style:italic; font-display:swap; src:url("/fonts/Poppins-MediumItalic.woff2") format("woff2"); }
+@font-face { font-family:"Poppins"; font-weight:600; font-style:normal; font-display:swap; src:url("/fonts/Poppins-SemiBold.woff2") format("woff2"); }
+@font-face { font-family:"Poppins"; font-weight:600; font-style:italic; font-display:swap; src:url("/fonts/Poppins-SemiBoldItalic.woff2") format("woff2"); }
+@font-face { font-family:"Poppins"; font-weight:700; font-style:normal; font-display:swap; src:url("/fonts/Poppins-Bold.woff2") format("woff2"); }
+@font-face { font-family:"Poppins"; font-weight:800; font-style:normal; font-display:swap; src:url("/fonts/Poppins-ExtraBold.woff2") format("woff2"); }
 
 /* --- Brand tokens ---------------------------------------------- */
 :root {

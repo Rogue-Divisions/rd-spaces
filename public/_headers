@@ -1,0 +1,50 @@
+# Cloudflare Workers static-asset headers
+# Syntax: pattern, blank line, "  Header: value" indented two spaces
+#
+# Default: HTML revalidates every visit (we want fresh content),
+# but all immutable assets (fonts, video, JS library) cache for a year.
+
+# HTML — short cache, must revalidate
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; media-src 'self' https://studio.realhorizons.ai; connect-src 'self' https://studio.realhorizons.ai https://cloudflareinsights.com; frame-src https://studio.realhorizons.ai; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; media-src 'self' https://studio.realhorizons.ai; connect-src 'self' https://studio.realhorizons.ai https://cloudflareinsights.com; frame-src https://studio.realhorizons.ai; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+
+# Immutable assets — fonts, HLS variants, hls.js library, hero video.
+# These don't change without a content hash, so we cache for a year.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/vendor/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/hls/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images — long cache; rotate by filename when refreshed
+/assets/hero-loop.mp4
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/hero-poster.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/og-image.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+# Stylesheet — short cache so design tweaks land fast; ETag handles 304
+/spaces.css
+  Cache-Control: public, max-age=300, must-revalidate
