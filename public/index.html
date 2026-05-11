@@ -995,26 +995,37 @@
       });
     });
 
-    // Stagger background pre-load of inactive tours.
-    // First tour gets ~10s to fully load before we add network pressure;
-    // subsequent tours fire 4s apart so we're never running >1 cold load at a time.
-    function preloadDeferred() {
-      var deferred = Array.prototype.filter.call(frames, function (f) {
+    // Background preload — sequential, one iframe at a time. We learned the hard way
+    // that loading 4 Real Horizons iframes in parallel trips their CDN's connection
+    // throttling (chunks fail with ERR_CONNECTION_CLOSED). Sequential is slower in
+    // wall-clock terms but completes cleanly and keeps the console quiet.
+    function preloadNext() {
+      var next = Array.prototype.find.call(frames, function (f) {
         return !f.src && f.dataset.deferredSrc;
       });
-      deferred.forEach(function (f, i) {
-        setTimeout(function () { f.src = f.dataset.deferredSrc; }, i * 4000);
-      });
+      if (!next) return; // all preloaded
+      var moveOn = function () {
+        next.removeEventListener('load', moveOn);
+        clearTimeout(maxWait);
+        setTimeout(preloadNext, 1000); // breathe between loads
+      };
+      // Hard cap: if a preload stalls, don't block the rest of the queue.
+      var maxWait = setTimeout(function () {
+        next.removeEventListener('load', moveOn);
+        preloadNext();
+      }, 20000);
+      next.addEventListener('load', moveOn);
+      next.src = next.dataset.deferredSrc;
     }
     var active = document.querySelector('.sx-demo__frame.is-active');
     if (active && active.tagName === 'IFRAME') {
-      // Defer preload until either the active iframe loads or 12s passes — whichever first.
+      // Wait for the active iframe to settle (or 12s timeout) before adding network pressure.
       var fired = false;
-      var go = function () { if (!fired) { fired = true; preloadDeferred(); } };
+      var go = function () { if (!fired) { fired = true; preloadNext(); } };
       active.addEventListener('load', function () { setTimeout(go, 2000); }, { once: true });
       setTimeout(go, 12000);
     } else {
-      setTimeout(preloadDeferred, 8000);
+      setTimeout(preloadNext, 8000);
     }
   })();
 
