@@ -14,6 +14,10 @@
   <link rel="preload" as="image" href="assets/hero-poster.jpg" fetchpriority="high" />
   <link rel="preload" as="fetch" href="hls/master.m3u8" crossorigin="anonymous" />
 
+  <!-- Pre-establish the TLS handshake with Spatial Studio so demo iframes connect faster -->
+  <link rel="preconnect" href="https://studio.realhorizons.ai" crossorigin />
+  <link rel="dns-prefetch" href="https://studio.realhorizons.ai" />
+
   <link rel="stylesheet" href="spaces.css" />
 </head>
 <body>
@@ -77,15 +81,58 @@
       <p class="sx-lede">Click and drag. Walk through. This is a real space.</p>
     </div>
 
-    <div class="sx-demo">
+    <div class="sx-demo" id="demo-block">
+      <div class="sx-demo__pills" role="tablist" aria-label="Pick a kind of space">
+        <button class="sx-demo__pill is-active" data-tour="rest" role="tab" aria-selected="true">Restaurants</button>
+        <button class="sx-demo__pill" data-tour="hotel"  role="tab" aria-selected="false">Hotels</button>
+        <button class="sx-demo__pill" data-tour="str"    role="tab" aria-selected="false">Hosts</button>
+        <button class="sx-demo__pill" data-tour="dev"    role="tab" aria-selected="false">Developers</button>
+        <button class="sx-demo__pill" data-tour="venue"  role="tab" aria-selected="false">Venues</button>
+      </div>
+
       <div class="sx-demo__viewport sx-demo__viewport--live">
+        <!-- Active iframe loads immediately. Others use data-deferred-src and are upgraded by JS in the background. -->
         <iframe
+          data-tour="rest"
+          class="sx-demo__frame is-active"
           src="https://studio.realhorizons.ai/tours/76a39262-b947-4728-b056-9c79dda72372/view"
-          title="Interactive Gaussian Splat walkthrough — Spatial Studio sample"
+          title="BlueTokai Coffee — Spatial Studio sample tour"
           loading="lazy"
-          allowfullscreen
           allow="xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay"
           referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <iframe
+          data-tour="hotel"
+          class="sx-demo__frame"
+          data-deferred-src="https://studio.realhorizons.ai/tours/fb185a7c-27b9-42c8-b77c-b8fd5cf4e5a8/view"
+          title="Clarks Exotica — Spatial Studio sample tour"
+          allow="xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay"
+          referrerpolicy="strict-origin-when-cross-origin"
+          aria-hidden="true"></iframe>
+        <iframe
+          data-tour="str"
+          class="sx-demo__frame"
+          data-deferred-src="https://studio.realhorizons.ai/tours/c6cea52b-670f-4372-9151-bf6a46c2827b/view"
+          title="Living Room — Spatial Studio sample tour"
+          allow="xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay"
+          referrerpolicy="strict-origin-when-cross-origin"
+          aria-hidden="true"></iframe>
+        <iframe
+          data-tour="dev"
+          class="sx-demo__frame"
+          data-deferred-src="https://studio.realhorizons.ai/tours/ed72e7f2-063a-475a-a5f4-afafe638a64e/view"
+          title="The Villa Tour — Spatial Studio sample tour"
+          allow="xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay"
+          referrerpolicy="strict-origin-when-cross-origin"
+          aria-hidden="true"></iframe>
+        <iframe
+          data-tour="venue"
+          class="sx-demo__frame"
+          data-deferred-src="https://studio.realhorizons.ai/tours/f38c5bc0-3fc8-422b-8232-ed1adbac40cf/view"
+          title="Château La Sarraz — Spatial Studio sample tour"
+          allow="xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay"
+          referrerpolicy="strict-origin-when-cross-origin"
+          aria-hidden="true"></iframe>
+
         <span class="sx-demo__live" aria-hidden="true">
           <span class="sx-demo__live-dot"></span>
           Live walkthrough
@@ -97,7 +144,9 @@
         <span>Scroll to zoom</span>
       </div>
     </div>
-    <p class="sx-demo__caption">Sample tour from Spatial Studio. Real Tbilisi captures shipping shortly.</p>
+    <p class="sx-demo__caption">
+      <span data-tour-title>BlueTokai Coffee</span> · sample tour from Spatial Studio. Real Tbilisi captures shipping shortly.
+    </p>
   </div>
 </section>
 
@@ -905,6 +954,68 @@
 
     renderSizes();
     render();
+  })();
+
+  // Demo tour switcher — pills pick a segment, JS swaps which iframe is visible.
+  // Inactive iframes pre-warm in the background after the active one finishes loading,
+  // so subsequent pill clicks are near-instant. Stagger the loads to be polite to
+  // Spatial Studio's CDN and to avoid hammering the visitor's connection.
+  (function () {
+    var TOUR_TITLES = {
+      rest:  'BlueTokai Coffee',
+      hotel: 'Clarks Exotica',
+      str:   'Living Room',
+      dev:   'The Villa Tour',
+      venue: 'Château La Sarraz'
+    };
+    var pills = document.querySelectorAll('.sx-demo__pill');
+    var frames = document.querySelectorAll('.sx-demo__frame');
+    var titleEl = document.querySelector('[data-tour-title]');
+    if (!pills.length || !frames.length) return;
+
+    function activate(tour) {
+      pills.forEach(function (p) {
+        var match = p.getAttribute('data-tour') === tour;
+        p.classList.toggle('is-active', match);
+        p.setAttribute('aria-selected', match ? 'true' : 'false');
+      });
+      frames.forEach(function (f) {
+        var match = f.getAttribute('data-tour') === tour;
+        // Lazy-promote: if the user clicked a frame whose preload hasn't fired yet, kick it off now.
+        if (match && !f.src && f.dataset.deferredSrc) f.src = f.dataset.deferredSrc;
+        f.classList.toggle('is-active', match);
+        f.setAttribute('aria-hidden', match ? 'false' : 'true');
+      });
+      if (titleEl && TOUR_TITLES[tour]) titleEl.textContent = TOUR_TITLES[tour];
+    }
+
+    pills.forEach(function (p) {
+      p.addEventListener('click', function () {
+        activate(p.getAttribute('data-tour'));
+      });
+    });
+
+    // Stagger background pre-load of inactive tours.
+    // First tour gets ~10s to fully load before we add network pressure;
+    // subsequent tours fire 4s apart so we're never running >1 cold load at a time.
+    function preloadDeferred() {
+      var deferred = Array.prototype.filter.call(frames, function (f) {
+        return !f.src && f.dataset.deferredSrc;
+      });
+      deferred.forEach(function (f, i) {
+        setTimeout(function () { f.src = f.dataset.deferredSrc; }, i * 4000);
+      });
+    }
+    var active = document.querySelector('.sx-demo__frame.is-active');
+    if (active && active.tagName === 'IFRAME') {
+      // Defer preload until either the active iframe loads or 12s passes — whichever first.
+      var fired = false;
+      var go = function () { if (!fired) { fired = true; preloadDeferred(); } };
+      active.addEventListener('load', function () { setTimeout(go, 2000); }, { once: true });
+      setTimeout(go, 12000);
+    } else {
+      setTimeout(preloadDeferred, 8000);
+    }
   })();
 
   // Hero "Win" — small entrance flourish on the loaded word.

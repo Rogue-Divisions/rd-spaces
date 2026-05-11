@@ -457,27 +457,78 @@ p { margin: 0 0 1em; text-wrap: pretty; }
     repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 80px),
     #0e0e10;
 }
-/* Live-tour iframe variant — the empty gradient fades; iframe fills the slot. */
+/* Live-tour iframe variant — the empty gradient fades; iframes fill the slot. */
 .sx-demo__viewport--live {
   background: #0a0a0a;
 }
-.sx-demo__viewport--live iframe {
+/* Stack ALL demo iframes absolutely; visibility controlled per-frame. */
+.sx-demo__frame {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
   display: block;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms var(--ease-standard);
+  z-index: 1;
 }
+.sx-demo__frame.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+}
+/* Ensure the "Live walkthrough" pill stays above whichever iframe is active. */
+.sx-demo__live { z-index: 3; }
+
 @media (max-width: 700px) {
   .sx-demo__viewport--live { aspect-ratio: 4 / 3; }
 }
+
+/* Pill selector — same chip language as .sx-filter__btn but slightly more compact
+   to read as "tabs" rather than the segment filter chips in the Outcomes section. */
+.sx-demo__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.sx-demo__pill {
+  appearance: none;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.16);
+  color: rgba(255,255,255,0.78);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .18s ease;
+}
+.sx-demo__pill:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.34);
+}
+.sx-demo__pill.is-active {
+  background: #fff;
+  color: #0a0a0a;
+  border-color: #fff;
+}
+
 .sx-demo__caption {
   margin: 14px 4px 0;
   font-size: 13px;
   line-height: 1.55;
   color: rgba(255,255,255,0.5);
   font-style: italic;
+}
+.sx-demo__caption [data-tour-title] {
+  color: rgba(255,255,255,0.72);
+  font-style: normal;
+  font-weight: 600;
 }
 .sx-demo__live {
   position: absolute;
