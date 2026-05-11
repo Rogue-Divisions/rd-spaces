@@ -1,0 +1,144 @@
+{
+  "main": {
+    "slug": "",
+    "url": "https://spaces.roguedivisions.com",
+    "title": "Spaces by Rogue Divisions — Tours of your space they can walk through",
+    "description": "Tours they can walk before they fly in. Photoreal 3D walkthroughs of your space, delivered overnight. Operating across Georgia. Armenia and Azerbaijan next.",
+    "h1_line1": "They are somewhere else.",
+    "h1_mark": "Win",
+    "h1_line2": "them anyway.",
+    "subhead": "Tours they can walk before they fly in.",
+    "active_tour": "rest",
+    "active_segment": "hotel",
+    "active_kind": "apartment",
+    "outcomes_filter": "all"
+  },
+
+  "managers": {
+    "slug": "managers",
+    "url": "https://spaces.roguedivisions.com/managers",
+    "title": "Spaces for STR managers — Per-door 3D tours for your fleet",
+    "description": "Photoreal walkthroughs for every unit in your portfolio. Subscription pricing per door. Onboard a 50-unit fleet in two weeks. Built for short-term rental managers.",
+    "h1_line1": "Every door in your fleet,",
+    "h1_mark": "walkable",
+    "h1_line2": "from the listing.",
+    "subhead": "Per-door pricing. Fleet onboarded in two weeks. The upgrade your portfolio has needed since the day you took it on.",
+    "active_tour": "str",
+    "active_segment": "str",
+    "active_kind": "apartment",
+    "outcomes_filter": "hosts",
+    "pricing_emphasis": "subscription"
+  },
+
+  "hosts": {
+    "slug": "hosts",
+    "url": "https://spaces.roguedivisions.com/hosts",
+    "title": "Spaces for Airbnb hosts — The listing with the walkthrough button",
+    "description": "Your listing is one of more than six thousand in Tbilisi. The ones with walkthroughs convert better. From $99 per listing.",
+    "h1_line1": "Be the listing with the",
+    "h1_mark": "walkthrough",
+    "h1_line2": "button.",
+    "subhead": "Your guests scroll for two seconds. Give them a reason to stop.",
+    "active_tour": "str",
+    "active_segment": "str",
+    "active_kind": "apartment",
+    "outcomes_filter": "hosts",
+    "pricing_emphasis": "lite"
+  },
+
+  "hotels": {
+    "slug": "hotels",
+    "url": "https://spaces.roguedivisions.com/hotels",
+    "title": "Spaces for boutique hotels — Recover the commission you pay Booking.com",
+    "description": "Direct bookings beat OTA bookings on margin. A photoreal walkthrough closes the trust gap photographs cannot. Built for boutique hotels in Tbilisi.",
+    "h1_line1": "Stop paying Booking.com a",
+    "h1_mark": "commission",
+    "h1_line2": "you could keep.",
+    "subhead": "A walkthrough closes the trust gap photographs cannot. Guests book direct. You keep the margin.",
+    "active_tour": "hotel",
+    "active_segment": "hotel",
+    "active_kind": "hotel",
+    "outcomes_filter": "hotels",
+    "pricing_emphasis": "standard"
+  },
+
+  "developers": {
+    "slug": "developers",
+    "url": "https://spaces.roguedivisions.com/developers",
+    "title": "Spaces for developers — Show your show flat to a buyer in Dubai",
+    "description": "Tbilisi sells off-plan to buyers in 34 countries. Brochure renders read as CGI. A photoreal walkthrough of your finished show flat changes the conversation.",
+    "h1_line1": "Show your show flat to a buyer in",
+    "h1_mark": "Dubai",
+    "h1_line2": "before they fly in.",
+    "subhead": "Brochure renders read as CGI. A walkthrough does not. Sales agents paste the link into WhatsApp. The deposit lands.",
+    "active_tour": "dev",
+    "active_segment": "dev",
+    "active_kind": "dev",
+    "outcomes_filter": "developers",
+    "pricing_emphasis": "compact"
+  },
+
+  "weddings": {
+    "slug": "weddings",
+    "url": "https://spaces.roguedivisions.com/weddings",
+    "title": "Spaces for wedding venues — Let her walk the chapel before she flies in",
+    "description": "Couples in London choosing between six Kakheti estates. A walkthrough collapses the decision. Built for vineyard estates and destination wedding venues.",
+    "h1_line1": "Let her see the chapel",
+    "h1_mark": "before",
+    "h1_line2": "she flies in.",
+    "subhead": "Couples in London choosing between six Kakheti venues. A walkthrough is the closest thing to flying them in.",
+    "active_tour": "venue",
+    "active_segment": "wedding",
+    "active_kind": "venue",
+    "outcomes_filter": "venues",
+    "pricing_emphasis": "standard"
+  },
+
+  "clinics": {
+    "slug": "clinics",
+    "url": "https://spaces.roguedivisions.com/clinics",
+    "title": "Spaces for medical clinics — Your patient picks the clinic she has walked through",
+    "description": "Your patient is choosing between you and three Turkish clinics. The choice is trust, not price. Privacy-respecting walkthroughs of reception, consultation, theatre.",
+    "h1_line1": "Your patient picks the clinic she has already",
+    "h1_mark": "walked through",
+    "h1_line2": ".",
+    "subhead": "The choice is trust, not price. Photographs of clean reception desks are not enough. A walkthrough is.",
+    "active_tour": "rest",
+    "active_segment": "clinic",
+    "active_kind": "clinic",
+    "outcomes_filter": "clinics",
+    "pricing_emphasis": "standard"
+  },
+
+  "restaurants": {
+    "slug": "restaurants",
+    "url": "https://spaces.roguedivisions.com/restaurants",
+    "title": "Spaces for restaurants — Your interior is the marketing. Show it properly.",
+    "description": "Private hire enquiries close before the call ends. Corporate planners walk your dining room from their desks. Built for restaurants, bars, and design hospitality.",
+    "h1_line1": "Your interior is the marketing.",
+    "h1_mark": "Show",
+    "h1_line2": "it properly.",
+    "subhead": "Private hire enquiries close before the call ends. The corporate planner walks your dining room from their desk.",
+    "active_tour": "rest",
+    "active_segment": "rest",
+    "active_kind": "rest",
+    "outcomes_filter": "restaurants",
+    "pricing_emphasis": "compact"
+  },
+
+  "galleries": {
+    "slug": "galleries",
+    "url": "https://spaces.roguedivisions.com/galleries",
+    "title": "Spaces for galleries — The exhibition is temporary. The record does not have to be.",
+    "description": "Curators in Frieze, Venice, Berlin who could not fly in have a permanent way back. Press has a reference. Grant applications have institutional evidence.",
+    "h1_line1": "The exhibition is temporary.",
+    "h1_mark": "The record",
+    "h1_line2": "does not have to be.",
+    "subhead": "Curators in Frieze, Venice, and Berlin who could not fly in have a permanent way back into the show.",
+    "active_tour": "rest",
+    "active_segment": "gallery",
+    "active_kind": "gallery",
+    "outcomes_filter": "galleries",
+    "pricing_emphasis": "standard"
+  }
+}

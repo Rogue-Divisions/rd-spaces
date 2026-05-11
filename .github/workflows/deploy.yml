@@ -1,5 +1,6 @@
 # Auto-deploy to Cloudflare Workers on push to master.
-# Only uses secrets (not user-controllable inputs) — no command-injection surface.
+# Build step generates 9 HTML files (main + 8 per-segment) from src/template.html
+# + src/segments.json via scripts/build.py before wrangler deploys.
 name: Deploy to Cloudflare Workers
 
 on:
@@ -12,6 +13,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build dependencies
+        run: pip install --quiet beautifulsoup4
+
+      - name: Build per-segment pages
+        run: python3 scripts/build.py
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3

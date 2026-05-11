@@ -4,23 +4,23 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Spaces by Rogue Divisions — Tours of your space they can walk through</title>
-<meta content="Tours they can walk before they fly in. Photoreal 3D walkthroughs of your space, delivered overnight. Operating across Georgia. Armenia and Azerbaijan next." name="description"/>
-<link href="https://spaces.roguedivisions.com" rel="canonical"/>
+<title>Spaces for STR managers — Per-door 3D tours for your fleet</title>
+<meta content="Photoreal walkthroughs for every unit in your portfolio. Subscription pricing per door. Onboard a 50-unit fleet in two weeks. Built for short-term rental managers." name="description"/>
+<link href="https://spaces.roguedivisions.com/managers" rel="canonical"/>
 <meta content="noindex, nofollow" name="robots"/>
 <meta content="#191919" name="theme-color"/>
 <!-- OG / Twitter share cards — the page is by-referral B2B; previews matter when the link
        is pasted into WhatsApp, Slack, or iMessage. -->
 <meta content="website" property="og:type"/>
-<meta content="https://spaces.roguedivisions.com" property="og:url"/>
-<meta content="They are somewhere else. Win them anyway." property="og:title"/>
-<meta content="Tours they can walk before they fly in." property="og:description"/>
+<meta content="https://spaces.roguedivisions.com/managers" property="og:url"/>
+<meta content="Every door in your fleet, walkable from the listing." property="og:title"/>
+<meta content="Per-door pricing. Fleet onboarded in two weeks. The upgrade your portfolio has needed since the day you took it on." property="og:description"/>
 <meta content="https://spaces.roguedivisions.com/assets/og-image.jpg" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<meta content="They are somewhere else. Win them anyway." name="twitter:title"/>
-<meta content="Tours they can walk before they fly in." name="twitter:description"/>
+<meta content="Every door in your fleet, walkable from the listing." name="twitter:title"/>
+<meta content="Per-door pricing. Fleet onboarded in two weeks. The upgrade your portfolio has needed since the day you took it on." name="twitter:description"/>
 <meta content="https://spaces.roguedivisions.com/assets/og-image.jpg" name="twitter:image"/>
 <!-- Favicon set -->
 <link href="/assets/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
@@ -38,7 +38,7 @@
 <link href="https://studio.realhorizons.ai" rel="dns-prefetch"/>
 <link href="/spaces.css" rel="stylesheet"/>
 </head>
-<body data-active-kind="apartment" data-active-tour="rest" data-outcomes-filter="all">
+<body data-active-kind="apartment" data-active-tour="str" data-outcomes-filter="hosts" data-segment="managers">
 <!-- Sticky nav -->
 <nav class="sx-nav">
 <div class="sx-nav__inner">
@@ -73,8 +73,8 @@
 </div>
 <div aria-hidden="true" class="sx-hero__scrim"></div>
 <div class="sx-hero__inner">
-<h1 class="sx-hero__h1">They are somewhere else.<br/> <span class="rd-win">Win</span> them anyway.</h1>
-<p class="sx-hero__sub">Tours they can walk before they fly in.</p>
+<h1 class="sx-hero__h1">Every door in your fleet,<br/> <span class="rd-win">walkable</span> from the listing.</h1>
+<p class="sx-hero__sub">Per-door pricing. Fleet onboarded in two weeks. The upgrade your portfolio has needed since the day you took it on.</p>
 <div class="sx-hero__cta">
 <a class="rd-btn rd-btn--filled" href="#contact">Book a free pilot scan</a>
 <a class="rd-link-arrow" href="#demo">See an example tour <span class="arrow">➜</span></a>
@@ -91,17 +91,17 @@
 </div>
 <div class="sx-demo" id="demo-block">
 <div aria-label="Pick a kind of space" class="sx-demo__pills" role="tablist">
-<button aria-selected="true" class="sx-demo__pill is-active" data-tour="rest" role="tab">Restaurants</button>
+<button aria-selected="false" class="sx-demo__pill" data-tour="rest" role="tab">Restaurants</button>
 <button aria-selected="false" class="sx-demo__pill" data-tour="hotel" role="tab">Hotels</button>
-<button aria-selected="false" class="sx-demo__pill" data-tour="str" role="tab">Hosts</button>
+<button aria-selected="true" class="sx-demo__pill is-active" data-tour="str" role="tab">Hosts</button>
 <button aria-selected="false" class="sx-demo__pill" data-tour="dev" role="tab">Developers</button>
 <button aria-selected="false" class="sx-demo__pill" data-tour="venue" role="tab">Venues</button>
 </div>
 <div class="sx-demo__viewport sx-demo__viewport--live">
 <!-- Active iframe loads immediately. Others use data-deferred-src and are upgraded by JS in the background. -->
-<iframe allow="xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay" class="sx-demo__frame is-active" data-tour="rest" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://studio.realhorizons.ai/tours/76a39262-b947-4728-b056-9c79dda72372/view" title="BlueTokai Coffee — Spatial Studio sample tour"></iframe>
+<iframe allow="xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay" aria-hidden="true" class="sx-demo__frame" data-deferred-src="https://studio.realhorizons.ai/tours/76a39262-b947-4728-b056-9c79dda72372/view" data-tour="rest" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="BlueTokai Coffee — Spatial Studio sample tour"></iframe>
 <iframe allow="xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay" aria-hidden="true" class="sx-demo__frame" data-deferred-src="https://studio.realhorizons.ai/tours/fb185a7c-27b9-42c8-b77c-b8fd5cf4e5a8/view" data-tour="hotel" referrerpolicy="strict-origin-when-cross-origin" title="Clarks Exotica — Spatial Studio sample tour"></iframe>
-<iframe allow="xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay" aria-hidden="true" class="sx-demo__frame" data-deferred-src="https://studio.realhorizons.ai/tours/c6cea52b-670f-4372-9151-bf6a46c2827b/view" data-tour="str" referrerpolicy="strict-origin-when-cross-origin" title="Living Room — Spatial Studio sample tour"></iframe>
+<iframe allow="xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay" class="sx-demo__frame is-active" data-tour="str" referrerpolicy="strict-origin-when-cross-origin" src="https://studio.realhorizons.ai/tours/c6cea52b-670f-4372-9151-bf6a46c2827b/view" title="Living Room — Spatial Studio sample tour"></iframe>
 <iframe allow="xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay" aria-hidden="true" class="sx-demo__frame" data-deferred-src="https://studio.realhorizons.ai/tours/ed72e7f2-063a-475a-a5f4-afafe638a64e/view" data-tour="dev" referrerpolicy="strict-origin-when-cross-origin" title="The Villa Tour — Spatial Studio sample tour"></iframe>
 <iframe allow="xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay" aria-hidden="true" class="sx-demo__frame" data-deferred-src="https://studio.realhorizons.ai/tours/f38c5bc0-3fc8-422b-8232-ed1adbac40cf/view" data-tour="venue" referrerpolicy="strict-origin-when-cross-origin" title="Château La Sarraz — Spatial Studio sample tour"></iframe>
 <span aria-hidden="true" class="sx-demo__live">
@@ -127,11 +127,11 @@
 <h2 class="sx-h2">What changes after we scan.</h2>
 </div>
 <div aria-label="Filter outcomes by segment" class="sx-filter" id="outcome-filter" role="tablist">
-<button class="sx-filter__btn is-active" data-filter="all">All</button>
+<button class="sx-filter__btn" data-filter="all">All</button>
 <button class="sx-filter__btn" data-filter="hotels">Hotels</button>
 <button class="sx-filter__btn" data-filter="developers">Developers</button>
 <button class="sx-filter__btn" data-filter="venues">Venues</button>
-<button class="sx-filter__btn" data-filter="hosts">Hosts</button>
+<button class="sx-filter__btn is-active" data-filter="hosts">Hosts</button>
 <button class="sx-filter__btn" data-filter="clinics">Clinics</button>
 <button class="sx-filter__btn" data-filter="restaurants">Restaurants</button>
 <button class="sx-filter__btn" data-filter="galleries">Galleries</button>
@@ -195,7 +195,7 @@
 <p class="sx-lede">Pick yours.</p>
 </div>
 <div class="sx-segcards" id="seg-cards">
-<details class="sx-segcard" data-seg="hotel" open="">
+<details class="sx-segcard" data-seg="hotel">
 <summary class="sx-segcard__head">
 <span class="sx-segcard__label">Boutique &amp; design hotels</span>
 <span class="sx-segcard__range-mini">$1,000–$3,000</span>
@@ -243,7 +243,7 @@
 </div>
 </div>
 </details>
-<details class="sx-segcard" data-seg="str">
+<details class="sx-segcard" data-seg="str" open="">
 <summary class="sx-segcard__head">
 <span class="sx-segcard__label">Solo Airbnb hosts</span>
 <span class="sx-segcard__range-mini">From $99</span>

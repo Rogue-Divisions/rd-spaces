@@ -4,23 +4,23 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Spaces by Rogue Divisions — Tours of your space they can walk through</title>
-<meta content="Tours they can walk before they fly in. Photoreal 3D walkthroughs of your space, delivered overnight. Operating across Georgia. Armenia and Azerbaijan next." name="description"/>
-<link href="https://spaces.roguedivisions.com" rel="canonical"/>
+<title>Spaces for restaurants — Your interior is the marketing. Show it properly.</title>
+<meta content="Private hire enquiries close before the call ends. Corporate planners walk your dining room from their desks. Built for restaurants, bars, and design hospitality." name="description"/>
+<link href="https://spaces.roguedivisions.com/restaurants" rel="canonical"/>
 <meta content="noindex, nofollow" name="robots"/>
 <meta content="#191919" name="theme-color"/>
 <!-- OG / Twitter share cards — the page is by-referral B2B; previews matter when the link
        is pasted into WhatsApp, Slack, or iMessage. -->
 <meta content="website" property="og:type"/>
-<meta content="https://spaces.roguedivisions.com" property="og:url"/>
-<meta content="They are somewhere else. Win them anyway." property="og:title"/>
-<meta content="Tours they can walk before they fly in." property="og:description"/>
+<meta content="https://spaces.roguedivisions.com/restaurants" property="og:url"/>
+<meta content="Your interior is the marketing. Show it properly." property="og:title"/>
+<meta content="Private hire enquiries close before the call ends. The corporate planner walks your dining room from their desk." property="og:description"/>
 <meta content="https://spaces.roguedivisions.com/assets/og-image.jpg" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<meta content="They are somewhere else. Win them anyway." name="twitter:title"/>
-<meta content="Tours they can walk before they fly in." name="twitter:description"/>
+<meta content="Your interior is the marketing. Show it properly." name="twitter:title"/>
+<meta content="Private hire enquiries close before the call ends. The corporate planner walks your dining room from their desk." name="twitter:description"/>
 <meta content="https://spaces.roguedivisions.com/assets/og-image.jpg" name="twitter:image"/>
 <!-- Favicon set -->
 <link href="/assets/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
@@ -38,7 +38,7 @@
 <link href="https://studio.realhorizons.ai" rel="dns-prefetch"/>
 <link href="/spaces.css" rel="stylesheet"/>
 </head>
-<body data-active-kind="apartment" data-active-tour="rest" data-outcomes-filter="all">
+<body data-active-kind="rest" data-active-tour="rest" data-outcomes-filter="restaurants" data-segment="restaurants">
 <!-- Sticky nav -->
 <nav class="sx-nav">
 <div class="sx-nav__inner">
@@ -73,8 +73,8 @@
 </div>
 <div aria-hidden="true" class="sx-hero__scrim"></div>
 <div class="sx-hero__inner">
-<h1 class="sx-hero__h1">They are somewhere else.<br/> <span class="rd-win">Win</span> them anyway.</h1>
-<p class="sx-hero__sub">Tours they can walk before they fly in.</p>
+<h1 class="sx-hero__h1">Your interior is the marketing.<br/> <span class="rd-win">Show</span> it properly.</h1>
+<p class="sx-hero__sub">Private hire enquiries close before the call ends. The corporate planner walks your dining room from their desk.</p>
 <div class="sx-hero__cta">
 <a class="rd-btn rd-btn--filled" href="#contact">Book a free pilot scan</a>
 <a class="rd-link-arrow" href="#demo">See an example tour <span class="arrow">➜</span></a>
@@ -127,13 +127,13 @@
 <h2 class="sx-h2">What changes after we scan.</h2>
 </div>
 <div aria-label="Filter outcomes by segment" class="sx-filter" id="outcome-filter" role="tablist">
-<button class="sx-filter__btn is-active" data-filter="all">All</button>
+<button class="sx-filter__btn" data-filter="all">All</button>
 <button class="sx-filter__btn" data-filter="hotels">Hotels</button>
 <button class="sx-filter__btn" data-filter="developers">Developers</button>
 <button class="sx-filter__btn" data-filter="venues">Venues</button>
 <button class="sx-filter__btn" data-filter="hosts">Hosts</button>
 <button class="sx-filter__btn" data-filter="clinics">Clinics</button>
-<button class="sx-filter__btn" data-filter="restaurants">Restaurants</button>
+<button class="sx-filter__btn is-active" data-filter="restaurants">Restaurants</button>
 <button class="sx-filter__btn" data-filter="galleries">Galleries</button>
 </div>
 <div class="sx-outcomes" id="outcomes-list">
@@ -195,7 +195,7 @@
 <p class="sx-lede">Pick yours.</p>
 </div>
 <div class="sx-segcards" id="seg-cards">
-<details class="sx-segcard" data-seg="hotel" open="">
+<details class="sx-segcard" data-seg="hotel">
 <summary class="sx-segcard__head">
 <span class="sx-segcard__label">Boutique &amp; design hotels</span>
 <span class="sx-segcard__range-mini">$1,000–$3,000</span>
@@ -291,7 +291,7 @@
 </div>
 </div>
 </details>
-<details class="sx-segcard" data-seg="rest">
+<details class="sx-segcard" data-seg="rest" open="">
 <summary class="sx-segcard__head">
 <span class="sx-segcard__label">Restaurants, bars &amp; design hospitality</span>
 <span class="sx-segcard__range-mini">$129–$500</span>
@@ -341,7 +341,7 @@
 <h3 class="sx-calc2__step-title">What kind of space is it?</h3>
 </div>
 <div class="sx-calc2__grid sx-calc2__grid--kinds" data-step="kind">
-<button class="sx-calc2__opt is-active" data-kind="apartment">
+<button class="sx-calc2__opt" data-kind="apartment">
 <span class="sx-calc2__opt-name">Apartment or holiday let</span>
 <span class="sx-calc2__opt-sub">Airbnb, short-term, single villa</span>
 </button>
@@ -361,7 +361,7 @@
 <span class="sx-calc2__opt-name">Development or show flat</span>
 <span class="sx-calc2__opt-sub">Off-plan, mixed use</span>
 </button>
-<button class="sx-calc2__opt" data-kind="rest">
+<button class="sx-calc2__opt is-active" data-kind="rest">
 <span class="sx-calc2__opt-name">Restaurant or bar</span>
 <span class="sx-calc2__opt-sub">Dining room, private hire</span>
 </button>
