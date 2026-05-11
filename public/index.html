@@ -9,6 +9,11 @@
   <meta property="og:description" content="Tours of your space they can step through online. Operating across Georgia. Armenia and Azerbaijan next." />
   <link rel="canonical" href="https://spaces.roguedivisions.com" />
   <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Hero preload hints — give browser a head start fetching the visual assets -->
+  <link rel="preload" as="image" href="assets/hero-poster.jpg" fetchpriority="high" />
+  <link rel="preload" as="fetch" href="hls/master.m3u8" crossorigin="anonymous" />
+
   <link rel="stylesheet" href="spaces.css" />
 </head>
 <body>
@@ -38,7 +43,11 @@
 <!-- HERO -->
 <header id="top" class="sx-hero">
   <div class="sx-hero__media" aria-hidden="true">
-    <video autoplay muted loop playsinline preload="auto" poster="">
+    <video id="hero-video" autoplay muted loop playsinline preload="auto"
+           poster="assets/hero-poster.jpg">
+      <!-- Safari plays HLS natively; this is the source it picks. -->
+      <source src="hls/master.m3u8" type="application/vnd.apple.mpegurl" />
+      <!-- Fallback for browsers without HLS support — used only when neither native nor hls.js is available. -->
       <source src="assets/hero-loop.mp4" type="video/mp4" />
     </video>
   </div>
@@ -902,6 +911,26 @@
       win.style.opacity = '1';
       win.style.transform = 'translateY(0)';
     });
+  })();
+
+  // HLS adaptive bitrate — Safari plays HLS natively; everyone else gets hls.js on demand.
+  // Total page-weight impact for non-Safari: ~110 KB gzipped, loaded async (does not block first paint).
+  (function () {
+    var v = document.getElementById('hero-video');
+    if (!v) return;
+    // Native HLS path (Safari, iOS) — the <source> tag already points at the manifest, nothing to do.
+    if (v.canPlayType('application/vnd.apple.mpegurl')) return;
+    // Everyone else — dynamically load hls.js, then attach it to the video element.
+    var s = document.createElement('script');
+    s.src = 'vendor/hls.min.js';
+    s.async = true;
+    s.onload = function () {
+      if (!window.Hls || !Hls.isSupported()) return; // Very old browser; falls through to the MP4 <source>.
+      var hls = new Hls({ lowLatencyMode: false, capLevelToPlayerSize: true });
+      hls.loadSource('hls/master.m3u8');
+      hls.attachMedia(v);
+    };
+    document.head.appendChild(s);
   })();
 </script>
 
