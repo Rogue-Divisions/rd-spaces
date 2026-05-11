@@ -109,25 +109,6 @@ h1, h2, h3, h4 {
 
 p { margin: 0 0 1em; text-wrap: pretty; }
 
-/* --- Brand utility: keyword underline ------------------------- */
-.rd-mark {
-  position: relative;
-  font-weight: var(--fw-bold);
-  white-space: nowrap;
-  display: inline-block;
-  isolation: isolate;
-}
-.rd-mark::after {
-  content: "";
-  position: absolute;
-  left: -0.04em; right: -0.04em; bottom: -0.04em;
-  height: 0.15em;
-  background: var(--rd-signal);
-  border-radius: 9999px;
-  z-index: -1;
-  transform-origin: left center;
-}
-
 /* "Win" — italic + signal red, distinct from rd-mark underline */
 .rd-win {
   color: var(--rd-signal);
@@ -181,36 +162,6 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   transition: transform var(--dur-base) var(--ease-standard);
 }
 .rd-link-arrow:hover .arrow { transform: translateX(4px); }
-
-/* ============================================================
-   01 — Operating-status edge strip
-   Single short line, top-left. Insider tone.
-   ============================================================ */
-.sx-edge {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 9px 32px;
-  font-size: 11px;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
-  background: #0a0a0a;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-}
-.sx-edge__status { display: inline-flex; align-items: center; }
-.sx-edge__dot {
-  display: inline-block;
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--rd-signal);
-  margin-right: 10px;
-  box-shadow: 0 0 0 4px rgba(255,44,85,0.18);
-  animation: sx-pulse 2.4s ease-in-out infinite;
-}
-@keyframes sx-pulse {
-  0%, 100% { box-shadow: 0 0 0 4px rgba(255,44,85,0.18); }
-  50%      { box-shadow: 0 0 0 7px rgba(255,44,85,0.05); }
-}
 
 /* ============================================================
    Sticky nav
@@ -286,6 +237,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   font-size: 14px;
   font-weight: 600;
   border-radius: 999px;
+  white-space: nowrap;
   transition: opacity 200ms var(--ease-standard);
 }
 .sx-nav__cta:hover { opacity: 0.92; }
@@ -404,21 +356,6 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 .sx-section__head {
   max-width: 760px;
   margin: 0 0 64px;
-}
-.sx-eyebrow {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: rgba(255,255,255,0.55);
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 22px;
-}
-.sx-eyebrow::before {
-  content: "";
-  width: 22px; height: 1px;
-  background: rgba(255,255,255,0.35);
 }
 .sx-h2 {
   font-size: clamp(32px, 4.4vw, 56px);
@@ -662,13 +599,6 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
-.sx-step__num {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--rd-signal);
-  font-weight: 600;
 }
 .sx-step__title {
   font-size: 24px;
@@ -989,6 +919,9 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   padding: 12px 0;
   border-top: 1px solid rgba(255,255,255,0.06);
 }
+/* The [hidden] HTML attribute is overridden by display: flex above on its own;
+   restore the expected behaviour explicitly. */
+.sx-calc2__total-meta[hidden] { display: none; }
 .sx-calc2__total-meta strong { color: #fff; font-weight: 600; }
 .sx-calc2__cta { margin-top: 20px; justify-content: center; }
 .sx-calc2__total-fine {
@@ -1263,6 +1196,10 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   gap: 64px;
   align-items: start;
 }
+.sx-about--no-credits {
+  grid-template-columns: 1fr;
+  max-width: 760px;
+}
 .sx-about__body p {
   font-size: 17px;
   line-height: 1.65;
@@ -1433,6 +1370,12 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   font-size: 12px;
   color: rgba(255,255,255,0.4);
 }
+.sx-footer__social a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: color 200ms var(--ease-standard);
+}
+.sx-footer__social a:hover { color: #fff; }
 
 /* ============================================================
    Responsive

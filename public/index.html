@@ -4,21 +4,40 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Spaces by Rogue Divisions — Tours of your space they can walk through</title>
-  <meta name="description" content="Tours of your space they can step through, before they ever land in Tbilisi. Live the next morning. Operating across Georgia. Armenia and Azerbaijan next." />
-  <meta property="og:title" content="They are somewhere else. Win them anyway." />
-  <meta property="og:description" content="Tours of your space they can step through online. Operating across Georgia. Armenia and Azerbaijan next." />
+  <meta name="description" content="Tours they can walk before they fly in. Photoreal 3D walkthroughs of your space, delivered overnight. Operating across Georgia. Armenia and Azerbaijan next." />
   <link rel="canonical" href="https://spaces.roguedivisions.com" />
   <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#191919" />
 
-  <!-- Hero preload hints — give browser a head start fetching the visual assets -->
-  <link rel="preload" as="image" href="assets/hero-poster.jpg" fetchpriority="high" />
-  <link rel="preload" as="fetch" href="hls/master.m3u8" crossorigin="anonymous" />
+  <!-- OG / Twitter share cards — the page is by-referral B2B; previews matter when the link
+       is pasted into WhatsApp, Slack, or iMessage. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://spaces.roguedivisions.com" />
+  <meta property="og:title" content="They are somewhere else. Win them anyway." />
+  <meta property="og:description" content="Tours they can walk before they fly in. Operating across Georgia. Armenia and Azerbaijan next." />
+  <meta property="og:image" content="https://spaces.roguedivisions.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="They are somewhere else. Win them anyway." />
+  <meta name="twitter:description" content="Tours they can walk before they fly in." />
+  <meta name="twitter:image" content="https://spaces.roguedivisions.com/assets/og-image.jpg" />
 
-  <!-- Pre-establish the TLS handshake with Spatial Studio so demo iframes connect faster -->
+  <!-- Favicon set -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+
+  <!-- Hero preload — the poster image rides the first packet so the visitor sees the scene
+       at 0 ms while the video buffers. The HLS manifest preload was removed because it was
+       generating noisy "preload not used" warnings (the manifest is 393 bytes and loads
+       fast enough on demand). -->
+  <link rel="preload" as="image" href="/assets/hero-poster.jpg" fetchpriority="high" />
+
+  <!-- Pre-establish TLS with Spatial Studio so demo iframes connect faster on click. -->
   <link rel="preconnect" href="https://studio.realhorizons.ai" crossorigin />
   <link rel="dns-prefetch" href="https://studio.realhorizons.ai" />
 
-  <link rel="stylesheet" href="spaces.css" />
+  <link rel="stylesheet" href="/spaces.css" />
 </head>
 <body>
 
@@ -30,7 +49,7 @@
       <span class="sx-brand__rule" aria-hidden="true"></span>
       <span class="sx-brand__by">
         <span>by</span>
-        <img class="sx-brand__logo" src="assets/RD-Name-Mono_White.png" alt="Rogue Divisions" />
+        <img class="sx-brand__logo" src="/assets/RD-Name-Mono_White.png" alt="Rogue Divisions" />
       </span>
     </a>
     <ul class="sx-nav__list">
@@ -38,7 +57,6 @@
       <li><a href="#how">How it works</a></li>
       <li><a href="#segments">Who it's for</a></li>
       <li><a href="#pricing">Configure</a></li>
-      <li><a href="#showcase">Work</a></li>
       <li><a href="#contact" class="sx-nav__cta">Book a pilot</a></li>
     </ul>
   </div>
@@ -47,12 +65,14 @@
 <!-- HERO -->
 <header id="top" class="sx-hero">
   <div class="sx-hero__media" aria-hidden="true">
-    <video id="hero-video" autoplay muted loop playsinline preload="auto"
-           poster="assets/hero-poster.jpg">
+    <!-- preload=metadata avoids fetching segments before the visitor has scrolled to the demo;
+         the poster image already fills the visible frame so the visitor sees the scene at 0 ms. -->
+    <video id="hero-video" autoplay muted loop playsinline preload="metadata"
+           poster="/assets/hero-poster.jpg">
       <!-- Safari plays HLS natively; this is the source it picks. -->
-      <source src="hls/master.m3u8" type="application/vnd.apple.mpegurl" />
+      <source src="/hls/master.m3u8" type="application/vnd.apple.mpegurl" />
       <!-- Fallback for browsers without HLS support — used only when neither native nor hls.js is available. -->
-      <source src="assets/hero-loop.mp4" type="video/mp4" />
+      <source src="/assets/hero-loop.mp4" type="video/mp4" />
     </video>
   </div>
   <div class="sx-hero__scrim" aria-hidden="true"></div>
@@ -507,27 +527,10 @@
   </div>
 </section>
 
-<!-- SHOWCASE -->
-<section id="showcase" class="sx-section">
-  <div class="sx-section__inner">
-    <div class="sx-section__head">
-      <h2 class="sx-h2">See the work.</h2>
-      <p class="sx-lede">A property we captured in Tbilisi. Step in.</p>
-    </div>
-    <a class="sx-showcase-hero" href="#">
-      <div class="sx-showcase-hero__viewport">
-        <div class="sx-showcase-hero__play" aria-hidden="true">
-          <span class="sx-showcase-hero__play-glyph">▶</span>
-          <span>Walk through</span>
-        </div>
-      </div>
-      <div class="sx-showcase-hero__meta">
-        <div class="sx-showcase-hero__title">Boutique hotel suite</div>
-        <div class="sx-showcase-hero__sub">Sololaki, Tbilisi · 4 rooms · captured November 2025</div>
-      </div>
-    </a>
-  </div>
-</section>
+<!-- SHOWCASE — removed until a real Tbilisi capture exists.
+     The demo block above already demonstrates the work via five live sample tours.
+     When the first Tbilisi capture ships, re-add this section with the real metadata
+     (title, location, room count, capture date) and a working tour URL. -->
 
 <!-- FAQ -->
 <section id="faq" class="sx-section sx-section--alt">
@@ -574,24 +577,14 @@
     <div class="sx-section__head">
       <h2 class="sx-h2">Operators, not a marketplace.</h2>
     </div>
-    <div class="sx-about">
+    <div class="sx-about sx-about--no-credits">
       <div class="sx-about__body">
         <p>Spaces is a Rogue Divisions studio. London-registered specialist firm working at the edge of capital markets, content, and operations. We build things that should exist and run them as standalone offerings.</p>
         <p>Every capture is done by an operator we trained. Every tour is QA'd before it ships. Your relationship is with us, not with a platform.</p>
         <a href="https://roguedivisions.com" class="rd-link-arrow">About Rogue Divisions <span class="arrow">→</span></a>
       </div>
-      <aside class="sx-about__credits">
-        <div class="sx-about__credits-tag">Selected credits</div>
-        <div class="sx-about__credits-strip" aria-label="Past clients and partners">
-          <span class="sx-about__credit-slot">Logo</span>
-          <span class="sx-about__credit-slot">Logo</span>
-          <span class="sx-about__credit-slot">Logo</span>
-          <span class="sx-about__credit-slot">Logo</span>
-          <span class="sx-about__credit-slot">Logo</span>
-          <span class="sx-about__credit-slot">Logo</span>
-        </div>
-        <p class="sx-about__credits-note">Strip will be replaced with real client and partner marks once visual assets are signed off.</p>
-      </aside>
+      <!-- Credits strip removed until real client/partner logos are signed off.
+           Re-add by reverting to <aside class="sx-about__credits"> ... </aside>. -->
     </div>
   </div>
 </section>
@@ -617,7 +610,7 @@
         <div class="sx-footer__brand-line">Spaces</div>
         <a class="sx-footer__by" href="https://roguedivisions.com">
           <span>by</span>
-          <img src="assets/RD-Name-Mono_White.png" alt="Rogue Divisions" />
+          <img src="/assets/RD-Name-Mono_White.png" alt="Rogue Divisions" />
         </a>
         <p class="sx-footer__regions">
           spaces.roguedivisions.com<br />
@@ -629,9 +622,9 @@
         <div class="sx-footer__col">
           <div class="sx-footer__heading">Spaces</div>
           <ul>
+            <li><a href="#demo">Sample tours</a></li>
             <li><a href="#how">How it works</a></li>
             <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#showcase">Selected work</a></li>
           </ul>
         </div>
         <div class="sx-footer__col">
@@ -652,14 +645,19 @@
             <li><a href="https://roguedivisions.com">Rogue Divisions</a></li>
             <li><a href="https://roguedivisions.com/ideas">Ideas</a></li>
             <li><a href="mailto:spaces@roguedivisions.com">Contact</a></li>
-            <li><a href="#">Privacy &amp; Terms</a></li>
+            <li><a href="https://roguedivisions.com/privacy">Privacy &amp; Terms</a></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="sx-footer__base">
       <span>© 2026 Rogue Divisions Ltd. London.</span>
-      <span>LinkedIn · X · Instagram · YouTube</span>
+      <span class="sx-footer__social">
+        <a href="https://www.linkedin.com/company/rogue-divisions" rel="noopener">LinkedIn</a> ·
+        <a href="https://x.com/roguedivisions" rel="noopener">X</a> ·
+        <a href="https://www.instagram.com/roguedivisions" rel="noopener">Instagram</a> ·
+        <a href="https://www.youtube.com/@roguedivisions" rel="noopener">YouTube</a>
+      </span>
     </div>
   </div>
 </footer>
@@ -1052,12 +1050,12 @@
     if (v.canPlayType('application/vnd.apple.mpegurl')) return;
     // Everyone else — dynamically load hls.js, then attach it to the video element.
     var s = document.createElement('script');
-    s.src = 'vendor/hls.min.js';
+    s.src = '/vendor/hls.min.js';
     s.async = true;
     s.onload = function () {
       if (!window.Hls || !Hls.isSupported()) return; // Very old browser; falls through to the MP4 <source>.
       var hls = new Hls({ lowLatencyMode: false, capLevelToPlayerSize: true });
-      hls.loadSource('hls/master.m3u8');
+      hls.loadSource('/hls/master.m3u8');
       hls.attachMedia(v);
     };
     document.head.appendChild(s);
