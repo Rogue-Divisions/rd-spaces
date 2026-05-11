@@ -1425,3 +1425,90 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   }
   .sx-multi { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   C4 polish — sticky mobile CTA, clickable outcomes,
+   segment-card open transition
+   ============================================================ */
+
+/* Outcome cards are clickable on segment-jump — show the affordance. */
+.sx-outcome[data-jump] {
+  cursor: pointer;
+  position: relative;
+  transition: border-color .18s ease, transform .18s ease, background .18s ease;
+}
+.sx-outcome[data-jump]:hover {
+  border-color: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.04);
+  transform: translateY(-1px);
+}
+.sx-outcome[data-jump]::after {
+  content: "→";
+  position: absolute;
+  right: 22px; bottom: 22px;
+  color: var(--rd-azure);
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity .18s ease, transform .18s ease;
+}
+.sx-outcome[data-jump]:hover::after {
+  opacity: 1;
+  transform: translateX(3px);
+}
+
+/* Smooth segment-card open — uses the modern interpolate-size on details>summary
+   when supported. Falls back to instant in older browsers, which is fine. */
+@supports (interpolate-size: allow-keywords) {
+  :root { interpolate-size: allow-keywords; }
+  .sx-segcard {
+    transition: border-color .2s ease, background .2s ease, height .25s var(--ease-standard);
+    height: auto;
+    overflow: clip;
+    overflow-clip-margin: 0;
+  }
+  .sx-segcard:not([open]) { height: auto; }
+}
+
+/* Sticky bottom CTA on mobile — fires once visitor scrolls past hero.
+   Desktop has the persistent nav CTA; mobile loses it after scroll, so we
+   surface a single dominant CTA at the bottom of the viewport. */
+.sx-sticky-cta {
+  display: none;
+}
+@media (max-width: 700px) {
+  .sx-sticky-cta {
+    display: flex;
+    position: fixed;
+    inset: auto 12px 12px 12px;
+    z-index: 60;
+    padding: 14px 20px;
+    background: var(--rd-pure-white);
+    color: var(--rd-ink);
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,0,0,0.05);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity .25s var(--ease-standard), transform .25s var(--ease-standard);
+  }
+  .sx-sticky-cta.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
+
+/* Pill sizing — bumped slightly on mobile for touch comfort. */
+@media (max-width: 700px) {
+  .sx-demo__pill {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+}

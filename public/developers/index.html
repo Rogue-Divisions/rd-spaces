@@ -137,27 +137,27 @@
 <button class="sx-filter__btn" data-filter="galleries">Galleries</button>
 </div>
 <div class="sx-outcomes" id="outcomes-list">
-<article class="sx-outcome" data-segs="hotels hosts restaurants">
+<article class="sx-outcome" data-jump="/hotels" data-segs="hotels hosts restaurants">
 <h3 class="sx-outcome__title">Direct bookings climb.</h3>
 <p class="sx-outcome__body">Guests who can step into the suite no longer book through the OTA just to be safe. They book direct. You keep the commission.</p>
 </article>
-<article class="sx-outcome" data-segs="developers">
+<article class="sx-outcome" data-jump="/developers" data-segs="developers">
 <h3 class="sx-outcome__title">Foreign interest stops bouncing.</h3>
 <p class="sx-outcome__body">The person in Dubai or Tel Aviv who would have ignored your brochure is inside the show flat. Sales agents paste a link into WhatsApp. The deposit lands.</p>
 </article>
-<article class="sx-outcome" data-segs="venues">
+<article class="sx-outcome" data-jump="/weddings" data-segs="venues">
 <h3 class="sx-outcome__title">Couples commit before the flight.</h3>
 <p class="sx-outcome__body">A bride in London who could not visit walks the chapel from her sofa. Decisions get made faster. Deposits land sooner. The planner stops bouncing your venue against six others.</p>
 </article>
-<article class="sx-outcome" data-segs="hosts">
+<article class="sx-outcome" data-jump="/hosts" data-segs="hosts">
 <h3 class="sx-outcome__title">Listings stop getting skipped.</h3>
 <p class="sx-outcome__body">In a city with thousands of nearly identical listings, yours is the one with the walk-through button. They click. Conversion lifts.</p>
 </article>
-<article class="sx-outcome" data-segs="clinics">
+<article class="sx-outcome" data-jump="/clinics" data-segs="clinics">
 <h3 class="sx-outcome__title">Patients book the surgery.</h3>
 <p class="sx-outcome__body">The patient choosing between you and three Turkish clinics walks your reception, your consultation room, your operating theatre. The trust gap closes. The flight gets booked.</p>
 </article>
-<article class="sx-outcome" data-segs="restaurants venues">
+<article class="sx-outcome" data-jump="/restaurants" data-segs="restaurants venues">
 <h3 class="sx-outcome__title">Private hire books faster.</h3>
 <p class="sx-outcome__body">Event planners who normally need a site visit get sent a link. They walk your dining room and your private events floor without leaving their desk. The corporate booking lands a week earlier.</p>
 </article>
@@ -428,7 +428,7 @@
 <strong data-turn="">—</strong>
 </div>
 <a class="rd-btn rd-btn--filled sx-calc2__cta" data-book-cta="" href="mailto:spaces@roguedivisions.com?subject=Configured%20engagement">Pick a size to continue</a>
-<p class="sx-calc2__total-fine">Free pilot available — first space, no charge.</p>
+<p class="sx-calc2__total-fine">Free pilot available — first space, no charge.<br/>We respond within 24 hours.</p>
 <div class="sx-calc2__includes" data-includes="" hidden="">
 <div class="sx-calc2__includes-tag">What's included</div>
 <ul>
@@ -540,6 +540,9 @@
 <span class="sx-final__email">Or email us at <a href="mailto:spaces@roguedivisions.com">spaces@roguedivisions.com</a></span>
 </div>
 </section>
+<!-- Sticky mobile CTA — JS toggles is-visible once hero scrolls offscreen.
+     Hidden by default + suppressed via CSS at desktop widths. -->
+<a aria-label="Book a free pilot scan" class="sx-sticky-cta" href="#contact">Book a pilot</a>
 <!-- FOOTER -->
 <footer class="sx-footer">
 <div class="sx-footer__inner">
@@ -1017,6 +1020,40 @@
     } else {
       loadHls();
     }
+  })();
+
+  // Outcome cards with data-jump — clickable on hover, taking visitor to the segment page.
+  // Card titles are still the focal point; the right-aligned arrow appears on hover as affordance.
+  (function () {
+    document.querySelectorAll('.sx-outcome[data-jump]').forEach(function (card) {
+      var url = card.getAttribute('data-jump');
+      card.addEventListener('click', function (e) {
+        // Don't intercept if the visitor clicked an actual <a> or <button> inside the card.
+        if (e.target.closest('a, button')) return;
+        window.location.href = url;
+      });
+      // Keyboard accessibility — Enter/Space activates jump.
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'link');
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.location.href = url; }
+      });
+    });
+  })();
+
+  // Sticky mobile CTA — appears once hero is offscreen, lifts conversion on mobile where
+  // the in-nav 'Book a pilot' button scrolls away. Desktop has the sticky nav, so suppressed there.
+  (function () {
+    var sticky = document.querySelector('.sx-sticky-cta');
+    var hero = document.querySelector('.sx-hero');
+    if (!sticky || !hero || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        // Show the sticky CTA when the hero has scrolled out of view.
+        sticky.classList.toggle('is-visible', !e.isIntersecting);
+      });
+    }, { threshold: 0 });
+    io.observe(hero);
   })();
 </script>
 </body>
