@@ -90,8 +90,8 @@
       Tours they can walk before they fly in.
     </p>
     <div class="sx-hero__cta">
-      <a href="#contact" class="rd-btn rd-btn--filled">Book a free pilot scan</a>
-      <a href="#demo" class="rd-link-arrow">See an example tour <span class="arrow">➜</span></a>
+      <a href="#contact" class="rd-btn rd-btn--filled" data-hero-cta-primary>Book a free pilot scan</a>
+      <a href="#demo" class="rd-link-arrow" data-hero-cta-secondary>See an example tour <span class="arrow">➜</span></a>
     </div>
     <div class="sx-hero__geo">Operating across Georgia. Armenia and Azerbaijan next.</div>
   </div>
@@ -168,7 +168,7 @@
         <span>Scroll to zoom</span>
       </div>
     </div>
-    <p class="sx-demo__caption">
+    <p class="sx-demo__caption" data-demo-caption>
       <span data-tour-title>BlueTokai Coffee</span> · sample tour from Spatial Studio. Real Tbilisi captures shipping shortly.
     </p>
   </div>
@@ -181,7 +181,7 @@
       <h2 class="sx-h2">What changes after we scan.</h2>
     </div>
 
-    <div class="sx-filter" id="outcome-filter" role="tablist" aria-label="Filter outcomes by segment">
+    <div class="sx-filter" id="outcome-filter" data-hub-only="filter" role="tablist" aria-label="Filter outcomes by segment">
       <button class="sx-filter__btn is-active" data-filter="all">All</button>
       <button class="sx-filter__btn" data-filter="hotels">Hotels</button>
       <button class="sx-filter__btn" data-filter="developers">Developers</button>
@@ -222,6 +222,15 @@
   </div>
 </section>
 
+<!-- OBJECTION — segment-only "we know what you're thinking" block.
+     Removed from hub. Build script populates the quote + reply from segments.json. -->
+<section class="sx-objection" data-segment-only>
+  <div class="sx-objection__inner">
+    <h2 class="sx-objection__quote" data-objection-quote></h2>
+    <p class="sx-objection__reply" data-objection-reply></p>
+  </div>
+</section>
+
 <!-- HOW IT WORKS -->
 <section id="how" class="sx-section">
   <div class="sx-section__inner">
@@ -245,8 +254,9 @@
   </div>
 </section>
 
-<!-- SEGMENTS -->
-<section id="segments" class="sx-section sx-section--alt">
+<!-- HUB ONLY — Eight-card segment grid. Removed entirely on /<segment>/ pages.
+     "Built for spaces. Pick yours." H2 lives here so it goes with the section. -->
+<section id="segments" class="sx-section sx-section--alt" data-hub-only="segments-grid">
   <div class="sx-section__inner">
     <div class="sx-section__head">
       <h2 class="sx-h2">Built for spaces no one can easily fly in to see.</h2>
@@ -401,13 +411,18 @@
       <p class="sx-lede">Pick your space. Add what you want shown. The total updates as you go. When you are happy, book it.</p>
     </div>
 
+    <!-- Segment-only pricing anchor line (renders above the calculator on /<segment>/ pages
+         to frame the numbers in the buyer's economic model). Build script populates and
+         REMOVES on hub. -->
+    <p class="sx-pricing-anchor" data-segment-only></p>
+
     <div class="sx-calc2" id="calc">
       <div class="sx-calc2__form">
 
-        <div class="sx-calc2__step">
+        <div class="sx-calc2__step" data-step-id="kind">
           <div class="sx-calc2__step-head">
             <span class="sx-calc2__step-num">01</span>
-            <h3 class="sx-calc2__step-title">What kind of space is it?</h3>
+            <h3 class="sx-calc2__step-title" data-step1-title>What kind of space is it?</h3>
           </div>
           <div class="sx-calc2__grid sx-calc2__grid--kinds" data-step="kind">
             <button class="sx-calc2__opt is-active" data-kind="apartment">
@@ -445,10 +460,10 @@
           </div>
         </div>
 
-        <div class="sx-calc2__step">
+        <div class="sx-calc2__step" data-step-id="size">
           <div class="sx-calc2__step-head">
             <span class="sx-calc2__step-num">02</span>
-            <h3 class="sx-calc2__step-title">What size is it?</h3>
+            <h3 class="sx-calc2__step-title" data-step2-title>What size is it?</h3>
           </div>
           <div class="sx-calc2__grid sx-calc2__grid--sizes" data-sizes></div>
         </div>
@@ -486,8 +501,8 @@
             <h3 class="sx-calc2__step-title">Currency</h3>
           </div>
           <div class="sx-calc2__currency">
-            <button class="is-active" data-cur="USD">USD</button>
-            <button data-cur="GEL">GEL</button>
+            <button class="is-active" data-cur="GBP">£ GBP</button>
+            <button data-cur="USD">$ USD</button>
           </div>
         </div>
 
@@ -613,8 +628,8 @@
 <!-- FINAL CTA -->
 <section id="contact" class="sx-final">
   <div class="sx-final__inner">
-    <h2>See your space in it.</h2>
-    <p>One free space. Link the next morning. Commission the rest if it lands. No obligation if it does not.</p>
+    <h2 data-final-cta-h2>See your space in it.</h2>
+    <p data-final-cta-body>One free space. Link the next morning. Commission the rest if it lands. No obligation if it does not.</p>
     <div class="sx-final__cta">
       <a href="mailto:spaces@roguedivisions.com?subject=Pilot%20scan%20request" class="rd-btn rd-btn--filled">Book your free pilot scan</a>
       <a href="#pricing" class="rd-btn rd-btn--outline">See pricing</a>
@@ -652,7 +667,7 @@
             <li><a href="#pricing">Pricing</a></li>
           </ul>
         </div>
-        <div class="sx-footer__col">
+        <div class="sx-footer__col" data-hub-only="footer-segments">
           <div class="sx-footer__heading">For</div>
           <ul>
             <li><a href="/hotels">Boutique hotels</a></li>
@@ -663,6 +678,14 @@
             <li><a href="/clinics">Medical clinics</a></li>
             <li><a href="/restaurants">Restaurants &amp; bars</a></li>
             <li><a href="/galleries">Galleries</a></li>
+          </ul>
+        </div>
+        <!-- On segment pages the For column above is removed by build.py and replaced
+             with this single-link column. Visitor still has one click back to all segments. -->
+        <div class="sx-footer__col" data-segment-only-footer>
+          <div class="sx-footer__heading">More</div>
+          <ul>
+            <li><a href="/">All segments</a></li>
           </ul>
         </div>
         <div class="sx-footer__col">
@@ -687,6 +710,10 @@
     </div>
   </div>
 </footer>
+
+<!-- Per-segment calculator config. Build script injects window.__SX_CFG__ before the
+     calc IIFE on segment pages; hub leaves this empty. -->
+<script data-sx-cfg></script>
 
 <script>
   // Helper: build an element with class + textContent (no innerHTML; XSS-safe by construction)
@@ -829,18 +856,39 @@
       }
     };
 
-    // Module add-on price decay: $400, $300, $200, $150, $100 thereafter.
+    // Per-segment overrides — populated by scripts/build.py before this IIFE runs.
+    // Hub leaves __SX_CFG__ undefined; segment pages set kind, kindOverride, pricingMode, etc.
+    var CFG = (typeof window !== 'undefined' && window.__SX_CFG__) ? window.__SX_CFG__ : {};
+
+    // For managers, the segment page adds a 'propmanager' kind entry that doesn't exist in
+    // KIND_MAP. For all other segments, the override replaces the existing entry.
+    if (CFG.kindOverride && CFG.kind) {
+      KIND_MAP[CFG.kind] = CFG.kindOverride;
+    }
+
+    // Module add-on price decay: £400, £300, £200, £150, £100 thereafter.
     // Rewards scope expansion within a buyer's natural per-property limit.
     var MOD_CURVE = [400, 300, 200, 150];
     function modulePrice(i) { return i <= 4 ? MOD_CURVE[i - 1] : 100; }
 
-    var state = { kind: 'apartment', size: null, mods: 0, addons: {}, currency: 'USD' };
-    var FX = { USD: 1, GEL: 2.7 };
-    var SYMBOL = { USD: '$', GEL: '₾' };
+    // Currency in £ by default per v7 commercial spec; USD secondary at ~spot rate.
+    // GEL was retired — Tbilisi-local clients usually settle in £ or $ at our rate.
+    var initKind = CFG.kind || 'apartment';
+    var state = { kind: initKind, size: null, mods: 0, addons: {}, currency: 'GBP' };
+    var FX = { GBP: 1, USD: 1.27 };
+    var SYMBOL = { GBP: '£', USD: '$' };
 
     function fmt(n) {
       if (n === null) return 'By quote';
       var v = Math.round(n * FX[state.currency]);
+      return SYMBOL[state.currency] + v.toLocaleString('en-US');
+    }
+
+    // Helper: subscription pricing model — total = monthly_per_unit × units.
+    // Used by /managers where pricing is per-door/month + a separate onboarding line.
+    function fmtSubscription(units, rate) {
+      if (units === null || rate === null) return 'By quote';
+      var v = Math.round(rate * units * FX[state.currency]);
       return SYMBOL[state.currency] + v.toLocaleString('en-US');
     }
 
@@ -857,6 +905,20 @@
     var includesEl = document.querySelector('[data-includes]');
     var bookCta    = document.querySelector('[data-book-cta]');
 
+    var IS_SUBSCRIPTION = CFG.pricingMode === 'subscription';
+    var SUBSCRIPTION_RATE = CFG.subscriptionRate || null;
+    var SUBSCRIPTION_UNIT_LABEL = CFG.subscriptionUnitLabel || 'per door / month';
+
+    // If the segment hides the modules step (e.g. /hosts, /managers), the wrapping
+    // .sx-calc2__step that contains the +/- stepper needs to be display:none.
+    if (CFG.modulesActive === false) {
+      var modStep = document.querySelector('[data-step3-title]');
+      if (modStep) {
+        var stepWrap = modStep.closest('.sx-calc2__step');
+        if (stepWrap) stepWrap.style.display = 'none';
+      }
+    }
+
     function renderSizes() {
       var k = KIND_MAP[state.kind];
       // Clear without innerHTML to keep this XSS-safe by construction
@@ -869,7 +931,18 @@
 
         btn.appendChild(el('span', 'sx-calc2__opt-name', s.name));
         btn.appendChild(el('span', 'sx-calc2__opt-sub',  s.sub));
-        var priceLabel = (s.price === null ? 'By quote' : fmt(s.price));
+
+        // Subscription mode (managers): show "Fleet · £1,050 / month" instead of one-off price.
+        var priceLabel;
+        if (IS_SUBSCRIPTION) {
+          if (s.price_units === null || s.price_units === undefined) {
+            priceLabel = 'By quote';
+          } else {
+            priceLabel = fmtSubscription(s.price_units, SUBSCRIPTION_RATE) + ' / month';
+          }
+        } else {
+          priceLabel = (s.price === null ? 'By quote' : fmt(s.price));
+        }
         btn.appendChild(el('span', 'sx-calc2__opt-price', s.pack + ' · ' + priceLabel));
 
         btn.addEventListener('click', function () {
@@ -880,8 +953,8 @@
         sizeWrap.appendChild(btn);
       });
 
-      step3Title.textContent = k.modLabel;
-      step3Hint.textContent  = k.modHint;
+      if (k.modLabel) step3Title.textContent = k.modLabel;
+      if (k.modHint)  step3Hint.textContent  = k.modHint;
     }
 
     function render() {
@@ -894,7 +967,9 @@
         bookCta.textContent = 'Pick a size to continue';
         return;
       }
-      var bespoke = state.size.price === null;
+      var bespoke = IS_SUBSCRIPTION
+        ? (state.size.price_units === null || state.size.price_units === undefined)
+        : (state.size.price === null);
       if (bespoke) {
         summaryEl.textContent = state.size.name + ' · bespoke quote';
         totalEl.textContent = 'By quote';
@@ -907,9 +982,29 @@
           encodeURIComponent(KIND_MAP[state.kind].label + ' / ' + state.size.name));
         return;
       }
+
+      // ─── Subscription render path (managers) ─────────────────────────
+      if (IS_SUBSCRIPTION) {
+        var doors = state.size.price_units;
+        var monthly = SUBSCRIPTION_RATE * doors;
+        summaryEl.textContent = state.size.pack + ' · ' + doors + ' doors';
+        totalEl.textContent = fmt(monthly) + ' / month';
+        turnEl.textContent = state.size.turn;
+        if (turnRow)    turnRow.hidden    = false;
+        if (includesEl) includesEl.hidden = false;
+        bookCta.textContent = 'Scope a fleet pilot';
+        bookCta.setAttribute('href',
+          'mailto:spaces@roguedivisions.com?subject=' +
+          encodeURIComponent('Fleet engagement: ' + summaryEl.textContent + ' (' + totalEl.textContent + ')'));
+        return;
+      }
+
+      // ─── One-off render path (everyone else) ─────────────────────────
       var base = state.size.price;
       var modSub = 0;
-      for (var i = 1; i <= state.mods; i++) modSub += modulePrice(i);
+      if (CFG.modulesActive !== false) {
+        for (var i = 1; i <= state.mods; i++) modSub += modulePrice(i);
+      }
       var addonSub = 0;
       var addonCount = 0;
       Object.keys(state.addons).forEach(function (key) {
@@ -920,8 +1015,10 @@
       });
       var total = base + modSub + addonSub;
       var parts = [state.size.pack];
-      if (state.mods)   parts.push(state.mods + (state.mods === 1 ? ' module' : ' modules'));
-      if (addonCount)   parts.push(addonCount + (addonCount === 1 ? ' add-on' : ' add-ons'));
+      if (state.mods && CFG.modulesActive !== false) {
+        parts.push(state.mods + (state.mods === 1 ? ' module' : ' modules'));
+      }
+      if (addonCount) parts.push(addonCount + (addonCount === 1 ? ' add-on' : ' add-ons'));
       summaryEl.textContent = parts.join(' · ');
       totalEl.textContent = fmt(total);
       turnEl.textContent = state.size.turn;

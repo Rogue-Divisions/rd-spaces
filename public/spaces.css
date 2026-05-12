@@ -1512,3 +1512,89 @@ p { margin: 0 0 1em; text-wrap: pretty; }
     padding: 8px 14px;
   }
 }
+
+/* ============================================================
+   Segment-page components — objection block, pricing anchor,
+   locked Step 01 indicator
+   ============================================================ */
+
+/* Objection block — the "we know what you're thinking" beat between
+   outcomes and how-it-works. Centred narrow column, slight tint to
+   mark it as a deliberate pause in the rhythm. Segment-pages only. */
+.sx-objection {
+  background: #131313;
+  padding: 96px 32px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.sx-objection__inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: left;
+}
+.sx-objection__quote {
+  font-family: var(--font-sans);
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  color: rgba(255,255,255,0.85);
+  margin: 0 0 24px;
+  position: relative;
+}
+.sx-objection__quote::before {
+  content: "\201C";
+  display: inline;
+}
+.sx-objection__quote::after {
+  content: "\201D";
+  display: inline;
+}
+.sx-objection__reply {
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.78);
+  margin: 0;
+  max-width: 64ch;
+}
+@media (max-width: 700px) {
+  .sx-objection { padding: 72px 22px; }
+}
+
+/* Pricing anchor line — segment-only paragraph that sits above the calculator
+   to frame the numbers in the buyer's economic model. */
+.sx-pricing-anchor {
+  font-size: 16px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.78);
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin: 0 0 24px;
+  max-width: 760px;
+}
+.sx-pricing-anchor:empty { display: none; }
+
+/* Locked Step 01 indicator — replaces the 8-button kind grid on segment pages.
+   The visitor came here from a per-segment URL, so the kind is fixed. */
+.sx-calc2__locked-kind {
+  background: rgba(255,44,85,0.06);
+  border: 1px solid rgba(255,44,85,0.30);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sx-calc2__locked-kind-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.005em;
+}
+.sx-calc2__locked-kind-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.62);
+}

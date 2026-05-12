@@ -1,144 +1,458 @@
 {
+  "_doc": "Source-of-truth: /Users/sage/LOCAL/RD/RD-SPACES/Collateral/03 EXTERNAL Per-Segment Page Copy.md. Each entry below is read by scripts/build.py to generate one page in public/. The 'main' entry is the hub at /; it keeps the eight-card grid and the omnibus FAQ. Segment entries are full ICP pages: their outcomes, objection block, FAQ, calculator config, pricing anchor, demo caption, and final CTA all differ.",
+
   "main": {
+    "is_hub": true,
     "slug": "",
     "url": "https://spaces.roguedivisions.com",
     "title": "Spaces by Rogue Divisions — Tours of your space they can walk through",
     "description": "Tours they can walk before they fly in. Photoreal 3D walkthroughs of your space, delivered overnight. Operating across Georgia. Armenia and Azerbaijan next.",
+    "og_title": "They are somewhere else. Win them anyway.",
+    "og_description": "Tours they can walk before they fly in. Operating across Georgia. Armenia and Azerbaijan next.",
     "h1_line1": "They are somewhere else.",
     "h1_mark": "Win",
     "h1_line2": "them anyway.",
     "subhead": "Tours they can walk before they fly in.",
+    "hero_cta_primary": "Book a free pilot scan",
+    "hero_cta_secondary": "See an example tour →",
     "active_tour": "rest",
     "active_segment": "hotel",
     "active_kind": "apartment",
-    "outcomes_filter": "all"
+    "outcomes_filter": "all",
+    "demo_caption": "BlueTokai Coffee · sample tour from Spatial Studio. Real Tbilisi captures shipping shortly."
   },
 
   "managers": {
+    "is_hub": false,
     "slug": "managers",
     "url": "https://spaces.roguedivisions.com/managers",
     "title": "Spaces for STR managers — Per-door 3D tours for your fleet",
-    "description": "Photoreal walkthroughs for every unit in your portfolio. Subscription pricing per door. Onboard a 50-unit fleet in two weeks. Built for short-term rental managers.",
-    "h1_line1": "Every door in your fleet,",
-    "h1_mark": "walkable",
-    "h1_line2": "from the listing.",
-    "subhead": "Per-door pricing. Fleet onboarded in two weeks. The upgrade your portfolio has needed since the day you took it on.",
+    "description": "Per-door subscription walkthroughs for property managers. Onboard your fleet in two weeks. Differentiation that compounds across every unit you operate.",
+    "og_title": "Per-door walkthroughs for STR managers",
+    "og_description": "Onboard your fleet in two weeks. Per-door subscription. Built for managers running 20 to 300 units.",
+    "h1_line1": "A walkthrough for every door.",
+    "h1_mark": "At fleet pricing.",
+    "h1_line2": "",
+    "subhead": "Per-door subscription. Onboard your portfolio in two weeks. New units captured within 48 hours of takeover.",
+    "hero_cta_primary": "Book a fleet pilot",
+    "hero_cta_secondary": "See a manager-built tour →",
     "active_tour": "str",
-    "active_segment": "str",
-    "active_kind": "apartment",
-    "outcomes_filter": "hosts",
-    "pricing_emphasis": "subscription"
+    "active_kind": "propmanager",
+    "demo_caption": "Sample tour from Spatial Studio. Live fleet capture programmes start in Tbilisi this month.",
+    "outcomes": [
+      { "title": "Differentiation at scale.", "body": "Your listings sit next to thousands of others on the same OTAs. The walkthrough is the asset competitors do not have. It compounds across 30, 80, 300 doors. The whole fleet looks distinct." },
+      { "title": "Owner retention.", "body": "Renewals get easier when an owner can see what you have invested in their unit. The walkthrough is the artefact that proves you are operating their property, not just listing it." },
+      { "title": "Direct booking lift.", "body": "Listings with a walkthrough convert better on your own site than they do on Booking. The commission you keep is what funds the subscription. The per-door maths usually beats the per-door cost inside ninety days." },
+      { "title": "Predictable rollout.", "body": "Two weeks to capture your initial fleet. New units captured within 48 hours of takeover. One line in your budget. No per-unit haggling." }
+    ],
+    "objection": {
+      "quote": "We already pay for professional photos.",
+      "reply": "Keep them. Walkthroughs do not replace photos. Photos sell at the listing-tile level: the click, the swipe, the favourite. Walkthroughs sell at the decision stage: the confident booking. They work together. The walkthrough is the differentiator photos no longer are."
+    },
+    "pricing_anchor": "From £30 per door per month, plus a one-off capture fee. Two-week onboarding. Talk to us about fleets over 150 doors.",
+    "calculator": {
+      "step1_kind_label": "Property manager",
+      "step1_kind_sub": "Per-door fleet pricing",
+      "step2_label": "How many units in your fleet?",
+      "step2_options": [
+        { "id": "small",  "name": "20 to 50",   "sub": "Boutique manager fleet", "pack": "Fleet", "price_units": 35,  "turn": "2-week onboarding" },
+        { "id": "mid",    "name": "50 to 150",  "sub": "Established mid-market manager", "pack": "Fleet", "price_units": 100, "turn": "2-week onboarding" },
+        { "id": "large",  "name": "150 to 300", "sub": "Large regional operator", "pack": "Fleet", "price_units": 225, "turn": "3-week onboarding" },
+        { "id": "bespoke","name": "300+ — talk to us", "sub": "Enterprise rollout", "pack": "Bespoke", "price_units": null, "turn": "By quote" }
+      ],
+      "step3_active": false,
+      "pricing_mode": "subscription",
+      "subscription_rate_per_door": 30,
+      "subscription_unit_label": "per door / month",
+      "onboarding_label": "One-off onboarding capture"
+    },
+    "faq": [
+      { "q": "What happens when we acquire new units?", "a": "New takeovers are captured within 48 hours of you taking the keys. Your owner sees the asset is live before their previous manager has finished the handover." },
+      { "q": "Do we own the walkthroughs or do you?", "a": "You do. Hosted on our infrastructure, white-labelled, transferable if you ever change manager systems. We do not lock you in." },
+      { "q": "Can we white-label the viewer to our brand?", "a": "Yes. Your colours, your logo, your domain if you have one. We do not show up in the visitor's URL bar." },
+      { "q": "What if a unit churns?", "a": "Subscription pauses on that door. No exit fee. If the unit returns to your fleet within twelve months, it relights without a re-capture." },
+      { "q": "How does the onboarding sequence run?", "a": "Day 1: scoping call, capture schedule agreed. Days 3-12: capture every door in clusters of 6-10 per day. Days 13-14: review, publish, embed snippets to your listings team. By week 3 the fleet is live." }
+    ],
+    "final_cta": {
+      "h2": "Capture one door this week. Onboard the fleet next.",
+      "body": "Free pilot on one of your most contested listings. The link the next morning. If the result lands, we scope the fleet rollout. If it does not, you keep the pilot. No obligation."
+    }
   },
 
   "hosts": {
+    "is_hub": false,
     "slug": "hosts",
     "url": "https://spaces.roguedivisions.com/hosts",
     "title": "Spaces for Airbnb hosts — The listing with the walkthrough button",
-    "description": "Your listing is one of more than six thousand in Tbilisi. The ones with walkthroughs convert better. From $99 per listing.",
-    "h1_line1": "Be the listing with the",
-    "h1_mark": "walkthrough",
-    "h1_line2": "button.",
-    "subhead": "Your guests scroll for two seconds. Give them a reason to stop.",
+    "description": "One-off 3D walkthroughs for solo Airbnb hosts. Differentiate against 6,500 active Tbilisi listings. £99. Yours forever.",
+    "og_title": "One-off 3D walkthroughs for Airbnb hosts",
+    "og_description": "Differentiation against thousands of similar listings. £99. Live by the weekend. Yours forever.",
+    "h1_line1": "Differentiate.",
+    "h1_mark": "For ninety-nine pounds.",
+    "h1_line2": "",
+    "subhead": "One walkthrough. One listing. Yours forever. Embed it on Airbnb, Booking, your own site, anywhere.",
+    "hero_cta_primary": "Book a host pilot",
+    "hero_cta_secondary": "See a host-built tour →",
     "active_tour": "str",
-    "active_segment": "str",
     "active_kind": "apartment",
-    "outcomes_filter": "hosts",
-    "pricing_emphasis": "lite"
+    "demo_caption": "Sample tour from Spatial Studio. The same format hosts use to differentiate their listing on every platform.",
+    "outcomes": [
+      { "title": "The click.", "body": "Of more than six thousand active Tbilisi listings, almost none have a 3D walkthrough. The thumbnail with the walkthrough button gets the scroll-stop." },
+      { "title": "The trust.", "body": "The guests who book your unit care about quality. A walkthrough proves the photographs were not flattering. They scroll past the cheaper listings. They book yours." },
+      { "title": "The lifetime.", "body": "You pay once. The walkthrough lives forever. Embed it on Airbnb, on Booking, on your own page, on a WhatsApp message to a returning guest. It does not expire." }
+    ],
+    "objection": {
+      "quote": "I can do this myself on my phone.",
+      "reply": "You can. The Spatial Lens app is free and we use it ourselves. The reason hosts pay £99 is not that they cannot capture. It is that they do not have the two hours to learn the workflow, fix the misaligned splat, post-process the file, host it, and embed it. We do that and send you the link."
+    },
+    "pricing_anchor": "£99 one-off. One walkthrough. Hosted forever. No subscription. Higher-tier capture available for villas and multi-bedroom units.",
+    "calculator": {
+      "step1_kind_label": "Apartment or holiday let",
+      "step1_kind_sub": "One-off Lite tier",
+      "step2_label": "What size is the unit?",
+      "step2_options": [
+        { "id": "studio", "name": "Studio or 1-bed", "sub": "Single room or open-plan", "pack": "Lite",    "price": 99,  "turn": "24h" },
+        { "id": "small",  "name": "2 to 3 bed",      "sub": "Compact apartment",        "pack": "Compact", "price": 400, "turn": "24–48h" },
+        { "id": "large",  "name": "4+ bed or villa", "sub": "Larger holiday let",       "pack": "Compact", "price": 400, "turn": "24–48h" }
+      ],
+      "step3_active": false,
+      "pricing_mode": "one-off"
+    },
+    "faq": [
+      { "q": "I have three listings — do I get a discount?", "a": "Yes. Tell us at the booking call. The second and third units are captured at a reduced rate in the same visit." },
+      { "q": "Can I embed this on Airbnb, Booking, and my own site?", "a": "On your own site and any platform that accepts an iframe or external link. Airbnb and Booking do not allow direct iframe embeds, but they accept walkthrough links in the listing description, and most international guests click through." },
+      { "q": "What happens if I redecorate?", "a": "A re-capture is offered at 50% of the original price within twelve months." },
+      { "q": "How do I share this with a guest who already booked?", "a": "Paste the link into your pre-arrival message. It improves your reviews; guests feel oriented before they walk in the door." },
+      { "q": "Can my cleaning team use it?", "a": "Yes. Some hosts use the walkthrough as a reference for cleaners and stagers. It is a multi-use asset." }
+    ],
+    "final_cta": {
+      "h2": "Capture this week. Live by the weekend.",
+      "body": "Book a pilot. We arrive at a time that suits you, capture in about 20 minutes per room, and send you the link the next morning. £99. Yours forever."
+    }
   },
 
   "hotels": {
+    "is_hub": false,
     "slug": "hotels",
     "url": "https://spaces.roguedivisions.com/hotels",
-    "title": "Spaces for boutique hotels — Recover the commission you pay Booking.com",
-    "description": "Direct bookings beat OTA bookings on margin. A photoreal walkthrough closes the trust gap photographs cannot. Built for boutique hotels in Tbilisi.",
-    "h1_line1": "Stop paying Booking.com a",
-    "h1_mark": "commission",
-    "h1_line2": "you could keep.",
-    "subhead": "A walkthrough closes the trust gap photographs cannot. Guests book direct. You keep the margin.",
+    "title": "Spaces for boutique hotels — Recover the commission Booking takes",
+    "description": "3D suite walkthroughs that close the gap photos cannot. Guests book direct. You keep the 15% Booking would have taken.",
+    "og_title": "Walkthroughs that recover OTA commission for boutique hotels",
+    "og_description": "Guests who walk the suite book direct. You keep the margin. Built for boutique hotels and design properties.",
+    "h1_line1": "Recover the commission",
+    "h1_mark": "Booking takes.",
+    "h1_line2": "",
+    "subhead": "Walkthroughs that close the trust gap photos cannot. Guests book direct. You keep the margin.",
+    "hero_cta_primary": "Book a free suite pilot",
+    "hero_cta_secondary": "See a hotel-built tour →",
     "active_tour": "hotel",
-    "active_segment": "hotel",
     "active_kind": "hotel",
-    "outcomes_filter": "hotels",
-    "pricing_emphasis": "standard"
+    "demo_caption": "Sample tour from Spatial Studio. Real Tbilisi and Batumi captures shipping this month.",
+    "outcomes": [
+      { "title": "Direct booking lift.", "body": "Photos sold the listing. The walkthrough sells the room. Guests who walk the suite before booking do not hedge to the OTA. They book direct from your site." },
+      { "title": "Commission saved.", "body": "Fifteen percent of every direct booking is yours, not Booking's. One saved booking, on the average Tbilisi ADR over a four-night stay, more than covers most pricing tiers." },
+      { "title": "Suite-level differentiation.", "body": "Every suite type gets its own scene. The Deluxe is no longer 'another room with a king bed.' The visitor walks it. The Junior Suite is no longer the smaller image. The visitor walks that too. Cross-sell happens at the walkthrough." },
+      { "title": "Forever asset.", "body": "Hosted under your domain. Embedded on your booking engine. Live for the lifetime of the hotel. New suites added as you refurbish, at module pricing." }
+    ],
+    "objection": {
+      "quote": "Our photographer just shot the whole hotel.",
+      "reply": "Keep them. Walkthroughs do not replace photography. They convert the guest who got past the photos to the booking page. Photos do the seducing on Instagram. The walkthrough does the closing on your direct-booking flow."
+    },
+    "pricing_anchor": "From £500 for a Compact engagement. Modules for additional suite types. Talk to us for hotels above 40 rooms or with conference space.",
+    "calculator": {
+      "step1_kind_label": "Boutique hotel",
+      "step1_kind_sub": "Suite-level differentiation",
+      "step2_label": "How big is the hotel?",
+      "step2_options": [
+        { "id": "boutique", "name": "Boutique under 20 rooms",                "sub": "Lobby, lounge, restaurant, spa", "pack": "Standard", "price": 1250, "turn": "48–72h" },
+        { "id": "large",    "name": "Hotel 20+ rooms",                        "sub": "Hotel interior end to end",      "pack": "Major",    "price": 2500, "turn": "5 working days" },
+        { "id": "group",    "name": "Hotel with conference centre — talk to us", "sub": "Multi-property or mixed-use", "pack": "Bespoke",  "price": null, "turn": "By quote" }
+      ],
+      "step3_active": true,
+      "step3_label": "How many suite types do you want shown?",
+      "step3_hint": "Each suite type captured as its own walkthrough",
+      "pricing_mode": "one-off"
+    },
+    "faq": [
+      { "q": "Can we capture during off-season?", "a": "Off-season is ideal. Lower occupancy means easier scheduling. We can capture a 12-room boutique inside a single day." },
+      { "q": "Do we need to close rooms during capture?", "a": "Only the room being captured. About 20 minutes per room. Your housekeeping schedule absorbs it." },
+      { "q": "How does this work with our booking engine?", "a": "We provide an embed snippet that drops into your booking-engine description fields. Compatible with Cloudbeds, Mews, Little Hotelier, SiteMinder, and most major systems. We confirm fit on the scoping call." },
+      { "q": "Can we add new suites later?", "a": "Yes. Each additional suite type is captured at module pricing in the next visit. New module captures are turned around in 48 hours." },
+      { "q": "Can guests view it on mobile?", "a": "Yes. The walkthrough is fully responsive. Most guest views are on phone. We optimise the experience for that." }
+    ],
+    "final_cta": {
+      "h2": "One free suite. One night. We are in and out before housekeeping.",
+      "body": "Book a pilot. We capture one suite, send you the link the next morning. If it lands, we scope the rest of the property. If not, you keep the pilot. No charge, no obligation."
+    }
   },
 
   "developers": {
+    "is_hub": false,
     "slug": "developers",
     "url": "https://spaces.roguedivisions.com/developers",
     "title": "Spaces for developers — Show your show flat to a buyer in Dubai",
-    "description": "Tbilisi sells off-plan to buyers in 34 countries. Brochure renders read as CGI. A photoreal walkthrough of your finished show flat changes the conversation.",
+    "description": "Photoreal walkthroughs of finished show flats. Pasted into WhatsApp. Embedded in brochures. The deposit conversation moves forward.",
+    "og_title": "Walkthroughs that close off-plan deals from abroad",
+    "og_description": "Photoreal show flats your sales agents paste into WhatsApp. Buyers in Dubai, London, Tel Aviv decide without flying in.",
     "h1_line1": "Show your show flat to a buyer in",
-    "h1_mark": "Dubai",
-    "h1_line2": "before they fly in.",
-    "subhead": "Brochure renders read as CGI. A walkthrough does not. Sales agents paste the link into WhatsApp. The deposit lands.",
+    "h1_mark": "Dubai.",
+    "h1_line2": "",
+    "subhead": "Photoreal walkthrough. Pasted into WhatsApp. The deposit conversation moves forward.",
+    "hero_cta_primary": "Book a show-flat pilot",
+    "hero_cta_secondary": "See a developer-built tour →",
     "active_tour": "dev",
-    "active_segment": "dev",
     "active_kind": "dev",
-    "outcomes_filter": "developers",
-    "pricing_emphasis": "compact"
+    "demo_caption": "Sample tour from Spatial Studio. Real Tbilisi off-plan captures shipping this month.",
+    "outcomes": [
+      { "title": "The buyer who cannot fly.", "body": "Your off-plan buyers are in Dubai, London, Tel Aviv, Yerevan, Tehran. The walkthrough does the viewing for them. Most of them never land in Tbilisi until the keys handover." },
+      { "title": "The render problem, solved.", "body": "Brochure CGI reads as not-yet-real. A walkthrough of the actual finished show flat reads as committed and built. The buyer's hesitation collapses." },
+      { "title": "Sales agent ammunition.", "body": "Pasted into WhatsApp. Embedded in the brochure PDF. Living on the project's website. The same link your buyer's spouse will watch in their kitchen tonight. The deal moves on every device." },
+      { "title": "Stage gating.", "body": "Visitors who watch the walkthrough end-to-end become qualified leads. Visitors who do not, were never going to wire the deposit. Your agents' time goes to live buyers." }
+    ],
+    "objection": {
+      "quote": "We already have CGI of every unit.",
+      "reply": "CGI is necessary for the units that are not built yet. It is not what convinces a buyer to wire a deposit. A photoreal walkthrough of the finished show flat is. The two are different products serving different stages of the buyer's decision. Use both."
+    },
+    "pricing_anchor": "From £1,250 for a Standard engagement. Modules for each unit type. Multi-project portfolios at bespoke pricing.",
+    "calculator": {
+      "step1_kind_label": "Development or show flat",
+      "step1_kind_sub": "Off-plan international buyers",
+      "step2_label": "What is the scope?",
+      "step2_options": [
+        { "id": "single", "name": "Single project",          "sub": "One development, one show flat",                     "pack": "Standard", "price": 1250, "turn": "48–72h" },
+        { "id": "multi",  "name": "Multi-project portfolio", "sub": "Several developments, bespoke per-unit-type pricing", "pack": "Major",    "price": 2500, "turn": "5 working days" }
+      ],
+      "step3_active": true,
+      "step3_label": "How many unit types?",
+      "step3_hint": "Each unit type as its own walkthrough",
+      "pricing_mode": "one-off"
+    },
+    "faq": [
+      { "q": "Do we capture before or after the show flat is dressed?", "a": "After. The walkthrough should show the buyer the experience they will live in. Bare-build walkthroughs do not convert. We schedule capture once the show flat is dressed." },
+      { "q": "Can the walkthrough be embedded inside a Mailchimp campaign?", "a": "Yes. We provide an HTML embed snippet that works in email-marketing CMSes, in PDF brochures (as a hyperlink), and on WhatsApp Web." },
+      { "q": "Can we have captions and call-to-action overlays in Russian, Hebrew, Farsi, Arabic?", "a": "Yes. We deliver multilingual builds at module pricing per language. One scene, multiple language overlays." },
+      { "q": "What about exteriors and macro context?", "a": "The Spatial Studio viewer combines Google's photoreal 3D city tiles with our high-fidelity interior. Buyer sees the neighbourhood, then zooms into your show flat. Available as an add-on." },
+      { "q": "Can we update when the building is finished?", "a": "Yes. Re-capture at completion at module pricing. The walkthrough then doubles as a handover asset for buyers." }
+    ],
+    "final_cta": {
+      "h2": "Capture the show flat. Send it to your highest-intent buyer. Watch what happens.",
+      "body": "One free show-flat pilot. Link the next morning. Send it to the buyer you have been chasing for three weeks. If it moves the conversation, we scope the project. If not, you keep the pilot. No obligation."
+    }
   },
 
   "weddings": {
+    "is_hub": false,
     "slug": "weddings",
     "url": "https://spaces.roguedivisions.com/weddings",
     "title": "Spaces for wedding venues — Let her walk the chapel before she flies in",
-    "description": "Couples in London choosing between six Kakheti estates. A walkthrough collapses the decision. Built for vineyard estates and destination wedding venues.",
-    "h1_line1": "Let her see the chapel",
-    "h1_mark": "before",
-    "h1_line2": "she flies in.",
-    "subhead": "Couples in London choosing between six Kakheti venues. A walkthrough is the closest thing to flying them in.",
+    "description": "3D walkthroughs of vineyard estates and event venues. Couples and planners decide from London, New York, Tel Aviv without flying in.",
+    "og_title": "Walkthroughs that close destination weddings",
+    "og_description": "She walks the ceremony hall, the gardens, the bridal suite. The decision happens. The planner stops bouncing your venue against six others.",
+    "h1_line1": "Let her walk the chapel",
+    "h1_mark": "before she flies in.",
+    "h1_line2": "",
+    "subhead": "She sees the ceremony hall, the gardens, the bridal suite. The decision gets made.",
+    "hero_cta_primary": "Book a venue pilot",
+    "hero_cta_secondary": "See a venue-built tour →",
     "active_tour": "venue",
-    "active_segment": "wedding",
     "active_kind": "venue",
-    "outcomes_filter": "venues",
-    "pricing_emphasis": "standard"
+    "demo_caption": "Sample tour from Spatial Studio. Real Kakheti and Tbilisi venue captures shipping this season.",
+    "outcomes": [
+      { "title": "The decisive walkthrough.", "body": "The bride, the groom, the planner all walk the venue from London or New York. The decision happens at the screen, not at the airport. Your booking calendar fills without a single in-person viewing." },
+      { "title": "Six venues, one differentiator.", "body": "Your competitors have photos. You have a walkthrough. When the planner compiles the shortlist, your venue is the one that closes." },
+      { "title": "The planner's job, easier.", "body": "Your venue is no longer one of six similar tabs. The planner forwards your link and walks it with the couple over Zoom. The conversation moves to dates and catering instead of 'can we come and see it?'" }
+    ],
+    "objection": {
+      "quote": "Our wedding photographer has incredible shots of the venue.",
+      "reply": "Wedding photos sell the romance. Walkthroughs sell the certainty. The couple's mother needs to see the layout. The planner needs to see the catering flow. The walkthrough answers questions photos do not."
+    },
+    "pricing_anchor": "From £1,250 for a Standard engagement. Modules for bridal suites, dressing rooms, gardens, ceremony exterior, vineyard. Multi-building estates at Major tier.",
+    "calculator": {
+      "step1_kind_label": "Wedding venue or estate",
+      "step1_kind_sub": "Destination decision-making",
+      "step2_label": "What is the scope?",
+      "step2_options": [
+        { "id": "single",   "name": "Single-building estate", "sub": "One ceremony hall and reception", "pack": "Standard", "price": 1250, "turn": "48–72h" },
+        { "id": "multi",    "name": "Multi-building estate",  "sub": "Multi-building grounds",          "pack": "Major",    "price": 2500, "turn": "5 working days" },
+        { "id": "mountain", "name": "Mountain resort",         "sub": "Resort-scale event venue",        "pack": "Major",    "price": 2500, "turn": "5 working days" }
+      ],
+      "step3_active": true,
+      "step3_label": "Bridal suite, dressing rooms, gardens, ceremony exterior?",
+      "step3_hint": "Each captured as its own walkthrough",
+      "pricing_mode": "one-off"
+    },
+    "faq": [
+      { "q": "Can we capture before the season opens?", "a": "Yes, and we recommend it. Pre-season capture means the walkthrough is live for the spring engagement-season enquiry surge." },
+      { "q": "What about the gardens and outdoor areas?", "a": "Outdoor scenes are captured separately and integrated. We use the same Spatial Studio viewer for exterior, so the walkthrough moves seamlessly from chapel to garden to vineyard." },
+      { "q": "Can we add seasonal scenes (autumn, winter)?", "a": "Yes. Re-captures of changed scenes are module pricing. Some Kakheti estates run two captures: vine-leaf-green spring and harvest-gold autumn." },
+      { "q": "Do we need to clear the venue during capture?", "a": "No. Capture is non-disruptive and takes about 20 minutes per room. Staff and operations continue around us." },
+      { "q": "Can the walkthrough be embedded in our enquiry-form auto-responder?", "a": "Yes. Most planners enquire by form; the walkthrough goes back in the auto-reply. We provide the embed snippet." }
+    ],
+    "final_cta": {
+      "h2": "Capture before the season. Book solid through it.",
+      "body": "Free pilot on one space — the ceremony hall, the bridal suite, your call. Link the next morning. Send it to a planner you are mid-conversation with. Watch what happens. No obligation if it does not land."
+    }
   },
 
   "clinics": {
+    "is_hub": false,
     "slug": "clinics",
     "url": "https://spaces.roguedivisions.com/clinics",
     "title": "Spaces for medical clinics — Your patient picks the clinic she has walked through",
-    "description": "Your patient is choosing between you and three Turkish clinics. The choice is trust, not price. Privacy-respecting walkthroughs of reception, consultation, theatre.",
-    "h1_line1": "Your patient picks the clinic she has already",
-    "h1_mark": "walked through",
-    "h1_line2": ".",
-    "subhead": "The choice is trust, not price. Photographs of clean reception desks are not enough. A walkthrough is.",
+    "description": "3D walkthroughs for medical tourism clinics. Reception, consultation, theatre, recovery. Privacy SOP standard. No patients in frame.",
+    "og_title": "Walkthroughs that close medical tourism bookings",
+    "og_description": "The patient who walks your theatre books your clinic, not Istanbul's. Privacy SOP. Multilingual deployment.",
+    "h1_line1": "Your patient picks the clinic she has",
+    "h1_mark": "walked through.",
+    "h1_line2": "",
+    "subhead": "Reception. Consultation. Theatre. Recovery. No patients in frame. Privacy SOP standard.",
+    "hero_cta_primary": "Book a clinic pilot",
+    "hero_cta_secondary": "See a clinic-built tour →",
     "active_tour": "rest",
-    "active_segment": "clinic",
     "active_kind": "clinic",
-    "outcomes_filter": "clinics",
-    "pricing_emphasis": "standard"
+    "demo_caption": "Sample tour from Spatial Studio. Real Tbilisi clinic captures shipping this quarter, captured under our privacy SOP.",
+    "outcomes": [
+      { "title": "The trust gap, closed.", "body": "Photos of equipment do not convey clinical competence. A walkthrough does. The patient deciding between you and an Istanbul clinic, after reading the same reviews, books the clinic she has walked through." },
+      { "title": "Bookimed dependency, shrunk.", "body": "Patients who arrive through your own website convert at higher margins. The walkthrough turns enquiries into bookings without an aggregator taking the cut. The fee saved on one procedure usually covers the engagement." },
+      { "title": "Privacy by design.", "body": "We capture without patients present. SOP documented and signed off before shoot day. GDPR-aligned. We sign a BAA on request. Your reputation is not at risk." },
+      { "title": "Multilingual deployment.", "body": "One walkthrough. Captions, hotspots, and CTAs deployed in Russian, Hebrew, Farsi, Arabic, English. One link per language, each pointed at your paid acquisition campaigns in that market." }
+    ],
+    "objection": {
+      "quote": "Our reception is already on Instagram.",
+      "reply": "A photograph proves the room exists. A walkthrough proves the room is competent. The patient deciding between you and an Istanbul clinic is not deciding from Instagram. She is deciding from the depth of trust your website conveys. The walkthrough is the depth."
+    },
+    "pricing_anchor": "From £1,250 for a Standard engagement. Modules for additional treatment suites, recovery rooms, multilingual overlays. Hospital-scale captures at Major tier.",
+    "calculator": {
+      "step1_kind_label": "Clinic",
+      "step1_kind_sub": "Trust gap vs Istanbul",
+      "step2_label": "What is the size?",
+      "step2_options": [
+        { "id": "single",   "name": "Single-floor clinic",       "sub": "Reception, consult, recovery",      "pack": "Standard", "price": 1250, "turn": "48–72h" },
+        { "id": "multi",    "name": "Multi-floor clinic",        "sub": "Specialist surgery suites",         "pack": "Major",    "price": 2500, "turn": "5 working days" },
+        { "id": "hospital", "name": "Hospital — talk to us",     "sub": "Multi-wing facility",               "pack": "Bespoke",  "price": null, "turn": "By quote" }
+      ],
+      "step3_active": true,
+      "step3_label": "How many treatment or surgery suites beyond reception?",
+      "step3_hint": "Each suite captured as its own deliverable",
+      "pricing_mode": "one-off"
+    },
+    "faq": [
+      { "q": "How do you handle patient privacy?", "a": "We capture when the clinic is closed to patients or between cases on a planned non-patient day. A privacy SOP is agreed and signed before shoot day. No identifiable patient information is captured. We sign a BAA on request." },
+      { "q": "Can we capture our operating theatre between cases?", "a": "Yes. Theatre captures are scheduled around your case calendar. About 30 minutes per theatre with the lights up." },
+      { "q": "Do you sign a Business Associate Agreement?", "a": "Yes, on request, before capture day. Standard BAA template available, or we sign yours." },
+      { "q": "Can we update the walkthrough when we expand?", "a": "Yes. Re-captures of expanded floors at module pricing. New theatre or recovery suite captured in 48 hours." },
+      { "q": "Can the walkthrough be paid-acquired against?", "a": "Yes. Each multilingual variant is a distinct asset for paid campaigns in each market. We can co-build the landing pages if you do not have an in-house team." }
+    ],
+    "final_cta": {
+      "h2": "One floor. One walkthrough. Zero patients in frame.",
+      "body": "Free pilot on one floor of the clinic. Link the next morning. Send it to your highest-value enquiry. If the result lands, we scope the rest. If it does not, you keep the pilot. No obligation."
+    }
   },
 
   "restaurants": {
+    "is_hub": false,
     "slug": "restaurants",
     "url": "https://spaces.roguedivisions.com/restaurants",
     "title": "Spaces for restaurants — Your interior is the marketing. Show it properly.",
-    "description": "Private hire enquiries close before the call ends. Corporate planners walk your dining room from their desks. Built for restaurants, bars, and design hospitality.",
+    "description": "3D walkthroughs for design-led restaurants and bars. Private hire enquiries close before the call ends. The dining room walks itself.",
+    "og_title": "Walkthroughs that close private hire enquiries",
+    "og_description": "The corporate planner walks your private floor from her desk. The bride walks your dining room from her phone. The call closes.",
     "h1_line1": "Your interior is the marketing.",
-    "h1_mark": "Show",
-    "h1_line2": "it properly.",
-    "subhead": "Private hire enquiries close before the call ends. The corporate planner walks your dining room from their desk.",
+    "h1_mark": "Show it properly.",
+    "h1_line2": "",
+    "subhead": "Private hire enquiries close before the call ends. The dining room walks itself.",
+    "hero_cta_primary": "Book a venue pilot",
+    "hero_cta_secondary": "See a restaurant-built tour →",
     "active_tour": "rest",
-    "active_segment": "rest",
     "active_kind": "rest",
-    "outcomes_filter": "restaurants",
-    "pricing_emphasis": "compact"
+    "demo_caption": "Sample tour from Spatial Studio. Real Tbilisi restaurant captures shipping this month.",
+    "outcomes": [
+      { "title": "Private hire conversion.", "body": "The corporate planner walks your private floor from her desk. The bride walks your dining room from her phone. The call closes faster. The 'can we come and see the space?' loop ends." },
+      { "title": "The interior, finally working.", "body": "You spent on the build. The interior is the differentiator. A walkthrough is the only medium that conveys it. Instagram captures moments. The walkthrough captures the space." },
+      { "title": "The wasted-evening fix.", "body": "No more in-person viewing appointments that block your reservation grid for a planner who is comparison-shopping. The walkthrough does that visit for you. On every device. Forever." }
+    ],
+    "objection": {
+      "quote": "Our Instagram has every angle of the room.",
+      "reply": "Instagram sells the moment. The walkthrough sells the space. The corporate planner pitching her CEO needs to walk the room with her, on a screen. Instagram does not do that. The walkthrough does."
+    },
+    "pricing_anchor": "From £500 for a Compact engagement. Modules for private floor, terrace, bar, dressing room. Multi-site groups at bespoke pricing.",
+    "calculator": {
+      "step1_kind_label": "Restaurant or bar",
+      "step1_kind_sub": "Private hire conversion",
+      "step2_label": "What is the scope?",
+      "step2_options": [
+        { "id": "single", "name": "Single dining space",          "sub": "One-room restaurant or bar",          "pack": "Compact",  "price": 500,  "turn": "24–48h" },
+        { "id": "multi",  "name": "Restaurant + private floor",   "sub": "Dining room plus private events floor","pack": "Standard", "price": 1250, "turn": "48–72h" }
+      ],
+      "step3_active": true,
+      "step3_label": "Private floor, terrace, bar, dressing room?",
+      "step3_hint": "Each captured as its own walkthrough",
+      "pricing_mode": "one-off"
+    },
+    "faq": [
+      { "q": "Can you capture between services?", "a": "Yes. We capture between lunch and dinner service, or on a closed day. About 20 minutes per defined space." },
+      { "q": "Do you capture the kitchen?", "a": "Optional. Some restaurants want the open kitchen captured to show craft. Others prefer the front-of-house only. Your call." },
+      { "q": "Can we update for a refurb?", "a": "Yes. Re-captures of changed scenes at module pricing." },
+      { "q": "How does this work with our private-hire enquiry form?", "a": "The walkthrough link drops into your auto-responder, into the enquiry confirmation, and into your sales deck. The planner walks before the call." },
+      { "q": "Can the walkthrough live on our reservation platform?", "a": "Most reservation platforms accept external links in the description field. We confirm fit on the scoping call." }
+    ],
+    "final_cta": {
+      "h2": "Capture this week. Watch your private hire close rate move.",
+      "body": "Free pilot on one space — the dining room, the private floor, your call. Link the next morning. Send it to a planner mid-enquiry. Watch what happens. No obligation if it does not land."
+    }
   },
 
   "galleries": {
+    "is_hub": false,
     "slug": "galleries",
     "url": "https://spaces.roguedivisions.com/galleries",
     "title": "Spaces for galleries — The exhibition is temporary. The record does not have to be.",
-    "description": "Curators in Frieze, Venice, Berlin who could not fly in have a permanent way back. Press has a reference. Grant applications have institutional evidence.",
+    "description": "3D walkthroughs for galleries, museums, and cultural venues. Curators in Frieze, Venice, Berlin have permanent access to the show.",
+    "og_title": "Walkthroughs that preserve the exhibition",
+    "og_description": "Your show runs for six weeks. The walkthrough is on forever. International curators and critics walk it after it closes.",
     "h1_line1": "The exhibition is temporary.",
-    "h1_mark": "The record",
-    "h1_line2": "does not have to be.",
-    "subhead": "Curators in Frieze, Venice, and Berlin who could not fly in have a permanent way back into the show.",
+    "h1_mark": "The record does not have to be.",
+    "h1_line2": "",
+    "subhead": "Curators in Frieze, Venice, Berlin have a permanent way back into your show.",
+    "hero_cta_primary": "Book a gallery pilot",
+    "hero_cta_secondary": "See a gallery-built tour →",
     "active_tour": "rest",
-    "active_segment": "gallery",
     "active_kind": "gallery",
-    "outcomes_filter": "galleries",
-    "pricing_emphasis": "standard"
+    "demo_caption": "Sample tour from Spatial Studio. Real Tbilisi gallery captures shipping with the next exhibition cycle.",
+    "outcomes": [
+      { "title": "The curator who cannot fly.", "body": "International curators, critics, and jurors access your show after it closes. Your artist's reach is no longer time-bound. The exhibition is permanent." },
+      { "title": "The grant evidence.", "body": "Funding applications and institutional bids reference walkable documentation, not slide decks. Your case strengthens. Your application stands above peer institutions still submitting installation photos." },
+      { "title": "The archive that grows.", "body": "Every show captured. Year after year. A walkable, searchable record of your programming. The institution's history becomes an accessible asset." }
+    ],
+    "objection": {
+      "quote": "We already photograph every show.",
+      "reply": "Installation photos document the work. A walkthrough documents the experience. Walking a show is what curators, jurors, and grant assessors are deciding from. The walkthrough is what they want."
+    },
+    "pricing_anchor": "From £1,250 for a Standard engagement. Modules for additional exhibition rooms. Annual programming partnerships at bespoke pricing.",
+    "calculator": {
+      "step1_kind_label": "Gallery or cultural venue",
+      "step1_kind_sub": "Permanent archive",
+      "step2_label": "What is the size?",
+      "step2_options": [
+        { "id": "single", "name": "Single floor",         "sub": "One-floor exhibition space",      "pack": "Standard", "price": 1250, "turn": "48–72h" },
+        { "id": "multi",  "name": "Multi-floor",          "sub": "Several exhibition rooms",        "pack": "Major",    "price": 2500, "turn": "5 working days" },
+        { "id": "museum", "name": "Museum — talk to us",  "sub": "Large or historical institution", "pack": "Bespoke",  "price": null, "turn": "By quote" }
+      ],
+      "step3_active": true,
+      "step3_label": "How many exhibition rooms?",
+      "step3_hint": "Each exhibition room as its own walkthrough",
+      "pricing_mode": "one-off"
+    },
+    "faq": [
+      { "q": "Can we capture before the show opens to the public?", "a": "Yes, and we recommend it. Capture is scheduled in the install-week window, after the work is hung but before opening night." },
+      { "q": "How long does capture take?", "a": "About 20-30 minutes per room. A typical single-floor gallery is captured in a single morning." },
+      { "q": "Can the walkthrough be embedded in our newsletter?", "a": "Yes. The embed snippet works in Mailchimp, Substack, and most newsletter platforms." },
+      { "q": "Do we hold the rights?", "a": "Yes. You hold the rights to the walkthrough. We hold no claim to the work, the artist's IP, or your archive. Standard clause in the engagement." },
+      { "q": "Can you do recurring capture for every show?", "a": "Yes. Annual programming partnerships are bespoke. Most galleries run six to ten shows a year; we structure that as a per-show retainer." }
+    ],
+    "final_cta": {
+      "h2": "Capture this show. Forever access for everyone who could not fly in.",
+      "body": "Free pilot on the current exhibition. Link the next morning. Share it with the curators on your invite list who could not travel. If the result lands, we scope the programming year. If it does not, you keep the pilot. No obligation."
+    }
   }
 }
