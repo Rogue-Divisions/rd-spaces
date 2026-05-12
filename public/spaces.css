@@ -118,10 +118,8 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   font-weight: 700;
   font-style: italic;
   letter-spacing: -0.025em;
-  position: relative;
-  z-index: 3;
-  display: inline-block;
-  text-shadow: 0 3px 18px rgba(0,0,0,0.78), 0 0 2px rgba(0,0,0,0.9);
+  -webkit-text-fill-color: var(--rd-signal);
+  text-shadow: 0 3px 18px rgba(0,0,0,0.82), 0 0 2px rgba(0,0,0,0.92);
 }
 
 /* --- Buttons --------------------------------------------------- */
@@ -265,8 +263,7 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 /* Layered backdrop — radial-gradient mesh + scan lines + grain.
    Designed to feel like an out-of-focus 3D capture, not a flat colour. */
 .sx-hero__media {
-  position: absolute; inset: 0; z-index: 0;
-  pointer-events: none;
+  position: absolute; inset: 0; z-index: -2;
   background:
     radial-gradient(80% 60% at 22% 28%, rgba(255,44,85,0.10) 0%, transparent 60%),
     radial-gradient(120% 80% at 78% 18%, rgba(45,95,247,0.08) 0%, transparent 65%),
@@ -302,15 +299,12 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   opacity: 0.55;
 }
 .sx-hero__scrim {
-  position: absolute; inset: 0; z-index: 1;
-  pointer-events: none;
+  position: absolute; inset: 0; z-index: -1;
   background:
     linear-gradient(180deg, rgba(20,20,22,0.6) 0%, rgba(20,20,22,0.2) 30%,
                           rgba(20,20,22,0.85) 80%, rgba(20,20,22,0.96) 100%);
 }
 .sx-hero__inner {
-  position: relative;
-  z-index: 2;
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;

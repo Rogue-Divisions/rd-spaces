@@ -803,20 +803,6 @@
     }
   })();
 
-  // Hero "Win" — small entrance flourish on the loaded word.
-  // Subtle by design: 600ms after first paint, never repeats.
-  (function () {
-    var win = document.querySelector('.rd-win');
-    if (!win) return;
-    win.style.opacity = '0';
-    win.style.transform = 'translateY(8px)';
-    win.style.transition = 'opacity 600ms cubic-bezier(.2,.8,.2,1) 240ms, transform 600ms cubic-bezier(.2,.8,.2,1) 240ms';
-    requestAnimationFrame(function () {
-      win.style.opacity = '1';
-      win.style.transform = 'translateY(0)';
-    });
-  })();
-
   // HLS adaptive bitrate — Safari plays HLS natively; everyone else gets hls.js on demand.
   // Page-weight cost for non-Safari: ~110 KB gzipped, but ONLY loaded once the hero is
   // about to enter the viewport via IntersectionObserver. Bots and visitors who bounce

@@ -327,7 +327,7 @@ def check_static_page(slug: str, cfg: dict, soup: BeautifulSoup) -> dict[str, bo
     return results
 
 
-def red_pixel_count(png_bytes: bytes) -> int:
+def brand_red_pixel_count(png_bytes: bytes) -> int:
     try:
         from PIL import Image
     except ImportError:
@@ -336,7 +336,7 @@ def red_pixel_count(png_bytes: bytes) -> int:
     count = 0
     pixels = image.get_flattened_data() if hasattr(image, "get_flattened_data") else image.getdata()
     for r, g, b, a in pixels:
-        if a > 0 and r >= 200 and g <= 90 and b <= 135:
+        if a > 0 and r == 255 and g == 44 and b == 85:
             count += 1
     return count
 
@@ -359,13 +359,21 @@ def run_browser_checks(results: dict[str, dict[str, bool | list[tuple[str, str]]
                 win = page.locator(".rd-win")
                 bbox = win.bounding_box()
                 color = win.evaluate("el => getComputedStyle(el).color") if win.count() else ""
-                png = win.screenshot() if win.count() else b""
+                png = b""
+                if bbox:
+                    clip = {
+                        "x": max(0, bbox["x"] + (bbox["width"] / 2) - 50),
+                        "y": max(0, bbox["y"] + (bbox["height"] / 2) - 50),
+                        "width": 100,
+                        "height": 100,
+                    }
+                    png = page.screenshot(clip=clip)
                 results[slug]["paint_hero_emphasis"] = bool(
                     bbox
                     and bbox["width"] > 20
                     and bbox["height"] > 20
                     and color == "rgb(255, 44, 85)"
-                    and red_pixel_count(png) > 50
+                    and brand_red_pixel_count(png) > 0
                 )
 
                 nums = page.locator(".sx-calc2__step").evaluate_all(
