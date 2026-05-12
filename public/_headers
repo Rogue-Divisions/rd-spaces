@@ -4,22 +4,21 @@
 # Default: HTML revalidates every visit (we want fresh content),
 # but all immutable assets (fonts, video, JS library) cache for a year.
 
-# HTML — short cache, must revalidate
-/*.html
-  Cache-Control: public, max-age=0, must-revalidate
+# Security headers — apply to every static response, including folder-style
+# segment URLs served from public/<slug>/index.html.
+/*
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; media-src 'self' https://studio.realhorizons.ai; connect-src 'self' https://studio.realhorizons.ai https://cloudflareinsights.com; frame-src https://studio.realhorizons.ai; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
 
+# HTML — short cache, must revalidate
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
 /
   Cache-Control: public, max-age=0, must-revalidate
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https:; media-src 'self' https://studio.realhorizons.ai; connect-src 'self' https://studio.realhorizons.ai https://cloudflareinsights.com; frame-src https://studio.realhorizons.ai; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
-  Strict-Transport-Security: max-age=31536000; includeSubDomains
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
 
 # Immutable assets — fonts, HLS variants, hls.js library, hero video.
 # These don't change without a content hash, so we cache for a year.

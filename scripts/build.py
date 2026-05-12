@@ -20,6 +20,7 @@ Run from repo root:  python3 scripts/build.py
 
 from __future__ import annotations
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -61,6 +62,43 @@ def replace_string(el, new_text):
         return
     el.clear()
     el.append(new_text)
+
+
+def fill_currency_text(soup, el, text):
+    """Render text, wrapping GBP amounts so runtime currency can update them."""
+    if el is None:
+        return
+    el.clear()
+    cursor = 0
+    for match in re.finditer(r"£([0-9][0-9,]*)(\+?)", text):
+        if match.start() > cursor:
+            el.append(text[cursor:match.start()])
+        amount = int(match.group(1).replace(",", ""))
+        suffix = match.group(2)
+        price = soup.new_tag(
+            "span",
+            attrs={"data-money-gbp": str(amount), "data-money-suffix": suffix},
+        )
+        price.string = match.group(0)
+        el.append(price)
+        cursor = match.end()
+    if cursor < len(text):
+        el.append(text[cursor:])
+
+
+def renumber_calculator_steps(soup, modules_active):
+    """Keep visible calculator step numbers sequential after optional steps are hidden."""
+    visible_steps = []
+    for step in soup.select(".sx-calc2__step"):
+        step_id = step.get("data-step-id")
+        if step_id == "modules" and not modules_active:
+            step["hidden"] = ""
+            continue
+        visible_steps.append(step)
+    for i, step in enumerate(visible_steps, start=1):
+        num = step.select_one(".sx-calc2__step-num")
+        if num:
+            num.string = f"{i:02d}"
 
 
 # ──────────────────────────────────────────────────────────────────────
@@ -143,7 +181,15 @@ def render_hub(cfg, template_html):
     # ── Demo caption ───────────────────────────────────────────────────
     cap = soup.select_one("[data-demo-caption]")
     if cap and cfg.get("demo_caption"):
-        cap.string = cfg["demo_caption"]
+        if " · " in cfg["demo_caption"]:
+            title, rest = cfg["demo_caption"].split(" · ", 1)
+            cap.clear()
+            title_span = soup.new_tag("span", attrs={"data-tour-title": ""})
+            title_span.string = title
+            cap.append(title_span)
+            cap.append(" · " + rest)
+        else:
+            fill_currency_text(soup, cap, cfg["demo_caption"])
 
     # ── Segment accordion: open the configured one (hub only) ─────────
     active_seg = cfg.get("active_segment", "hotel")
@@ -308,16 +354,26 @@ def render_segment(cfg, template_html):
     obj_reply = soup.select_one("[data-objection-reply]")
     if obj_quote and obj_reply:
         obj_quote.string = cfg["objection"]["quote"]
-        obj_reply.string = cfg["objection"]["reply"]
+        fill_currency_text(soup, obj_reply, cfg["objection"]["reply"])
     # Strip the data-segment-only marker from the objection section so it stays in the DOM
     obj_section = soup.select_one(".sx-objection[data-segment-only]")
     if obj_section:
         del obj_section["data-segment-only"]
 
+    # ── Process steps: use per-segment steps when authored, otherwise keep hub default.
+    if cfg.get("process_steps"):
+        for step_el, step_cfg in zip(soup.select(".sx-how .sx-step"), cfg["process_steps"]):
+            title = step_el.select_one(".sx-step__title")
+            body = step_el.select_one(".sx-step__body")
+            if title:
+                title.string = step_cfg["title"]
+            if body:
+                fill_currency_text(soup, body, step_cfg["body"])
+
     # ── Pricing anchor line ────────────────────────────────────────────
     anchor = soup.select_one(".sx-pricing-anchor[data-segment-only]")
     if anchor:
-        anchor.string = cfg["pricing_anchor"]
+        fill_currency_text(soup, anchor, cfg["pricing_anchor"])
         del anchor["data-segment-only"]
 
     # ── Calculator Step 01: replace 8-button grid with locked indicator
@@ -354,7 +410,7 @@ def render_segment(cfg, template_html):
             q_btn = soup.new_tag("button", attrs={"class": "sx-faq__q"})
             q_btn.string = item["q"]
             a_div = soup.new_tag("div", attrs={"class": "sx-faq__a"})
-            a_div.string = item["a"]
+            fill_currency_text(soup, a_div, item["a"])
             wrap.append(q_btn)
             wrap.append(a_div)
             faq_list.append(wrap)
@@ -365,7 +421,7 @@ def render_segment(cfg, template_html):
         cta_h2.string = cfg["final_cta"]["h2"]
     cta_body = soup.select_one("[data-final-cta-body]")
     if cta_body:
-        cta_body.string = cfg["final_cta"]["body"]
+        fill_currency_text(soup, cta_body, cfg["final_cta"]["body"])
 
     # ── Inject window.__SX_CFG__ for the calculator JS ─────────────────
     # Build the kindOverride object that the calc IIFE merges into KIND_MAP.
@@ -385,6 +441,9 @@ def render_segment(cfg, template_html):
     if calc.get("pricing_mode") == "subscription":
         sx_cfg["subscriptionRate"] = calc.get("subscription_rate_per_door")
         sx_cfg["subscriptionUnitLabel"] = calc.get("subscription_unit_label", "per door / month")
+        sx_cfg["oneOffLabel"] = calc.get("onboarding_label", "One-off capture fee")
+
+    renumber_calculator_steps(soup, bool(calc.get("step3_active", False)))
 
     cfg_script = soup.select_one("[data-sx-cfg]")
     if cfg_script:
@@ -404,9 +463,20 @@ def render_segment(cfg, template_html):
         a["href"] = "/"
         a.string = "All segments"
 
-    # ── Strip the data-segment-only-footer marker so the column actually renders.
-    for el in soup.select("[data-segment-only-footer]"):
-        del el["data-segment-only-footer"]
+    # ── Final CTA buttons and sticky mobile CTA ────────────────────────
+    final_cta = cfg.get("final_cta", {})
+    final_primary = soup.select_one("[data-final-cta-primary]")
+    if final_primary:
+        final_primary.string = final_cta.get("button_primary", cfg["hero_cta_primary"])
+    final_secondary = soup.select_one("[data-final-cta-secondary]")
+    if final_secondary:
+        final_secondary.string = final_cta.get("button_secondary", cfg["hero_cta_secondary"])
+        final_secondary["href"] = "#demo"
+    sticky = soup.select_one(".sx-sticky-cta")
+    if sticky:
+        sticky_label = cfg.get("sticky_cta_label", cfg["hero_cta_primary"])
+        sticky.string = sticky_label
+        sticky["aria-label"] = sticky_label
 
     return str(soup)
 

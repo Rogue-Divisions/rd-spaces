@@ -118,6 +118,10 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   font-weight: 700;
   font-style: italic;
   letter-spacing: -0.025em;
+  position: relative;
+  z-index: 3;
+  display: inline-block;
+  text-shadow: 0 3px 18px rgba(0,0,0,0.78), 0 0 2px rgba(0,0,0,0.9);
 }
 
 /* --- Buttons --------------------------------------------------- */
@@ -261,7 +265,8 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 /* Layered backdrop — radial-gradient mesh + scan lines + grain.
    Designed to feel like an out-of-focus 3D capture, not a flat colour. */
 .sx-hero__media {
-  position: absolute; inset: 0; z-index: -2;
+  position: absolute; inset: 0; z-index: 0;
+  pointer-events: none;
   background:
     radial-gradient(80% 60% at 22% 28%, rgba(255,44,85,0.10) 0%, transparent 60%),
     radial-gradient(120% 80% at 78% 18%, rgba(45,95,247,0.08) 0%, transparent 65%),
@@ -297,12 +302,15 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   opacity: 0.55;
 }
 .sx-hero__scrim {
-  position: absolute; inset: 0; z-index: -1;
+  position: absolute; inset: 0; z-index: 1;
+  pointer-events: none;
   background:
     linear-gradient(180deg, rgba(20,20,22,0.6) 0%, rgba(20,20,22,0.2) 30%,
                           rgba(20,20,22,0.85) 80%, rgba(20,20,22,0.96) 100%);
 }
 .sx-hero__inner {
+  position: relative;
+  z-index: 2;
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
@@ -914,6 +922,21 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   line-height: 1;
   margin-bottom: 18px;
 }
+.sx-calc2__one-off {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.62);
+  padding: 0 0 14px;
+  margin-top: -6px;
+}
+.sx-calc2__one-off[hidden] { display: none; }
+.sx-calc2__one-off strong {
+  color: #fff;
+  font-weight: 600;
+  text-align: right;
+}
 .sx-calc2__total-meta {
   display: flex;
   justify-content: space-between;
@@ -1365,6 +1388,10 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   font-size: 14px;
 }
 .sx-footer__col a:hover { color: #fff; }
+.sx-footer__col--segments a {
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+}
 .sx-footer__base {
   display: flex;
   justify-content: space-between;
@@ -1522,24 +1549,31 @@ p { margin: 0 0 1em; text-wrap: pretty; }
    outcomes and how-it-works. Centred narrow column, slight tint to
    mark it as a deliberate pause in the rhythm. Segment-pages only. */
 .sx-objection {
-  background: #131313;
+  background:
+    linear-gradient(180deg, rgba(255,44,85,0.055), rgba(255,255,255,0.015)),
+    #121212;
   padding: 96px 32px;
-  border-top: 1px solid rgba(255,255,255,0.04);
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+  border-top: 1px solid rgba(255,44,85,0.12);
+  border-bottom: 1px solid rgba(255,44,85,0.08);
 }
 .sx-objection__inner {
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 auto;
   text-align: left;
+  padding: 42px 46px;
+  border: 1px solid rgba(255,44,85,0.22);
+  border-radius: 16px;
+  background: rgba(0,0,0,0.18);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.24);
 }
 .sx-objection__quote {
-  font-family: var(--font-sans);
+  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(28px, 3.4vw, 40px);
   font-style: italic;
-  font-weight: 500;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  letter-spacing: 0;
   line-height: 1.18;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255,132,154,0.94);
   margin: 0 0 24px;
   position: relative;
 }
@@ -1560,6 +1594,10 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 }
 @media (max-width: 700px) {
   .sx-objection { padding: 72px 22px; }
+  .sx-objection__inner {
+    padding: 30px 24px;
+    border-radius: 14px;
+  }
 }
 
 /* Pricing anchor line — segment-only paragraph that sits above the calculator
