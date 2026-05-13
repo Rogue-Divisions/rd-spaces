@@ -90,13 +90,6 @@
 <p class="sx-lede">Click and drag. Walk through. This is a real space.</p>
 </div>
 <div class="sx-demo" id="demo-block">
-<div aria-label="Pick a kind of space" class="sx-demo__pills" role="tablist">
-<button aria-selected="true" class="sx-demo__pill is-active" data-tour="rest" role="tab">Restaurants</button>
-<button aria-selected="false" class="sx-demo__pill" data-tour="hotel" role="tab">Hotels</button>
-<button aria-selected="false" class="sx-demo__pill" data-tour="str" role="tab">Hosts</button>
-<button aria-selected="false" class="sx-demo__pill" data-tour="dev" role="tab">Developers</button>
-<button aria-selected="false" class="sx-demo__pill" data-tour="venue" role="tab">Venues</button>
-</div>
 <div class="sx-demo__viewport sx-demo__viewport--live">
 <!-- Active iframe loads immediately. Others use data-deferred-src and are upgraded by JS in the background. -->
 <iframe allow="xr-spatial-tracking; fullscreen; accelerometer; gyroscope; autoplay" class="sx-demo__frame is-active" data-tour="rest" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="https://studio.realhorizons.ai/tours/76a39262-b947-4728-b056-9c79dda72372/view" title="BlueTokai Coffee — Spatial Studio sample tour"></iframe>
@@ -143,16 +136,16 @@
 </div>
 <div class="sx-how">
 <div class="sx-step">
-<h3 class="sx-step__title">We arrive.</h3>
-<p class="sx-step__body">At a time that suits you. We do not redress your space. About 20 minutes per room.</p>
+<h3 class="sx-step__title">Capture after install.</h3>
+<p class="sx-step__body">We scan once the work is hung and before opening pressure takes over.</p>
 </div>
 <div class="sx-step">
-<h3 class="sx-step__title">Ready by tomorrow.</h3>
-<p class="sx-step__body">We process and quality-check the capture overnight.</p>
+<h3 class="sx-step__title">Publish the record.</h3>
+<p class="sx-step__body">The hosted walkthrough becomes the permanent version of the exhibition experience.</p>
 </div>
 <div class="sx-step">
-<h3 class="sx-step__title">We help you publish.</h3>
-<p class="sx-step__body">Hosted link, embed snippet, and the help to get it live on your site.</p>
+<h3 class="sx-step__title">Reuse it everywhere.</h3>
+<p class="sx-step__body">Curators, jurors, funders, newsletters, and archive pages all get the same walkable link.</p>
 </div>
 </div>
 </div>
@@ -167,7 +160,7 @@
 <!-- Segment-only pricing anchor line (renders above the calculator on /<segment>/ pages
          to frame the numbers in the buyer's economic model). Build script populates and
          REMOVES on hub. -->
-<p class="sx-pricing-anchor">From £1,250 for a Standard engagement. Modules for additional exhibition rooms. Annual programming partnerships at bespoke pricing.</p>
+<p class="sx-pricing-anchor">From <span data-money-gbp="1250" data-money-suffix="">£1,250</span> for a Standard engagement. Modules for additional exhibition rooms. Annual programming partnerships at bespoke pricing.</p>
 <div class="sx-calc2" id="calc">
 <div class="sx-calc2__form">
 <div class="sx-calc2__step" data-step-id="kind">
@@ -184,7 +177,7 @@
 </div>
 <div class="sx-calc2__grid sx-calc2__grid--sizes" data-sizes=""></div>
 </div>
-<div class="sx-calc2__step">
+<div class="sx-calc2__step" data-step-id="modules">
 <div class="sx-calc2__step-head">
 <span class="sx-calc2__step-num">03</span>
 <h3 class="sx-calc2__step-title" data-step3-title="">What else do you want shown?</h3>
@@ -196,20 +189,20 @@
 <span class="sx-calc2__stepper2-hint" data-step3-hint="">Additional zones, outbuildings, exteriors</span>
 </div>
 </div>
-<div class="sx-calc2__step">
+<div class="sx-calc2__step" data-step-id="addons">
 <div class="sx-calc2__step-head">
 <span class="sx-calc2__step-num">04</span>
 <h3 class="sx-calc2__step-title">Add-ons</h3>
 </div>
 <div class="sx-calc2__addons">
-<label><input data-add="drone" data-add-price="400" type="checkbox"/><span class="sx-calc2__addon-name">Drone exterior</span><span class="sx-calc2__addon-price">$400</span></label>
-<label><input data-add="floor" data-add-price="200" type="checkbox"/><span class="sx-calc2__addon-name">Floor plan</span><span class="sx-calc2__addon-price">$200</span></label>
-<label><input data-add="voice" data-add-price="400" type="checkbox"/><span class="sx-calc2__addon-name">Voice-over narration</span><span class="sx-calc2__addon-price">$400</span></label>
-<label><input data-add="domain" data-add-price="250" type="checkbox"/><span class="sx-calc2__addon-name">Custom subdomain</span><span class="sx-calc2__addon-price">$250</span></label>
-<label><input data-add="lang" data-add-price="200" type="checkbox"/><span class="sx-calc2__addon-name">Extra language</span><span class="sx-calc2__addon-price">$200</span></label>
+<label><input data-add="drone" data-add-price="400" type="checkbox"/><span class="sx-calc2__addon-name">Drone exterior</span><span class="sx-calc2__addon-price" data-addon-price="">£400</span></label>
+<label><input data-add="floor" data-add-price="200" type="checkbox"/><span class="sx-calc2__addon-name">Floor plan</span><span class="sx-calc2__addon-price" data-addon-price="">£200</span></label>
+<label><input data-add="voice" data-add-price="400" type="checkbox"/><span class="sx-calc2__addon-name">Voice-over narration</span><span class="sx-calc2__addon-price" data-addon-price="">£400</span></label>
+<label><input data-add="domain" data-add-price="250" type="checkbox"/><span class="sx-calc2__addon-name">Custom subdomain</span><span class="sx-calc2__addon-price" data-addon-price="">£250</span></label>
+<label><input data-add="lang" data-add-price="200" type="checkbox"/><span class="sx-calc2__addon-name">Extra language</span><span class="sx-calc2__addon-price" data-addon-price="">£200</span></label>
 </div>
 </div>
-<div class="sx-calc2__step">
+<div class="sx-calc2__step" data-step-id="currency">
 <div class="sx-calc2__step-head">
 <span class="sx-calc2__step-num">05</span>
 <h3 class="sx-calc2__step-title">Currency</h3>
@@ -225,6 +218,10 @@
 <div class="sx-calc2__total-summary" data-summary="">Pick a size to see your total.</div>
 <hr class="sx-calc2__total-rule"/>
 <div class="sx-calc2__total-num" data-total="">—</div>
+<div class="sx-calc2__one-off" data-one-off-row="" hidden="">
+<span data-one-off-label="">One-off capture fee</span>
+<strong data-one-off-value="">—</strong>
+</div>
 <div class="sx-calc2__total-meta" data-turn-row="" hidden="">
 <span>Turnaround</span>
 <strong data-turn="">—</strong>
@@ -243,32 +240,6 @@
 </div>
 </aside>
 </div>
-<div class="sx-calc2__edge">
-<p>Got a hospital, a multi-floor museum, or a mixed-use development?
-        <a class="sx-calc2__edge-link" href="mailto:spaces@roguedivisions.com?subject=Bespoke%20engagement">Talk to us about a bespoke engagement <span aria-hidden="true" class="arrow">→</span></a>
-</p>
-</div>
-<div class="sx-multi-wrap">
-<h3 class="sx-multi-wrap__title">Multi-property &amp; subscription.</h3>
-<p class="sx-multi-wrap__sub">For STR managers, hotel groups, brokerages, and portfolio owners.</p>
-<div class="sx-multi">
-<div class="sx-multi__card">
-<span class="sx-multi__tag">Volume discount</span>
-<div class="sx-multi__price"><em class="sx-multi__price-num">−30%</em></div>
-<p class="sx-multi__body">Off the total when you commission three or more properties in one engagement.</p>
-</div>
-<div class="sx-multi__card">
-<span class="sx-multi__tag">Manager subscription</span>
-<div class="sx-multi__price"><em class="sx-multi__price-num">$35</em><span class="sx-multi__price-unit">per unit / month</span></div>
-<p class="sx-multi__body">Per-unit pricing for STR managers and small hotel groups with rolling refresh needs.</p>
-</div>
-<div class="sx-multi__card">
-<span class="sx-multi__tag">Bespoke contract</span>
-<div class="sx-multi__price"><em class="sx-multi__price-num">$5,000</em><span class="sx-multi__price-unit">starting</span></div>
-<p class="sx-multi__body">Hotel groups, mixed-use developments, multi-estate portfolios, white-label arrangements.</p>
-</div>
-</div>
-</div>
 </div>
 </section>
 <!-- SHOWCASE — removed until a real Tbilisi capture exists.
@@ -284,38 +255,21 @@
 <div class="sx-faq__list" id="faq-list"><div class="sx-faq__item is-open"><button class="sx-faq__q">Can we capture before the show opens to the public?</button><div class="sx-faq__a">Yes, and we recommend it. Capture is scheduled in the install-week window, after the work is hung but before opening night.</div></div><div class="sx-faq__item is-open"><button class="sx-faq__q">How long does capture take?</button><div class="sx-faq__a">About 20-30 minutes per room. A typical single-floor gallery is captured in a single morning.</div></div><div class="sx-faq__item"><button class="sx-faq__q">Can the walkthrough be embedded in our newsletter?</button><div class="sx-faq__a">Yes. The embed snippet works in Mailchimp, Substack, and most newsletter platforms.</div></div><div class="sx-faq__item"><button class="sx-faq__q">Do we hold the rights?</button><div class="sx-faq__a">Yes. You hold the rights to the walkthrough. We hold no claim to the work, the artist's IP, or your archive. Standard clause in the engagement.</div></div><div class="sx-faq__item"><button class="sx-faq__q">Can you do recurring capture for every show?</button><div class="sx-faq__a">Yes. Annual programming partnerships are bespoke. Most galleries run six to ten shows a year; we structure that as a per-show retainer.</div></div></div>
 </div>
 </section>
-<!-- ABOUT -->
-<section class="sx-section">
-<div class="sx-section__inner">
-<div class="sx-section__head">
-<h2 class="sx-h2">Operators, not a marketplace.</h2>
-</div>
-<div class="sx-about sx-about--no-credits">
-<div class="sx-about__body">
-<p>Spaces is a Rogue Divisions studio. London-registered specialist firm working at the edge of capital markets, content, and operations. We build things that should exist and run them as standalone offerings.</p>
-<p>Every capture is done by an operator we trained. Every tour is QA'd before it ships. Your relationship is with us, not with a platform.</p>
-<a class="rd-link-arrow" href="https://roguedivisions.com">About Rogue Divisions <span class="arrow">→</span></a>
-</div>
-<!-- Credits strip removed until real client/partner logos are signed off.
-           Re-add by reverting to <aside class="sx-about__credits"> ... </aside>. -->
-</div>
-</div>
-</section>
 <!-- FINAL CTA -->
 <section class="sx-final" id="contact">
 <div class="sx-final__inner">
 <h2 data-final-cta-h2="">Capture this show. Forever access for everyone who could not fly in.</h2>
 <p data-final-cta-body="">Free pilot on the current exhibition. Link the next morning. Share it with the curators on your invite list who could not travel. If the result lands, we scope the programming year. If it does not, you keep the pilot. No obligation.</p>
 <div class="sx-final__cta">
-<a class="rd-btn rd-btn--filled" href="mailto:spaces@roguedivisions.com?subject=Pilot%20scan%20request">Book your free pilot scan</a>
-<a class="rd-btn rd-btn--outline" href="#pricing">See pricing</a>
+<a class="rd-btn rd-btn--filled" data-final-cta-primary="" href="mailto:spaces@roguedivisions.com?subject=Pilot%20scan%20request">Book a gallery pilot</a>
+<a class="rd-btn rd-btn--outline" data-final-cta-secondary="" href="#demo">See a gallery-built tour →</a>
 </div>
 <span class="sx-final__email">Or email us at <a href="mailto:spaces@roguedivisions.com">spaces@roguedivisions.com</a></span>
 </div>
 </section>
 <!-- Sticky mobile CTA — JS toggles is-visible once hero scrolls offscreen.
      Hidden by default + suppressed via CSS at desktop widths. -->
-<a aria-label="Book a free pilot scan" class="sx-sticky-cta" href="#contact">Book a pilot</a>
+<a aria-label="Book a gallery pilot" class="sx-sticky-cta" href="#contact">Book a gallery pilot</a>
 <!-- FOOTER -->
 <footer class="sx-footer">
 <div class="sx-footer__inner">
@@ -341,12 +295,17 @@
 <li><a href="#pricing">Pricing</a></li>
 </ul>
 </div>
-<!-- On segment pages the For column above is removed by build.py and replaced
-             with this single-link column. Visitor still has one click back to all segments. -->
-<div class="sx-footer__col">
-<div class="sx-footer__heading">More</div>
+<div class="sx-footer__col sx-footer__col--segments">
+<div class="sx-footer__heading">For</div>
 <ul>
-<li><a href="/">All segments</a></li>
+<li><a href="/hotels">Hotels</a></li>
+<li><a href="/developers">Developers</a></li>
+<li><a href="/weddings">Venues</a></li>
+<li><a href="/managers">Managers</a></li>
+<li><a href="/hosts">Hosts</a></li>
+<li><a href="/clinics">Clinics</a></li>
+<li><a href="/restaurants">Restaurants</a></li>
+<li><a href="/galleries">Culture</a></li>
 </ul>
 </div>
 <div class="sx-footer__col">
@@ -543,6 +502,21 @@
       return SYMBOL[state.currency] + v.toLocaleString('en-US');
     }
 
+    function renderCurrencyBindings() {
+      document.querySelectorAll('[data-money-gbp]').forEach(function (node) {
+        var base = parseInt(node.getAttribute('data-money-gbp'), 10);
+        var suffix = node.getAttribute('data-money-suffix') || '';
+        if (!Number.isNaN(base)) node.textContent = fmt(base) + suffix;
+      });
+
+      document.querySelectorAll('[data-addon-price]').forEach(function (node) {
+        var input = node.closest('label') ? node.closest('label').querySelector('[data-add-price]') : null;
+        if (!input) return;
+        var base = parseInt(input.getAttribute('data-add-price'), 10);
+        if (!Number.isNaN(base)) node.textContent = fmt(base);
+      });
+    }
+
     // Helper: subscription pricing model — total = monthly_per_unit × units.
     // Used by /managers where pricing is per-door/month + a separate onboarding line.
     function fmtSubscription(units, rate) {
@@ -559,6 +533,9 @@
     var modDecBtn  = document.querySelector('[data-mod="dec"]');
     var summaryEl  = document.querySelector('[data-summary]');
     var totalEl    = document.querySelector('[data-total]');
+    var oneOffRow  = document.querySelector('[data-one-off-row]');
+    var oneOffLabelEl = document.querySelector('[data-one-off-label]');
+    var oneOffValueEl = document.querySelector('[data-one-off-value]');
     var turnEl     = document.querySelector('[data-turn]');
     var turnRow    = document.querySelector('[data-turn-row]');
     var includesEl = document.querySelector('[data-includes]');
@@ -567,6 +544,7 @@
     var IS_SUBSCRIPTION = CFG.pricingMode === 'subscription';
     var SUBSCRIPTION_RATE = CFG.subscriptionRate || null;
     var SUBSCRIPTION_UNIT_LABEL = CFG.subscriptionUnitLabel || 'per door / month';
+    var ONE_OFF_LABEL = CFG.oneOffLabel || 'One-off capture fee';
 
     // If the segment hides the modules step (e.g. /hosts, /managers), the wrapping
     // .sx-calc2__step that contains the +/- stepper needs to be display:none.
@@ -617,6 +595,8 @@
     }
 
     function render() {
+      renderCurrencyBindings();
+      renderOneOff();
       if (!state.size) {
         summaryEl.textContent = 'Pick a size to see your total.';
         totalEl.textContent = '—';
@@ -687,6 +667,20 @@
       bookCta.setAttribute('href',
         'mailto:spaces@roguedivisions.com?subject=' +
         encodeURIComponent('Configured engagement: ' + summaryEl.textContent + ' (' + totalEl.textContent + ')'));
+    }
+
+    function renderOneOff() {
+      if (!oneOffRow) return;
+      var hasOneOff = IS_SUBSCRIPTION && state.size && Object.prototype.hasOwnProperty.call(state.size, 'one_off_fee');
+      if (!hasOneOff) {
+        oneOffRow.hidden = true;
+        return;
+      }
+      oneOffRow.hidden = false;
+      if (oneOffLabelEl) oneOffLabelEl.textContent = ONE_OFF_LABEL;
+      if (oneOffValueEl) {
+        oneOffValueEl.textContent = state.size.one_off_fee === null ? 'By quote' : fmt(state.size.one_off_fee);
+      }
     }
 
     document.querySelectorAll('[data-kind]').forEach(function (b) {
@@ -807,20 +801,6 @@
     } else {
       setTimeout(preloadNext, 8000);
     }
-  })();
-
-  // Hero "Win" — small entrance flourish on the loaded word.
-  // Subtle by design: 600ms after first paint, never repeats.
-  (function () {
-    var win = document.querySelector('.rd-win');
-    if (!win) return;
-    win.style.opacity = '0';
-    win.style.transform = 'translateY(8px)';
-    win.style.transition = 'opacity 600ms cubic-bezier(.2,.8,.2,1) 240ms, transform 600ms cubic-bezier(.2,.8,.2,1) 240ms';
-    requestAnimationFrame(function () {
-      win.style.opacity = '1';
-      win.style.transform = 'translateY(0)';
-    });
   })();
 
   // HLS adaptive bitrate — Safari plays HLS natively; everyone else gets hls.js on demand.

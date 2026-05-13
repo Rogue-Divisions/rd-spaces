@@ -55,10 +55,10 @@
       "step1_kind_sub": "Per-door fleet pricing",
       "step2_label": "How many units in your fleet?",
       "step2_options": [
-        { "id": "small",  "name": "20 to 50",   "sub": "Boutique manager fleet", "pack": "Fleet", "price_units": 35,  "turn": "2-week onboarding" },
-        { "id": "mid",    "name": "50 to 150",  "sub": "Established mid-market manager", "pack": "Fleet", "price_units": 100, "turn": "2-week onboarding" },
-        { "id": "large",  "name": "150 to 300", "sub": "Large regional operator", "pack": "Fleet", "price_units": 225, "turn": "3-week onboarding" },
-        { "id": "bespoke","name": "300+ — talk to us", "sub": "Enterprise rollout", "pack": "Bespoke", "price_units": null, "turn": "By quote" }
+        { "id": "small",  "name": "20 to 50",   "sub": "Boutique manager fleet", "pack": "Fleet", "price_units": 35,  "one_off_fee": null, "turn": "2-week onboarding" },
+        { "id": "mid",    "name": "50 to 150",  "sub": "Established mid-market manager", "pack": "Fleet", "price_units": 100, "one_off_fee": null, "turn": "2-week onboarding" },
+        { "id": "large",  "name": "150 to 300", "sub": "Large regional operator", "pack": "Fleet", "price_units": 225, "one_off_fee": null, "turn": "3-week onboarding" },
+        { "id": "bespoke","name": "300+ — talk to us", "sub": "Enterprise rollout", "pack": "Bespoke", "price_units": null, "one_off_fee": null, "turn": "By quote" }
       ],
       "step3_active": false,
       "pricing_mode": "subscription",
@@ -66,6 +66,11 @@
       "subscription_unit_label": "per door / month",
       "onboarding_label": "One-off onboarding capture"
     },
+    "process_steps": [
+      { "title": "Scope the fleet.", "body": "We map your door count, owner constraints, and capture clusters before anyone turns up." },
+      { "title": "Capture in clusters.", "body": "Units are grouped by building and access window so the rollout moves without interrupting operations." },
+      { "title": "Hand to listings.", "body": "Your team gets hosted links, embed snippets, and a clean handover for every live door." }
+    ],
     "faq": [
       { "q": "What happens when we acquire new units?", "a": "New takeovers are captured within 48 hours of you taking the keys. Your owner sees the asset is live before their previous manager has finished the handover." },
       { "q": "Do we own the walkthroughs or do you?", "a": "You do. Hosted on our infrastructure, white-labelled, transferable if you ever change manager systems. We do not lock you in." },
@@ -75,8 +80,11 @@
     ],
     "final_cta": {
       "h2": "Capture one door this week. Onboard the fleet next.",
-      "body": "Free pilot on one of your most contested listings. The link the next morning. If the result lands, we scope the fleet rollout. If it does not, you keep the pilot. No obligation."
-    }
+      "body": "Free pilot on one of your most contested listings. The link the next morning. If the result lands, we scope the fleet rollout. If it does not, you keep the pilot. No obligation.",
+      "button_primary": "Book a fleet pilot",
+      "button_secondary": "See a manager-built tour →"
+    },
+    "sticky_cta_label": "Book a fleet pilot"
   },
 
   "hosts": {
@@ -118,6 +126,11 @@
       "step3_active": false,
       "pricing_mode": "one-off"
     },
+    "process_steps": [
+      { "title": "Pick the slot.", "body": "We schedule around check-in, cleaning, and guest turnover." },
+      { "title": "Capture once.", "body": "The unit is scanned, processed, hosted, and quality-checked without you learning the Spatial workflow." },
+      { "title": "Use the link everywhere.", "body": "You get the hosted walkthrough for your listing description, direct site, and pre-arrival messages." }
+    ],
     "faq": [
       { "q": "I have three listings — do I get a discount?", "a": "Yes. Tell us at the booking call. The second and third units are captured at a reduced rate in the same visit." },
       { "q": "Can I embed this on Airbnb, Booking, and my own site?", "a": "On your own site and any platform that accepts an iframe or external link. Airbnb and Booking do not allow direct iframe embeds, but they accept walkthrough links in the listing description, and most international guests click through." },
@@ -127,8 +140,11 @@
     ],
     "final_cta": {
       "h2": "Capture this week. Live by the weekend.",
-      "body": "Book a pilot. We arrive at a time that suits you, capture in about 20 minutes per room, and send you the link the next morning. £99. Yours forever."
-    }
+      "body": "Book a pilot. We arrive at a time that suits you, capture in about 20 minutes per room, and send you the link the next morning. £99. Yours forever.",
+      "button_primary": "Book a host pilot",
+      "button_secondary": "See a host-built tour →"
+    },
+    "sticky_cta_label": "Book a host pilot"
   },
 
   "hotels": {
@@ -173,6 +189,11 @@
       "step3_hint": "Each suite type captured as its own walkthrough",
       "pricing_mode": "one-off"
     },
+    "process_steps": [
+      { "title": "Choose the suite type.", "body": "We agree the pilot room and any shared spaces that matter to direct booking." },
+      { "title": "Work around housekeeping.", "body": "Capture is scheduled around occupancy, with only the active room blocked while we scan." },
+      { "title": "Embed where bookings happen.", "body": "You get the hosted link and booking-engine-ready snippet for the direct-booking flow." }
+    ],
     "faq": [
       { "q": "Can we capture during off-season?", "a": "Off-season is ideal. Lower occupancy means easier scheduling. We can capture a 12-room boutique inside a single day." },
       { "q": "Do we need to close rooms during capture?", "a": "Only the room being captured. About 20 minutes per room. Your housekeeping schedule absorbs it." },
@@ -182,8 +203,11 @@
     ],
     "final_cta": {
       "h2": "One free suite. One night. We are in and out before housekeeping.",
-      "body": "Book a pilot. We capture one suite, send you the link the next morning. If it lands, we scope the rest of the property. If not, you keep the pilot. No charge, no obligation."
-    }
+      "body": "Book a pilot. We capture one suite, send you the link the next morning. If it lands, we scope the rest of the property. If not, you keep the pilot. No charge, no obligation.",
+      "button_primary": "Book a free suite pilot",
+      "button_secondary": "See a hotel-built tour →"
+    },
+    "sticky_cta_label": "Book a free suite pilot"
   },
 
   "developers": {
@@ -227,6 +251,11 @@
       "step3_hint": "Each unit type as its own walkthrough",
       "pricing_mode": "one-off"
     },
+    "process_steps": [
+      { "title": "Prepare the show flat.", "body": "We capture after dressing, when the walkthrough can answer the buyer's real trust question." },
+      { "title": "Package the sales asset.", "body": "The hosted tour is processed for browser, mobile, WhatsApp, brochure links, and your project site." },
+      { "title": "Arm the sales team.", "body": "Agents get one link they can send to overseas buyers before the deposit conversation stalls." }
+    ],
     "faq": [
       { "q": "Do we capture before or after the show flat is dressed?", "a": "After. The walkthrough should show the buyer the experience they will live in. Bare-build walkthroughs do not convert. We schedule capture once the show flat is dressed." },
       { "q": "Can the walkthrough be embedded inside a Mailchimp campaign?", "a": "Yes. We provide an HTML embed snippet that works in email-marketing CMSes, in PDF brochures (as a hyperlink), and on WhatsApp Web." },
@@ -236,8 +265,11 @@
     ],
     "final_cta": {
       "h2": "Capture the show flat. Send it to your highest-intent buyer. Watch what happens.",
-      "body": "One free show-flat pilot. Link the next morning. Send it to the buyer you have been chasing for three weeks. If it moves the conversation, we scope the project. If not, you keep the pilot. No obligation."
-    }
+      "body": "One free show-flat pilot. Link the next morning. Send it to the buyer you have been chasing for three weeks. If it moves the conversation, we scope the project. If not, you keep the pilot. No obligation.",
+      "button_primary": "Book a show-flat pilot",
+      "button_secondary": "See a developer-built tour →"
+    },
+    "sticky_cta_label": "Book a show-flat pilot"
   },
 
   "weddings": {
@@ -281,6 +313,11 @@
       "step3_hint": "Each captured as its own walkthrough",
       "pricing_mode": "one-off"
     },
+    "process_steps": [
+      { "title": "Pick the decision space.", "body": "We agree the ceremony hall, suite, garden, or estate zone that most often decides the booking." },
+      { "title": "Capture before the season.", "body": "The walkthrough is scanned and processed before enquiry pressure and wedding operations peak." },
+      { "title": "Send it to the planner.", "body": "You get the hosted link and embed snippet for proposals, enquiry replies, and planner follow-up." }
+    ],
     "faq": [
       { "q": "Can we capture before the season opens?", "a": "Yes, and we recommend it. Pre-season capture means the walkthrough is live for the spring engagement-season enquiry surge." },
       { "q": "What about the gardens and outdoor areas?", "a": "Outdoor scenes are captured separately and integrated. We use the same Spatial Studio viewer for exterior, so the walkthrough moves seamlessly from chapel to garden to vineyard." },
@@ -290,8 +327,11 @@
     ],
     "final_cta": {
       "h2": "Capture before the season. Book solid through it.",
-      "body": "Free pilot on one space — the ceremony hall, the bridal suite, your call. Link the next morning. Send it to a planner you are mid-conversation with. Watch what happens. No obligation if it does not land."
-    }
+      "body": "Free pilot on one space — the ceremony hall, the bridal suite, your call. Link the next morning. Send it to a planner you are mid-conversation with. Watch what happens. No obligation if it does not land.",
+      "button_primary": "Book a venue pilot",
+      "button_secondary": "See a venue-built tour →"
+    },
+    "sticky_cta_label": "Book a venue pilot"
   },
 
   "clinics": {
@@ -336,6 +376,11 @@
       "step3_hint": "Each suite captured as its own deliverable",
       "pricing_mode": "one-off"
     },
+    "process_steps": [
+      { "title": "Agree the privacy SOP.", "body": "Patient flow, no-frame rules, and treatment-suite access are signed off before capture day." },
+      { "title": "Capture off-hours.", "body": "Reception, consultation, theatre, and recovery spaces are scanned without patients or exposed records." },
+      { "title": "Deploy by market.", "body": "The walkthrough is packaged for your site and paid campaigns, with multilingual variants added as modules." }
+    ],
     "faq": [
       { "q": "How do you handle patient privacy?", "a": "We capture when the clinic is closed to patients or between cases on a planned non-patient day. A privacy SOP is agreed and signed before shoot day. No identifiable patient information is captured. We sign a BAA on request." },
       { "q": "Can we capture our operating theatre between cases?", "a": "Yes. Theatre captures are scheduled around your case calendar. About 30 minutes per theatre with the lights up." },
@@ -345,8 +390,11 @@
     ],
     "final_cta": {
       "h2": "One floor. One walkthrough. Zero patients in frame.",
-      "body": "Free pilot on one floor of the clinic. Link the next morning. Send it to your highest-value enquiry. If the result lands, we scope the rest. If it does not, you keep the pilot. No obligation."
-    }
+      "body": "Free pilot on one floor of the clinic. Link the next morning. Send it to your highest-value enquiry. If the result lands, we scope the rest. If it does not, you keep the pilot. No obligation.",
+      "button_primary": "Book a clinic pilot",
+      "button_secondary": "See a clinic-built tour →"
+    },
+    "sticky_cta_label": "Book a clinic pilot"
   },
 
   "restaurants": {
@@ -389,6 +437,11 @@
       "step3_hint": "Each captured as its own walkthrough",
       "pricing_mode": "one-off"
     },
+    "process_steps": [
+      { "title": "Choose the revenue space.", "body": "We agree the dining room, private floor, bar, or terrace that private-hire buyers need to inspect." },
+      { "title": "Capture between services.", "body": "The scan is scheduled around lunch, dinner, or a closed day so service is not interrupted." },
+      { "title": "Drop it into enquiries.", "body": "Your team gets the hosted link for auto-replies, private-hire decks, and follow-up messages." }
+    ],
     "faq": [
       { "q": "Can you capture between services?", "a": "Yes. We capture between lunch and dinner service, or on a closed day. About 20 minutes per defined space." },
       { "q": "Do you capture the kitchen?", "a": "Optional. Some restaurants want the open kitchen captured to show craft. Others prefer the front-of-house only. Your call." },
@@ -398,8 +451,11 @@
     ],
     "final_cta": {
       "h2": "Capture this week. Watch your private hire close rate move.",
-      "body": "Free pilot on one space — the dining room, the private floor, your call. Link the next morning. Send it to a planner mid-enquiry. Watch what happens. No obligation if it does not land."
-    }
+      "body": "Free pilot on one space — the dining room, the private floor, your call. Link the next morning. Send it to a planner mid-enquiry. Watch what happens. No obligation if it does not land.",
+      "button_primary": "Book a venue pilot",
+      "button_secondary": "See a restaurant-built tour →"
+    },
+    "sticky_cta_label": "Book a venue pilot"
   },
 
   "galleries": {
@@ -443,6 +499,11 @@
       "step3_hint": "Each exhibition room as its own walkthrough",
       "pricing_mode": "one-off"
     },
+    "process_steps": [
+      { "title": "Capture after install.", "body": "We scan once the work is hung and before opening pressure takes over." },
+      { "title": "Publish the record.", "body": "The hosted walkthrough becomes the permanent version of the exhibition experience." },
+      { "title": "Reuse it everywhere.", "body": "Curators, jurors, funders, newsletters, and archive pages all get the same walkable link." }
+    ],
     "faq": [
       { "q": "Can we capture before the show opens to the public?", "a": "Yes, and we recommend it. Capture is scheduled in the install-week window, after the work is hung but before opening night." },
       { "q": "How long does capture take?", "a": "About 20-30 minutes per room. A typical single-floor gallery is captured in a single morning." },
@@ -452,7 +513,10 @@
     ],
     "final_cta": {
       "h2": "Capture this show. Forever access for everyone who could not fly in.",
-      "body": "Free pilot on the current exhibition. Link the next morning. Share it with the curators on your invite list who could not travel. If the result lands, we scope the programming year. If it does not, you keep the pilot. No obligation."
-    }
+      "body": "Free pilot on the current exhibition. Link the next morning. Share it with the curators on your invite list who could not travel. If the result lands, we scope the programming year. If it does not, you keep the pilot. No obligation.",
+      "button_primary": "Book a gallery pilot",
+      "button_secondary": "See a gallery-built tour →"
+    },
+    "sticky_cta_label": "Book a gallery pilot"
   }
 }

@@ -47,6 +47,7 @@ rd-spaces/
 | --- | --- |
 | Build all 9 pages | `python3 scripts/build.py` |
 | Verify spec compliance | `python3 scripts/verify.py` |
+| Install browser for paint checks | `python3 scripts/setup_playwright.py` |
 | Deploy to Cloudflare | `wrangler deploy` (CI runs this on push to main after build + verify) |
 | Local preview | `python3 -m http.server 8000 -d public` then http://localhost:8000 |
 
@@ -101,7 +102,7 @@ Do not narrow this to Tbilisi-only. Do not list cities customer-facing (no "Tbil
 **Assume defects exist until proven otherwise.** The build-time verifier in `verify.py` confirms content presence, not visual correctness. A page can pass 14/14 checks and still ship broken (see `docs/AUDIT-V2.md` for the canonical example). Before claiming a page is correct, always:
 
 1. Run `python3 scripts/verify.py` — passes the content matrix
-2. Run the paint check (headless Chrome) — confirms hero emphasis renders, currency propagates, calculator step numbering is sequential
+2. Run the paint check (headless Chrome via Playwright) — confirms hero emphasis renders, currency propagates, calculator step numbering is sequential. If Chromium is missing locally, run `python3 scripts/setup_playwright.py`.
 3. Spot-check on mobile width (390px viewport) — confirms the objection block, sticky CTA, and calculator are usable
 
 If `verify.py` does not yet have a paint check, add one before declaring done.

@@ -118,6 +118,8 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   font-weight: 700;
   font-style: italic;
   letter-spacing: -0.025em;
+  -webkit-text-fill-color: var(--rd-signal);
+  text-shadow: 0 3px 18px rgba(0,0,0,0.82), 0 0 2px rgba(0,0,0,0.92);
 }
 
 /* --- Buttons --------------------------------------------------- */
@@ -914,6 +916,21 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   line-height: 1;
   margin-bottom: 18px;
 }
+.sx-calc2__one-off {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.62);
+  padding: 0 0 14px;
+  margin-top: -6px;
+}
+.sx-calc2__one-off[hidden] { display: none; }
+.sx-calc2__one-off strong {
+  color: #fff;
+  font-weight: 600;
+  text-align: right;
+}
 .sx-calc2__total-meta {
   display: flex;
   justify-content: space-between;
@@ -1365,6 +1382,10 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   font-size: 14px;
 }
 .sx-footer__col a:hover { color: #fff; }
+.sx-footer__col--segments a {
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+}
 .sx-footer__base {
   display: flex;
   justify-content: space-between;
@@ -1522,24 +1543,31 @@ p { margin: 0 0 1em; text-wrap: pretty; }
    outcomes and how-it-works. Centred narrow column, slight tint to
    mark it as a deliberate pause in the rhythm. Segment-pages only. */
 .sx-objection {
-  background: #131313;
+  background:
+    linear-gradient(180deg, rgba(255,44,85,0.055), rgba(255,255,255,0.015)),
+    #121212;
   padding: 96px 32px;
-  border-top: 1px solid rgba(255,255,255,0.04);
-  border-bottom: 1px solid rgba(255,255,255,0.04);
+  border-top: 1px solid rgba(255,44,85,0.12);
+  border-bottom: 1px solid rgba(255,44,85,0.08);
 }
 .sx-objection__inner {
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 auto;
   text-align: left;
+  padding: 42px 46px;
+  border: 1px solid rgba(255,44,85,0.22);
+  border-radius: 16px;
+  background: rgba(0,0,0,0.18);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.24);
 }
 .sx-objection__quote {
-  font-family: var(--font-sans);
+  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(28px, 3.4vw, 40px);
   font-style: italic;
-  font-weight: 500;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  letter-spacing: 0;
   line-height: 1.18;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255,132,154,0.94);
   margin: 0 0 24px;
   position: relative;
 }
@@ -1560,6 +1588,10 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 }
 @media (max-width: 700px) {
   .sx-objection { padding: 72px 22px; }
+  .sx-objection__inner {
+    padding: 30px 24px;
+    border-radius: 14px;
+  }
 }
 
 /* Pricing anchor line — segment-only paragraph that sits above the calculator
