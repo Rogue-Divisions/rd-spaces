@@ -33,6 +33,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
 PUBLIC = ROOT / "public"
 
+CONFIGS = {}
+
 
 # ──────────────────────────────────────────────────────────────────────
 # Helpers
@@ -63,12 +65,41 @@ def replace_string(el, new_text):
     el.append(new_text)
 
 
+def phase1_segments():
+    items = [
+        cfg for key, cfg in CONFIGS.items()
+        if key != "main" and not key.startswith("_") and not cfg.get("is_hub") and cfg.get("phase") == "phase1"
+    ]
+    return sorted(items, key=lambda c: c.get("hub_order", 999))
+
+
+def set_currency_text(tag, text):
+    tag.string = text
+    tag["data-price-usd"] = text
+    tag["data-price-gel"] = text.replace("$1,500", "₾4,050").replace("$3,000+", "₾8,100+").replace("$3,000", "₾8,100").replace("$500", "₾1,350").replace("$129", "₾350").replace("$35", "₾95")
+
+
+def apply_common_currency_config(soup):
+    for label in soup.select(".sx-calc2__addon-price"):
+        raw = label.get_text(strip=True).replace("$", "").replace(",", "")
+        try:
+            usd = int(raw)
+        except ValueError:
+            continue
+        gel = int(round(usd * CONFIGS.get("_currency_config", {}).get("gel_rate", 2.7) / 10) * 10)
+        label["data-price-amount"] = str(usd)
+        label["data-price-usd"] = f"${usd:,}"
+        label["data-price-gel"] = f"₾{gel:,}"
+        label.string = f"${usd:,}"
+
+
 # ──────────────────────────────────────────────────────────────────────
 # Hub renderer — minimal changes from template (keeps everything)
 # ──────────────────────────────────────────────────────────────────────
 
 def render_hub(cfg, template_html):
     soup = BeautifulSoup(template_html, "html.parser")
+    apply_common_currency_config(soup)
 
     # ── Head ───────────────────────────────────────────────────────────
     soup.find("title").string = cfg["title"]
@@ -97,6 +128,11 @@ def render_hub(cfg, template_html):
     sub = soup.select_one(".sx-hero__sub")
     if sub:
         sub.string = cfg["subhead"]
+
+    render_hub_segment_cards(soup)
+    render_footer_segments(soup)
+    collapse_about_block(soup)
+    rewrite_hub_faq(soup)
 
     # ── Hero CTAs ──────────────────────────────────────────────────────
     primary = soup.select_one("[data-hero-cta-primary]")
@@ -190,6 +226,71 @@ def render_hub(cfg, template_html):
     return str(soup)
 
 
+def render_hub_segment_cards(soup):
+    grid = soup.select_one("#seg-cards")
+    if not grid:
+        return
+    grid.clear()
+    for idx, cfg in enumerate(phase1_segments()):
+        card = cfg["hub_card"]
+        details = soup.new_tag("details", attrs={"class": "sx-segcard", "data-seg": cfg["slug"]})
+        if idx == 0:
+            details["open"] = ""
+        summary = soup.new_tag("summary", attrs={"class": "sx-segcard__head"})
+        label = soup.new_tag("span", attrs={"class": "sx-segcard__label"})
+        label.string = card["label"]
+        mini = soup.new_tag("span", attrs={"class": "sx-segcard__range-mini"})
+        set_currency_text(mini, card["range"])
+        chev = soup.new_tag("span", attrs={"class": "sx-segcard__chev", "aria-hidden": "true"})
+        chev.string = "+"
+        summary.extend([label, mini, chev])
+        body = soup.new_tag("div", attrs={"class": "sx-segcard__body"})
+        pitch = soup.new_tag("h3", attrs={"class": "sx-segcard__pitch"})
+        set_currency_text(pitch, card["hook"])
+        foot = soup.new_tag("div", attrs={"class": "sx-segcard__foot"})
+        link = soup.new_tag("a", attrs={"href": f"/{cfg['slug']}", "class": "rd-btn rd-btn--outline"})
+        link.string = card["button"]
+        foot.append(link)
+        body.extend([pitch, foot])
+        details.extend([summary, body])
+        grid.append(details)
+
+
+def render_footer_segments(soup):
+    col = soup.select_one("[data-hub-only='footer-segments']")
+    if not col:
+        return
+    ul = col.find("ul")
+    if not ul:
+        return
+    ul.clear()
+    for cfg in phase1_segments():
+        li = soup.new_tag("li")
+        a = soup.new_tag("a", attrs={"href": f"/{cfg['slug']}"})
+        a.string = cfg["hub_card"]["label"]
+        li.append(a)
+        ul.append(li)
+
+
+def collapse_about_block(soup):
+    about = soup.select_one(".sx-about__body")
+    if not about:
+        return
+    about.clear()
+    p = soup.new_tag("p")
+    p.string = "Spaces is a Rogue Divisions studio. We capture, host, and publish — your relationship is with operators, not a platform."
+    about.append(p)
+
+
+def rewrite_hub_faq(soup):
+    for item in soup.select("#faq-list .sx-faq__item"):
+        q = item.select_one(".sx-faq__q")
+        a = item.select_one(".sx-faq__a")
+        if q and a and q.get_text(strip=True) == "Is this as good as Matterport?":
+            q.string = "How is this different from Matterport?"
+            a.string = "For buyer-decision visualisation, this is sharper and faster. For property workflows that need precise floor plans and measurements, Matterport is stronger. Spaces is built for buyer confidence — faster capture, hosted walkthrough, embedded in your sales channels."
+
+
 # ──────────────────────────────────────────────────────────────────────
 # Segment renderer — heavy DOM transforms
 # ──────────────────────────────────────────────────────────────────────
@@ -197,6 +298,8 @@ def render_hub(cfg, template_html):
 def render_segment(cfg, template_html):
     soup = BeautifulSoup(template_html, "html.parser")
     slug = cfg["slug"]
+    apply_common_currency_config(soup)
+    render_footer_segments(soup)
 
     # ── Head ───────────────────────────────────────────────────────────
     soup.find("title").string = cfg["title"]
@@ -230,6 +333,9 @@ def render_segment(cfg, template_html):
     primary = soup.select_one("[data-hero-cta-primary]")
     if primary:
         primary.string = cfg["hero_cta_primary"]
+    nav_cta = soup.select_one(".sx-nav__cta")
+    if nav_cta:
+        nav_cta.string = cfg.get("sticky_cta_label", cfg["hero_cta_primary"])
     secondary = soup.select_one("[data-hero-cta-secondary]")
     if secondary:
         secondary.clear()
@@ -292,6 +398,8 @@ def render_segment(cfg, template_html):
     # data-hub-only block — otherwise the comment text ("Built for spaces.") leaks
     # into the static markup of segment pages and trips literal-string verification.
     for el in soup.select("[data-hub-only]"):
+        if el.get("data-hub-only") == "footer-segments":
+            continue
         # Walk back through preceding siblings, eating any comments / whitespace nodes.
         prev = el.previous_sibling
         while prev is not None and (
@@ -302,6 +410,13 @@ def render_segment(cfg, template_html):
             prev = prev.previous_sibling
             to_remove.extract()
         el.decompose()
+    for el in soup.select(".sx-multi-wrap"):
+        el.decompose()
+    about_body = soup.select_one(".sx-about")
+    if about_body:
+        section = about_body.find_parent("section")
+        if section:
+            section.decompose()
 
     # ── Inject objection block content ─────────────────────────────────
     obj_quote = soup.select_one("[data-objection-quote]")
@@ -317,8 +432,18 @@ def render_segment(cfg, template_html):
     # ── Pricing anchor line ────────────────────────────────────────────
     anchor = soup.select_one(".sx-pricing-anchor[data-segment-only]")
     if anchor:
-        anchor.string = cfg["pricing_anchor"]
+        set_currency_text(anchor, cfg["pricing_anchor"])
         del anchor["data-segment-only"]
+
+    transparency = soup.select_one("[data-pricing-transparency]")
+    if transparency:
+        if cfg.get("pricing_transparency"):
+            set_currency_text(transparency, cfg["pricing_transparency"])
+            del transparency["data-segment-only"]
+        else:
+            section = transparency.find_parent(class_="sx-pricing-transparency")
+            if section:
+                section.decompose()
 
     # ── Calculator Step 01: replace 8-button grid with locked indicator
     calc = cfg["calculator"]
@@ -344,6 +469,15 @@ def render_segment(cfg, template_html):
     step2_title = soup.select_one("[data-step2-title]")
     if step2_title and calc.get("step2_label"):
         step2_title.string = calc["step2_label"]
+    step3_title = soup.select_one("[data-step3-title]")
+    if step3_title and calc.get("step3_active") and calc.get("step3_label"):
+        step3_title.string = calc["step3_label"]
+    step3_hint = soup.select_one("[data-step3-hint]")
+    if step3_hint and calc.get("step3_active") and calc.get("step3_hint"):
+        step3_hint.string = calc["step3_hint"]
+    calc_h2 = soup.select_one("[data-calculator-h2]")
+    if calc_h2 and cfg.get("calculator_h2"):
+        calc_h2.string = cfg["calculator_h2"]
 
     # ── FAQ: replace omnibus with per-segment 5 items ──────────────────
     faq_list = soup.select_one("#faq-list")
@@ -366,6 +500,14 @@ def render_segment(cfg, template_html):
     cta_body = soup.select_one("[data-final-cta-body]")
     if cta_body:
         cta_body.string = cfg["final_cta"]["body"]
+    for selector, key in ((".sx-final__cta .rd-btn--filled", "button_primary"), (".sx-final__cta .rd-btn--outline", "button_secondary")):
+        btn = soup.select_one(selector)
+        if btn and cfg["final_cta"].get(key):
+            btn.string = cfg["final_cta"][key].rstrip(" →").rstrip()
+    sticky = soup.select_one(".sx-sticky-cta")
+    if sticky:
+        sticky.string = cfg.get("sticky_cta_label", cfg["hero_cta_primary"])
+        sticky["aria-label"] = cfg.get("sticky_cta_label", cfg["hero_cta_primary"])
 
     # ── Inject window.__SX_CFG__ for the calculator JS ─────────────────
     # Build the kindOverride object that the calc IIFE merges into KIND_MAP.
@@ -381,6 +523,7 @@ def render_segment(cfg, template_html):
         "kindOverride": kind_override,
         "modulesActive": bool(calc.get("step3_active", False)),
         "pricingMode": calc.get("pricing_mode", "one-off"),
+        "currency": CONFIGS.get("_currency_config", {}),
     }
     if calc.get("pricing_mode") == "subscription":
         sx_cfg["subscriptionRate"] = calc.get("subscription_rate_per_door")
@@ -402,11 +545,10 @@ def render_segment(cfg, template_html):
     #    "Who it's for" pointed at #segments which now doesn't exist on segment pages.
     for a in soup.select(".sx-nav__list a[href='#segments']"):
         a["href"] = "/"
-        a.string = "All segments"
+        a.string = "Segments"
 
-    # ── Strip the data-segment-only-footer marker so the column actually renders.
     for el in soup.select("[data-segment-only-footer]"):
-        del el["data-segment-only-footer"]
+        el.decompose()
 
     return str(soup)
 
@@ -426,6 +568,8 @@ def main():
 
     template_html = template_path.read_text(encoding="utf-8")
     configs = json.loads(config_path.read_text(encoding="utf-8"))
+    global CONFIGS
+    CONFIGS = configs
 
     if "main" not in configs:
         sys.exit("segments.json must include a 'main' entry")

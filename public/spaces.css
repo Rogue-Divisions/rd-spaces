@@ -1577,6 +1577,21 @@ p { margin: 0 0 1em; text-wrap: pretty; }
 }
 .sx-pricing-anchor:empty { display: none; }
 
+.sx-pricing-transparency {
+  margin: 0 0 28px;
+  padding: 22px 24px;
+  border: 1px solid rgba(255,44,85,0.34);
+  background: rgba(255,44,85,0.08);
+  border-radius: 16px;
+}
+.sx-pricing-transparency p {
+  margin: 0;
+  max-width: 920px;
+  color: rgba(255,255,255,0.86);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
 /* Locked Step 01 indicator — replaces the 8-button kind grid on segment pages.
    The visitor came here from a per-segment URL, so the kind is fixed. */
 .sx-calc2__locked-kind {

@@ -259,8 +259,7 @@
 <section id="segments" class="sx-section sx-section--alt" data-hub-only="segments-grid">
   <div class="sx-section__inner">
     <div class="sx-section__head">
-      <h2 class="sx-h2">Built for spaces no one can easily fly in to see.</h2>
-      <p class="sx-lede">Pick yours.</p>
+      <h2 class="sx-h2">Built for spaces people need to trust from elsewhere.</h2>
     </div>
 
     <div class="sx-segcards" id="seg-cards">
@@ -407,7 +406,7 @@
 <section id="pricing" class="sx-section">
   <div class="sx-section__inner">
     <div class="sx-section__head">
-      <h2 class="sx-h2">See what your space costs, in a minute.</h2>
+      <h2 class="sx-h2" data-calculator-h2>See what your space costs, in a minute.</h2>
       <p class="sx-lede">Pick your space. Add what you want shown. The total updates as you go. When you are happy, book it.</p>
     </div>
 
@@ -415,6 +414,10 @@
          to frame the numbers in the buyer's economic model). Build script populates and
          REMOVES on hub. -->
     <p class="sx-pricing-anchor" data-segment-only></p>
+
+    <section class="sx-pricing-transparency" data-segment-only>
+      <p data-pricing-transparency></p>
+    </section>
 
     <div class="sx-calc2" id="calc">
       <div class="sx-calc2__form">
@@ -501,8 +504,8 @@
             <h3 class="sx-calc2__step-title">Currency</h3>
           </div>
           <div class="sx-calc2__currency">
-            <button class="is-active" data-cur="GBP">£ GBP</button>
-            <button data-cur="USD">$ USD</button>
+            <button class="is-active" data-cur="USD">$ USD</button>
+            <button data-cur="GEL">₾ GEL</button>
           </div>
         </div>
 
@@ -866,29 +869,34 @@
       KIND_MAP[CFG.kind] = CFG.kindOverride;
     }
 
-    // Module add-on price decay: £400, £300, £200, £150, £100 thereafter.
+    // Module add-on price decay: $400, $300, $200, $150, $100 thereafter.
     // Rewards scope expansion within a buyer's natural per-property limit.
     var MOD_CURVE = [400, 300, 200, 150];
     function modulePrice(i) { return i <= 4 ? MOD_CURVE[i - 1] : 100; }
 
-    // Currency in £ by default per v7 commercial spec; USD secondary at ~spot rate.
-    // GEL was retired — Tbilisi-local clients usually settle in £ or $ at our rate.
     var initKind = CFG.kind || 'apartment';
-    var state = { kind: initKind, size: null, mods: 0, addons: {}, currency: 'GBP' };
-    var FX = { GBP: 1, USD: 1.27 };
-    var SYMBOL = { GBP: '£', USD: '$' };
+    var state = { kind: initKind, size: null, mods: 0, addons: {}, currency: 'USD' };
+    var GEL_RATE = (CFG.currency && CFG.currency.gel_rate) || 2.7;
+    var FX = { USD: 1, GEL: GEL_RATE };
+    var SYMBOL = { USD: '$', GEL: '₾' };
 
     function fmt(n) {
       if (n === null) return 'By quote';
-      var v = Math.round(n * FX[state.currency]);
+      var raw = n * FX[state.currency];
+      var v = state.currency === 'GEL' ? Math.round(raw / 10) * 10 : Math.round(raw);
       return SYMBOL[state.currency] + v.toLocaleString('en-US');
+    }
+    function fmtSizePrice(s) {
+      if (s.price === null) return 'By quote';
+      return fmt(s.price) + (s.price_plus ? '+' : '');
     }
 
     // Helper: subscription pricing model — total = monthly_per_unit × units.
     // Used by /managers where pricing is per-door/month + a separate onboarding line.
     function fmtSubscription(units, rate) {
       if (units === null || rate === null) return 'By quote';
-      var v = Math.round(rate * units * FX[state.currency]);
+      var raw = rate * units * FX[state.currency];
+      var v = state.currency === 'GEL' ? Math.round(raw / 10) * 10 : Math.round(raw);
       return SYMBOL[state.currency] + v.toLocaleString('en-US');
     }
 
@@ -932,7 +940,7 @@
         btn.appendChild(el('span', 'sx-calc2__opt-name', s.name));
         btn.appendChild(el('span', 'sx-calc2__opt-sub',  s.sub));
 
-        // Subscription mode (managers): show "Fleet · £1,050 / month" instead of one-off price.
+        // Subscription mode (managers): show "Fleet · $1,225 / month" instead of one-off price.
         var priceLabel;
         if (IS_SUBSCRIPTION) {
           if (s.price_units === null || s.price_units === undefined) {
@@ -941,7 +949,7 @@
             priceLabel = fmtSubscription(s.price_units, SUBSCRIPTION_RATE) + ' / month';
           }
         } else {
-          priceLabel = (s.price === null ? 'By quote' : fmt(s.price));
+          priceLabel = fmtSizePrice(s);
         }
         btn.appendChild(el('span', 'sx-calc2__opt-price', s.pack + ' · ' + priceLabel));
 
@@ -1020,7 +1028,7 @@
       }
       if (addonCount) parts.push(addonCount + (addonCount === 1 ? ' add-on' : ' add-ons'));
       summaryEl.textContent = parts.join(' · ');
-      totalEl.textContent = fmt(total);
+      totalEl.textContent = fmt(total) + (state.size.price_plus ? '+' : '');
       turnEl.textContent = state.size.turn;
       if (turnRow)    turnRow.hidden    = false;
       if (includesEl) includesEl.hidden = false;
@@ -1068,9 +1076,17 @@
         document.querySelectorAll('[data-cur]').forEach(function (x) { x.classList.remove('is-active'); });
         b.classList.add('is-active');
         state.currency = b.getAttribute('data-cur');
+        document.querySelectorAll('[data-price-usd][data-price-gel]').forEach(function (node) {
+          node.textContent = state.currency === 'GEL'
+            ? node.getAttribute('data-price-gel')
+            : node.getAttribute('data-price-usd');
+        });
         renderSizes();
         render();
       });
+    });
+    document.querySelectorAll('[data-price-usd][data-price-gel]').forEach(function (node) {
+      node.textContent = node.getAttribute('data-price-usd');
     });
 
     renderSizes();
