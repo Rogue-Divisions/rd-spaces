@@ -1,602 +1,533 @@
-# Spaces — per-segment page copy
+# SEGMENT-COPY-V2.md
 
-Source-of-truth copy for the eight segment-specific landing pages on `spaces.roguedivisions.com/{slug}`.
+This is the v2 source-of-truth copy for spaces.roguedivisions.com. It replaces the prior `docs/SEGMENT-COPY.md`.
 
-Each page is calibrated to ONE buyer. No segment grid. No filter strips. No "Built for spaces" multi-card menu. The hub at `/` carries the multi-segment grid; segment pages do not.
+Key changes from v1:
 
-## Shared structure across all eight pages
+1. **Five Phase 1 segments** drive paid acquisition and campaign focus. Three segments (clinics, hosts, restaurants) are demoted to inbound-only — pages stay live but are not linked from hub navigation or footer.
+2. **Pain matrix is validated** against three independent deep research reports. Each Phase 1 page is reframed to lead with the buyer's actual top-ranked pain, not what our product happens to do well.
+3. **Currency simplified** to USD primary, GEL secondary. GBP removed. Pricing grid: Compact $500 / Standard $1,500 / Major $3,000+ / Managers $35 per door per month + one-off onboarding capture.
+4. **Hub focus tightened**: segment grid reduces from 8 cards to 5. Footer segment column from 8 to 5.
 
-Every segment page follows this skeleton:
+## Phase 1 segments (paid acquisition focus)
 
-1. Header (shared with hub) — Spaces lockup, "Book a pilot" CTA, jump-link to hub `/`
-2. Hero — H1, subhead, two CTAs, geographic strip
-3. Demo block — Spatial Studio iframe, segment-specific caption beneath
-4. Outcomes — 3 or 4 cards, NOT filtered from the six-card hub set, written from scratch for this buyer
-5. How it works — the shared 3-step (we arrive, ready by tomorrow, we help publish)
-6. Objection block — one reflex objection, one direct reply, the only place we name an objector
-7. Pricing — calculator pre-configured for this segment + a "what this typically costs you" anchor line
-8. Segment FAQ — 4 to 6 items written for this buyer, not the omnibus FAQ
-9. Final CTA — segment-tuned headline + body
-10. Footer (shared with hub)
+| # | Segment | Lead pain | Walkthrough fit |
+| --- | --- | --- | --- |
+| 1 | Off-plan developers | Remote buyer trust for unbuilt asset | STRONG |
+| 2 | Wedding venues | Lead quality + remote couple confidence | STRONG |
+| 3 | Boutique hotels | OTA commission leakage | MEDIUM-STRONG |
+| 4 | STR property managers | Owner trust and retention | MEDIUM |
+| 5 | Galleries (institutional / cultural venues) | Funding evidence + venue hire revenue | MEDIUM |
+
+## Phase 2 / demoted segments (inbound-only)
+
+| Segment | Status | Why |
+| --- | --- | --- |
+| Medical tourism clinics | Inbound-only | Research flagged forced fit. Walkthrough is not the decision driver. |
+| Solo Airbnb hosts | Inbound-only | Research flagged forced fit. Unit economics fail after CAC. |
+| Design-led restaurants | Phase 2 hold | Real fit for private-hire venues but cash-strapped sector, narrow pool. Revisit after Phase 1 traction. |
+
+Pages for these segments remain live and accessible by direct URL. They are removed from hub navigation, hub segment grid, and footer "FOR" column. They retain the engineering fixes from v2/v3 (security headers, calculator, paint, etc.) but no further copy work in v4.
 
 ## Cross-cutting rules
 
-- **No eight-card segment grid on any segment page.** The grid lives only at `/`. On a segment page it is dead weight that dilutes the focus.
-- **No filter tab strip above outcomes.** The outcomes are pre-curated for this buyer. There is nothing to filter.
-- **No "Built for spaces. Pick yours." line.** That belongs on the hub.
-- **No "Selected credits" placeholder strip** unless we have segment-relevant logos. Otherwise it is dead air.
-- **No "About Rogue Divisions" block** unless tightened to one sentence for credibility. Most segment buyers do not care about RD's other ventures; they care about whether we can deliver for them.
-- **Currency in £ by default, USD secondary.** Calculator toggle stays.
-- **Geographic strip is unchanged:** "Operating across Georgia. Armenia and Azerbaijan next."
-- **Demo block caption is segment-specific.** Different per page.
+- **No eight-card segment grid anywhere on segment pages.** Hub grid reduced to five cards (Phase 1 only).
+- **No filter tab strip above outcomes** on segment pages.
+- **"Built for spaces. Pick yours." H2** removed from hub (replaced by direct segment grid).
+- **"Multi-property & subscription." three-card section** stripped from segment pages (already done in v3, verify still holds in v4).
+- **"Operators, not a marketplace."** — collapse to one sentence at full width on hub. Strip on segment pages (already done in v3).
+- **Currency**: USD default, GEL toggle. No GBP. No EUR.
+- **Geographic strip unchanged**: "Operating across Georgia. Armenia and Azerbaijan next."
+- **Demo block caption** is per-segment.
+- **All absolute claims scrubbed**: replace "booking calendar fills without a single viewing", "patients book the surgery", "qualified leads" type overclaims with sharper, defensible causality.
+
+## Pricing grid (all USD, GEL toggle available)
+
+| Tier | USD | GEL approx | Used by |
+| --- | --- | --- | --- |
+| Lite | $129 | ₾350 | Solo host single unit (demoted, kept for legacy) |
+| Compact | $500 | ₾1,350 | Single-space engagement (hotel suite, gallery room) |
+| Standard | $1,500 | ₾4,050 | Multi-space engagement (developer show flat, wedding venue, hotel cluster) |
+| Major | $3,000+ | ₾8,100+ | Large-scale (multi-building estate, museum, multi-phase developer) |
+| Managers subscription | $35 per door / month | ₾95 per door / month | STR fleet, plus one-off onboarding capture by quote |
+
+GEL conversion at approximate 1 USD = 2.70 GEL (May 2026). Final GEL pricing displayed via live FX or fixed quarterly rate — decide in v4.
 
 ---
 
-# 1. STR property managers — `/managers`
+# Hub `/`
 
-**Buyer:** ops director or founder of an STR management company, 20-300 units across multiple owners.
-**Mental model:** per-door subscription, predictable line-item budgeting, fleet onboarding, owner retention as the underlying KPI.
-**Price frame:** £30 per door per month, plus an onboarding capture fee. NOT a one-off purchase.
+**Title:** `Spaces by Rogue Divisions — Walkthroughs that close the trust gap when buyers are somewhere else`
+
+**Meta description:** `Walkthroughs that bridge the distance between remote buyers and physical spaces. Built for off-plan developers, wedding venues, hotels, STR managers, and cultural venues.`
+
+**Hero H1 (unchanged):** `They are somewhere else. Win them anyway.`
+
+**Hero subhead (revised — was "Tours they can walk before they fly in"):**
+`When the buyer is somewhere else, they need to walk the space before they commit.`
+
+**Hero CTAs:** `Book a pilot` / `See a sample walkthrough →`
+
+**Geographic strip (unchanged):** `Operating across Georgia. Armenia and Azerbaijan next.`
+
+**Segment grid (5 cards, replacing the 8-card grid):**
+
+1. **Off-plan developers** — `Show flat walkthroughs that close off-plan deposits faster. From $1,500.`
+2. **Wedding venues** — `Let the couple walk the venue before they fly in. From $1,500.`
+3. **Boutique hotels** — `Recover the commission OTAs take. From $500 per suite.`
+4. **STR property managers** — `A walkthrough for every door. From $35 per door per month.`
+5. **Galleries and cultural venues** — `Permanent record. New revenue line. From $1,500.`
+
+**About RD block (collapsed to one sentence at full width):**
+`Spaces is a Rogue Divisions studio. We capture, host, and publish — your relationship is with operators, not a platform.`
+
+**Hub demo block caption**: dynamically reflects active pill (V2-014 verified in v3).
+
+**Hub FAQ** retained from v1, with the following changes:
+
+- **Matterport FAQ rewrite** (was defensive "arguably better"):
+  Q: `How is this different from Matterport?`
+  A: `For buyer-decision visualisation, this is sharper and faster. For property workflows that need precise floor plans and measurements, Matterport is stronger. Spaces is built for buyer confidence — faster capture, hosted walkthrough, embedded in your sales channels.`
+
+---
+
+# 1. Off-plan developers — `/developers`
+
+**Buyer:** sales director or founder of a Tbilisi off-plan development. Sells to international buyers in Dubai, Tel Aviv, London, Tehran, Yerevan. Has an existing show flat (built or under construction) selling the remaining 50-300 off-plan units.
+
+**Top pain (validated):** Remote buyer trust gap for an unbuilt asset. Sales velocity. Pre-sale targets.
+
+**Walkthrough fit:** Strong. Direct top-pain match.
 
 ### Title and meta
 
-- Title: `Spaces for STR managers — Per-door 3D tours for your fleet`
-- Meta description: `Per-door subscription walkthroughs for property managers. Onboard your fleet in two weeks. Differentiation that compounds across every unit you operate.`
-- OG title: `Per-door walkthroughs for STR managers`
-- OG description: `Onboard your fleet in two weeks. Per-door subscription. Built for managers running 20 to 300 units.`
+- Title: `Spaces for developers — Buyers wire faster when they have walked the space`
+- Meta description: `Photoreal show flat walkthroughs that close off-plan deposits faster. Pasted into WhatsApp, embedded in brochures, sent to buyers in Dubai, Tel Aviv, London.`
+- OG title: `Walkthroughs that close off-plan deposits`
+- OG description: `Buyers who walk the show flat decide before they fly in. Your sales agents paste the link into WhatsApp. The conversation moves forward.`
 
 ### Hero
 
-- H1: `A walkthrough for every door. At fleet pricing.`
-- Subhead: `Per-door subscription. Onboard your portfolio in two weeks. New units captured within 48 hours of takeover.`
-- Primary CTA: `Book a fleet pilot`
-- Secondary CTA: `See a manager-built tour →`
+- **H1:** `Buyers wire faster when they have walked the space.`
+- **Subhead:** `Photoreal show flat walkthrough. Pasted into WhatsApp. The deposit conversation moves forward.`
+- **Primary CTA:** `Book a show-flat pilot`
+- **Secondary CTA:** `See a developer-built tour →`
 
 ### Demo block caption
 
-`Sample tour from Spatial Studio. Live fleet capture programmes start in Tbilisi this month.`
+`Sample tour from Spatial Studio. Real Tbilisi off-plan show flats captured this month.`
 
 ### Outcomes (4 cards)
 
-**1. Differentiation at scale.**
-Your listings sit next to thousands of others on the same OTAs. The walkthrough is the asset competitors do not have. It compounds across 30, 80, 300 doors. The whole fleet looks distinct.
+**1. Sales velocity.**
+Buyers who walk the finished show flat decide in days, not weeks. Off-plan deposits stop stalling on doubt. Industry data shows reservation timelines collapsing from 112 days to 14 when buyers can virtually walk the unit.
 
-**2. Owner retention.**
-Renewals get easier when an owner can see what you have invested in their unit. The walkthrough is the artefact that proves you are operating their property, not just listing it.
+**2. The buyer who cannot fly.**
+Your off-plan buyers are in Dubai, Tel Aviv, London, Yerevan, Tehran. The walkthrough does the viewing for them. Most never land in Tbilisi until handover.
 
-**3. Direct booking lift.**
-Listings with a walkthrough convert better on your own site than they do on Booking. The commission you keep is what funds the subscription. The per-door maths usually beats the per-door cost inside ninety days.
+**3. Render-to-real bridge.**
+CGI sells the floor plan. Walkthroughs sell the deposit. The two work together at different stages of the buyer's decision. Brochure renders read as not-yet-real; a walkthrough of the finished show flat reads as committed and built.
 
-**4. Predictable rollout.**
-Two weeks to capture your initial fleet. New units captured within 48 hours of takeover. One line in your budget. No per-unit haggling.
-
-### Objection block
-
-**Title:** `"We already pay for professional photos."`
-**Reply:** Keep them. Walkthroughs do not replace photos. Photos sell at the listing-tile level: the click, the swipe, the favourite. Walkthroughs sell at the decision stage: the confident booking. They work together. The walkthrough is the differentiator photos no longer are.
-
-### Pricing anchor line
-
-`From £30 per door per month, plus a one-off capture fee. Two-week onboarding. Talk to us about fleets over 150 doors.`
-
-### Calculator pre-config
-
-- Step 01 default: Property manager
-- Step 02 label: `How many units in your fleet?`
-- Step 02 options: `20 to 50` / `50 to 150` / `150 to 300` / `300+ — talk to us`
-- Pricing display: subscription only, per door per month, plus a separate onboarding capture line
-- Hide one-off-purchase add-ons that do not apply
-
-### FAQ (5 items)
-
-- **What happens when we acquire new units?** New takeovers are captured within 48 hours of you taking the keys. Your owner sees the asset is live before their previous manager has finished the handover.
-- **Do we own the walkthroughs or do you?** You do. Hosted on our infrastructure, white-labelled, transferable if you ever change manager systems. We do not lock you in.
-- **Can we white-label the viewer to our brand?** Yes. Your colours, your logo, your domain if you have one. We do not show up in the visitor's URL bar.
-- **What if a unit churns?** Subscription pauses on that door. No exit fee. If the unit returns to your fleet within twelve months, it relights without a re-capture.
-- **How does the onboarding sequence run?** Day 1: scoping call, capture schedule agreed. Days 3-12: capture every door in clusters of 6-10 per day. Days 13-14: review, publish, embed snippets to your listings team. By week 3 the fleet is live.
-
-### Final CTA
-
-- H2: `Capture one door this week. Onboard the fleet next.`
-- Body: `Free pilot on one of your most contested listings. The link the next morning. If the result lands, we scope the fleet rollout. If it does not, you keep the pilot. No obligation.`
-
----
-
-# 2. Solo Airbnb hosts — `/hosts`
-
-**Buyer:** individual host with 1-3 listings, often expat or remote, quality-conscious, rating-conscious, willing to spend on differentiation.
-**Mental model:** one-off purchase, fast turnaround, embed-everywhere, lifetime asset.
-**Price frame:** £99 one-off Lite tier.
-
-### Title and meta
-
-- Title: `Spaces for Airbnb hosts — The listing with the walkthrough button`
-- Meta description: `One-off 3D walkthroughs for solo Airbnb hosts. Differentiate against 6,500 active Tbilisi listings. £99. Yours forever.`
-- OG title: `One-off 3D walkthroughs for Airbnb hosts`
-- OG description: `Differentiation against thousands of similar listings. £99. Live by the weekend. Yours forever.`
-
-### Hero
-
-- H1: `Differentiate. For ninety-nine pounds.`
-- Subhead: `One walkthrough. One listing. Yours forever. Embed it on Airbnb, Booking, your own site, anywhere.`
-- Primary CTA: `Book a host pilot`
-- Secondary CTA: `See a host-built tour →`
-
-### Demo block caption
-
-`Sample tour from Spatial Studio. The same format hosts use to differentiate their listing on every platform.`
-
-### Outcomes (3 cards)
-
-**1. The click.**
-Of more than six thousand active Tbilisi listings, almost none have a 3D walkthrough. The thumbnail with the walkthrough button gets the scroll-stop.
-
-**2. The trust.**
-The guests who book your unit care about quality. A walkthrough proves the photographs were not flattering. They scroll past the cheaper listings. They book yours.
-
-**3. The lifetime.**
-You pay once. The walkthrough lives forever. Embed it on Airbnb, on Booking, on your own page, on a WhatsApp message to a returning guest. It does not expire.
-
-### Objection block
-
-**Title:** `"I can do this myself on my phone."`
-**Reply:** You can. The Spatial Lens app is free and we use it ourselves. The reason hosts pay £99 is not that they cannot capture. It is that they do not have the two hours to learn the workflow, fix the misaligned splat, post-process the file, host it, and embed it. We do that and send you the link.
-
-### Pricing anchor line
-
-`£99 one-off. One walkthrough. Hosted forever. No subscription. Higher-tier capture available for villas and multi-bedroom units.`
-
-### Calculator pre-config
-
-- Step 01 default: Apartment
-- Step 02 label: `What size is the unit?`
-- Step 02 options: `Studio or 1-bed` / `2 to 3 bed` / `4+ bed or villa`
-- Pricing display: one-off, in £, no subscription option
-- Hide module step (single-unit hosts do not need modules)
-
-### FAQ (5 items)
-
-- **I have three listings — do I get a discount?** Yes. Tell us at the booking call. The second and third units are captured at a reduced rate in the same visit.
-- **Can I embed this on Airbnb, Booking, and my own site?** On your own site and any platform that accepts an iframe or external link. Airbnb and Booking do not allow direct iframe embeds, but they accept walkthrough links in the listing description, and most international guests click through.
-- **What happens if I redecorate?** A re-capture is offered at 50% of the original price within twelve months.
-- **How do I share this with a guest who already booked?** Paste the link into your pre-arrival message. It improves your reviews; guests feel oriented before they walk in the door.
-- **Can my cleaning team use it?** Yes. Some hosts use the walkthrough as a reference for cleaners and stagers. It is a multi-use asset.
-
-### Final CTA
-
-- H2: `Capture this week. Live by the weekend.`
-- Body: `Book a pilot. We arrive at a time that suits you, capture in about 20 minutes per room, and send you the link the next morning. £99. Yours forever.`
-
----
-
-# 3. Boutique and design hotels — `/hotels`
-
-**Buyer:** owner or general manager of a 10-40 room boutique hotel. Margin-sensitive. OTA commission is a known pain point. Direct booking is the strategic goal.
-**Mental model:** suite-level differentiation, direct-booking lift, commission saved, lifetime asset.
-**Price frame:** Compact through Major package, £500 to £2,500+, depending on suite types.
-
-### Title and meta
-
-- Title: `Spaces for boutique hotels — Recover the commission Booking takes`
-- Meta description: `3D suite walkthroughs that close the gap photos cannot. Guests book direct. You keep the 15% Booking would have taken.`
-- OG title: `Walkthroughs that recover OTA commission for boutique hotels`
-- OG description: `Guests who walk the suite book direct. You keep the margin. Built for boutique hotels and design properties.`
-
-### Hero
-
-- H1: `Recover the commission Booking takes.`
-- Subhead: `Walkthroughs that close the trust gap photos cannot. Guests book direct. You keep the margin.`
-- Primary CTA: `Book a free suite pilot`
-- Secondary CTA: `See a hotel-built tour →`
-
-### Demo block caption
-
-`Sample tour from Spatial Studio. Real Tbilisi and Batumi captures shipping this month.`
-
-### Outcomes (4 cards)
-
-**1. Direct booking lift.**
-Photos sold the listing. The walkthrough sells the room. Guests who walk the suite before booking do not hedge to the OTA. They book direct from your site.
-
-**2. Commission saved.**
-Fifteen percent of every direct booking is yours, not Booking's. One saved booking, on the average Tbilisi ADR over a four-night stay, more than covers most pricing tiers.
-
-**3. Suite-level differentiation.**
-Every suite type gets its own scene. The Deluxe is no longer "another room with a king bed." The visitor walks it. The Junior Suite is no longer the smaller image. The visitor walks that too. Cross-sell happens at the walkthrough.
-
-**4. Forever asset.**
-Hosted under your domain. Embedded on your booking engine. Live for the lifetime of the hotel. New suites added as you refurbish, at module pricing.
-
-### Objection block
-
-**Title:** `"Our photographer just shot the whole hotel."`
-**Reply:** Keep them. Walkthroughs do not replace photography. They convert the guest who got past the photos to the booking page. Photos do the seducing on Instagram. The walkthrough does the closing on your direct-booking flow.
-
-### Pricing anchor line
-
-`From £500 for a Compact engagement. Modules for additional suite types. Talk to us for hotels above 40 rooms or with conference space.`
-
-### Calculator pre-config
-
-- Step 01 default: Boutique hotel
-- Step 02 label: `How big is the hotel?`
-- Step 02 options: `Boutique under 20 rooms` / `Hotel 20+ rooms` / `Hotel with conference centre — talk to us`
-- Step 03 label: `How many suite types do you want shown?` (modules step active)
-- Pricing display: package tier + modules, in £
-
-### FAQ (5 items)
-
-- **Can we capture during off-season?** Off-season is ideal. Lower occupancy means easier scheduling. We can capture a 12-room boutique inside a single day.
-- **Do we need to close rooms during capture?** Only the room being captured. About 20 minutes per room. Your housekeeping schedule absorbs it.
-- **How does this work with our booking engine?** We provide an embed snippet that drops into your booking-engine description fields. Compatible with Cloudbeds, Mews, Little Hotelier, SiteMinder, and most major systems. We confirm fit on the scoping call.
-- **Can we add new suites later?** Yes. Each additional suite type is captured at module pricing in the next visit. New module captures are turned around in 48 hours.
-- **Can guests view it on mobile?** Yes. The walkthrough is fully responsive. Most guest views are on phone. We optimise the experience for that.
-
-### Final CTA
-
-- H2: `One free suite. One night. We are in and out before housekeeping.`
-- Body: `Book a pilot. We capture one suite, send you the link the next morning. If it lands, we scope the rest of the property. If not, you keep the pilot. No charge, no obligation.`
-
----
-
-# 4. Real estate developers — `/developers`
-
-**Buyer:** sales director or founder of a Tbilisi off-plan development. Sells to international buyers in Dubai, London, Tel Aviv, Tehran, Yerevan.
-**Mental model:** off-plan trust gap, WhatsApp sales channel, render-vs-photoreal differentiation, agent ammunition.
-**Price frame:** Standard or Major package, £1,250 to £2,500+, plus modules for unit types.
-
-### Title and meta
-
-- Title: `Spaces for developers — Show your show flat to a buyer in Dubai`
-- Meta description: `Photoreal walkthroughs of finished show flats. Pasted into WhatsApp. Embedded in brochures. The deposit conversation moves forward.`
-- OG title: `Walkthroughs that close off-plan deals from abroad`
-- OG description: `Photoreal show flats your sales agents paste into WhatsApp. Buyers in Dubai, London, Tel Aviv decide without flying in.`
-
-### Hero
-
-- H1: `Show your show flat to a buyer in Dubai.`
-- Subhead: `Photoreal walkthrough. Pasted into WhatsApp. The deposit conversation moves forward.`
-- Primary CTA: `Book a show-flat pilot`
-- Secondary CTA: `See a developer-built tour →`
-
-### Demo block caption
-
-`Sample tour from Spatial Studio. Real Tbilisi off-plan captures shipping this month.`
-
-### Outcomes (4 cards)
-
-**1. The buyer who cannot fly.**
-Your off-plan buyers are in Dubai, London, Tel Aviv, Yerevan, Tehran. The walkthrough does the viewing for them. Most of them never land in Tbilisi until the keys handover.
-
-**2. The render problem, solved.**
-Brochure CGI reads as not-yet-real. A walkthrough of the actual finished show flat reads as committed and built. The buyer's hesitation collapses.
-
-**3. Sales agent ammunition.**
-Pasted into WhatsApp. Embedded in the brochure PDF. Living on the project's website. The same link your buyer's spouse will watch in their kitchen tonight. The deal moves on every device.
-
-**4. Stage gating.**
-Visitors who watch the walkthrough end-to-end become qualified leads. Visitors who do not, were never going to wire the deposit. Your agents' time goes to live buyers.
+**4. Sales agent ammunition.**
+Pasted into WhatsApp. Embedded in the brochure PDF. Living on the project website. The same link your buyer's spouse will watch in their kitchen tonight. The deal moves on every device.
 
 ### Objection block
 
 **Title:** `"We already have CGI of every unit."`
-**Reply:** CGI is necessary for the units that are not built yet. It is not what convinces a buyer to wire a deposit. A photoreal walkthrough of the finished show flat is. The two are different products serving different stages of the buyer's decision. Use both.
+**Reply:** Keep them. CGI is necessary for the units not yet built. It is not what convinces a buyer to wire a deposit. A photoreal walkthrough of the finished show flat is. They are different products serving different stages of the buyer's decision. Use both.
 
 ### Pricing anchor line
 
-`From £1,250 for a Standard engagement. Modules for each unit type. Multi-project portfolios at bespoke pricing.`
+`From $1,500 for a Standard show-flat engagement. Modules per unit type. Multi-project portfolios at bespoke pricing.`
 
 ### Calculator pre-config
 
-- Step 01 default: Development or show flat
+- Step 01 default: `Development or show flat`
 - Step 02 label: `What is the scope?`
 - Step 02 options: `Single project` / `Multi-project portfolio`
-- Step 03 label: `How many unit types?` (modules step active)
-- Pricing display: package tier + modules, in £, with USD toggle prominent
+- Step 03 label: `How many unit types?` (modules active)
+- Pricing display: package tier + modules, in USD with GEL toggle
 
 ### FAQ (5 items)
 
 - **Do we capture before or after the show flat is dressed?** After. The walkthrough should show the buyer the experience they will live in. Bare-build walkthroughs do not convert. We schedule capture once the show flat is dressed.
-- **Can the walkthrough be embedded inside a Mailchimp campaign?** Yes. We provide an HTML embed snippet that works in email-marketing CMSes, in PDF brochures (as a hyperlink), and on WhatsApp Web.
-- **Can we have captions and call-to-action overlays in Russian, Hebrew, Farsi, Arabic?** Yes. We deliver multilingual builds at module pricing per language. One scene, multiple language overlays.
+- **Can the walkthrough be sent via email?** Yes — as a hosted link. Some email clients do not render interactive iframes reliably, so we deliver a click-through link plus a preview thumbnail. The link works in Mailchimp, WhatsApp, brochure PDFs, and your project website.
+- **Multilingual captions and CTAs in Russian, Hebrew, Farsi, Arabic?** Yes. Multilingual builds at module pricing per language. One scene, multiple language overlays. One link per market for paid acquisition.
 - **What about exteriors and macro context?** The Spatial Studio viewer combines Google's photoreal 3D city tiles with our high-fidelity interior. Buyer sees the neighbourhood, then zooms into your show flat. Available as an add-on.
 - **Can we update when the building is finished?** Yes. Re-capture at completion at module pricing. The walkthrough then doubles as a handover asset for buyers.
 
 ### Final CTA
 
-- H2: `Capture the show flat. Send it to your highest-intent buyer. Watch what happens.`
-- Body: `One free show-flat pilot. Link the next morning. Send it to the buyer you have been chasing for three weeks. If it moves the conversation, we scope the project. If not, you keep the pilot. No obligation.`
+- **H2:** `Capture the show flat. Send it to your highest-intent buyer. Watch what happens.`
+- **Body:** `One free show-flat pilot. Link the next morning. Send it to the buyer you have been chasing for three weeks. If it moves the conversation, we scope the project. If not, you keep the pilot. No obligation.`
+- **Buttons:** `Book a show-flat pilot` / `See the developer packages →`
+- **Sticky mobile CTA label:** `Book a show-flat pilot`
 
 ---
 
-# 5. Wedding venues and vineyard estates — `/weddings`
+# 2. Wedding venues and vineyard estates — `/weddings`
 
 **Buyer:** owner or events director of a Kakheti vineyard estate or Tbilisi event venue. Sells destination weddings to couples in London, Tel Aviv, New York, Dubai.
-**Mental model:** decision happens on screen, not on a venue visit. Planner is gatekeeper. Bride is end-buyer.
-**Price frame:** Standard or Major package, £1,250 to £2,500+, plus modules for grounds, bridal suites, etc.
+
+**Top pain (validated):** Lead quality and ghosting. Remote couple confidence is the walkthrough's lever. Pricing transparency reduces ghosting.
+
+**Walkthrough fit:** Strong for remote couple confidence. Pricing transparency is the upstream filter.
 
 ### Title and meta
 
 - Title: `Spaces for wedding venues — Let her walk the chapel before she flies in`
-- Meta description: `3D walkthroughs of vineyard estates and event venues. Couples and planners decide from London, New York, Tel Aviv without flying in.`
+- Meta description: `3D walkthroughs of vineyard estates and event venues. Couples and planners walk the venue from London, New York, Tel Aviv before they commit.`
 - OG title: `Walkthroughs that close destination weddings`
-- OG description: `She walks the ceremony hall, the gardens, the bridal suite. The decision happens. The planner stops bouncing your venue against six others.`
+- OG description: `She walks the ceremony hall, the gardens, the bridal suite. The planner stops bouncing your venue against six others.`
 
-### Hero
+### Hero (unchanged from v1)
 
-- H1: `Let her walk the chapel before she flies in.`
-- Subhead: `She sees the ceremony hall, the gardens, the bridal suite. The decision gets made.`
-- Primary CTA: `Book a venue pilot`
-- Secondary CTA: `See a venue-built tour →`
+- **H1:** `Let her walk the chapel before she flies in.`
+- **Subhead:** `She sees the ceremony hall, the gardens, the bridal suite. The decision gets made.`
+- **Primary CTA:** `Book a venue pilot`
+- **Secondary CTA:** `See a venue-built tour →`
 
 ### Demo block caption
 
 `Sample tour from Spatial Studio. Real Kakheti and Tbilisi venue captures shipping this season.`
 
-### Outcomes (3 cards)
+### Outcomes (3 cards — sharpened to remove overclaim)
 
-**1. The decisive walkthrough.**
-The bride, the groom, the planner all walk the venue from London or New York. The decision happens at the screen, not at the airport. Your booking calendar fills without a single in-person viewing.
+**1. The shortlist decision.**
+The couple, family, and planner walk the venue from London or New York. The shortlist closes faster. Site visits move from "can we come and see it?" to "we have decided on dates."
 
 **2. Six venues, one differentiator.**
-Your competitors have photos. You have a walkthrough. When the planner compiles the shortlist, your venue is the one that closes.
+Your competitors have photographs. You have a walkthrough. When the planner compiles the shortlist, your venue is the one that closes.
 
-**3. The planner's job, easier.**
-Your venue is no longer one of six similar tabs. The planner forwards your link and walks it with the couple over Zoom. The conversation moves to dates and catering instead of "can we come and see it?"
+**3. The planner's workflow, easier.**
+Your venue is no longer one of six similar tabs. The planner forwards your link and walks it with the couple over Zoom. The conversation moves to dates and catering, not "when can we visit?"
+
+### Pricing transparency block (NEW — addresses ghosting)
+
+`Standard engagement from $1,500. What is included: ceremony hall, dining space, gardens, bridal suite. Modules for additional bridal suites, dressing rooms, vineyard exterior, mountain or estate exterior. Multi-building estates at Major tier from $3,000.`
+
+This block sits above the calculator. It is not the calculator. It is a transparent summary so couples and planners self-qualify before they enquire.
 
 ### Objection block
 
 **Title:** `"Our wedding photographer has incredible shots of the venue."`
-**Reply:** Wedding photos sell the romance. Walkthroughs sell the certainty. The couple's mother needs to see the layout. The planner needs to see the catering flow. The walkthrough answers questions photos do not.
-
-### Pricing anchor line
-
-`From £1,250 for a Standard engagement. Modules for bridal suites, dressing rooms, gardens, ceremony exterior, vineyard. Multi-building estates at Major tier.`
+**Reply:** Wedding photographs sell the romance. Walkthroughs sell the certainty. The couple's mother needs to see the layout. The planner needs to see the catering flow. The walkthrough answers the questions photographs do not.
 
 ### Calculator pre-config
 
-- Step 01 default: Wedding venue or estate
+- Step 01 default: `Wedding venue or estate`
 - Step 02 label: `What is the scope?`
 - Step 02 options: `Single-building estate` / `Multi-building estate` / `Mountain resort`
-- Step 03 label: `Bridal suite, dressing rooms, gardens, ceremony exterior?` (modules)
-- Pricing display: package tier + modules, in £
+- Step 03 label: `Bridal suite, dressing rooms, gardens, ceremony exterior?` (modules active)
+- Pricing display: package tier + modules, USD with GEL toggle
 
 ### FAQ (5 items)
 
-- **Can we capture before the season opens?** Yes, and we recommend it. Pre-season capture means the walkthrough is live for the spring engagement-season enquiry surge.
-- **What about the gardens and outdoor areas?** Outdoor scenes are captured separately and integrated. We use the same Spatial Studio viewer for exterior, so the walkthrough moves seamlessly from chapel to garden to vineyard.
-- **Can we add seasonal scenes (autumn, winter)?** Yes. Re-captures of changed scenes are module pricing. Some Kakheti estates run two captures: vine-leaf-green spring and harvest-gold autumn.
+- **Can we capture before the season opens?** Yes. Pre-season capture means the walkthrough is live for the spring engagement-season enquiry surge.
+- **What about the gardens and outdoor areas?** Outdoor scenes are captured separately and integrated. The viewer moves seamlessly from chapel to garden to vineyard.
+- **Can we add seasonal scenes (autumn, winter)?** Yes. Re-captures at module pricing. Some Kakheti estates run two captures: spring vine-leaf-green and harvest-gold autumn.
 - **Do we need to clear the venue during capture?** No. Capture is non-disruptive and takes about 20 minutes per room. Staff and operations continue around us.
-- **Can the walkthrough be embedded in our enquiry-form auto-responder?** Yes. Most planners enquire by form; the walkthrough goes back in the auto-reply. We provide the embed snippet.
+- **Can the walkthrough live in our enquiry auto-responder?** Yes. Most planners enquire by form; the walkthrough drops into the auto-reply. We provide the snippet.
 
-### Final CTA
+### Final CTA (sharpened — no "watch what happens" filler)
 
-- H2: `Capture before the season. Book solid through it.`
-- Body: `Free pilot on one space — the ceremony hall, the bridal suite, your call. Link the next morning. Send it to a planner you are mid-conversation with. Watch what happens. No obligation if it does not land.`
+- **H2:** `Capture before the season. Book solid through it.`
+- **Body:** `Free pilot on one space — the ceremony hall, the bridal suite, your call. Link the next morning. Send it to the planner choosing between six venues. If it moves the conversation, we scope the estate. No obligation if it does not land.`
+- **Buttons:** `Book a venue pilot` / `See the venue packages →`
+- **Sticky mobile CTA label:** `Book a venue pilot`
 
 ---
 
-# 6. Medical tourism clinics — `/clinics`
+# 3. Boutique and design hotels — `/hotels`
 
-**Buyer:** clinic founder or director of a Tbilisi medical tourism clinic — hair transplant, dental, cosmetic, fertility. Competing against Istanbul.
-**Mental model:** trust gap, Bookimed dependency, multilingual paid acquisition, privacy SOP.
-**Price frame:** Standard or Major package, £1,250 to £2,500+, multilingual deliverables add modules.
+**Buyer:** owner or general manager of a 10-40 room boutique hotel in Tbilisi or Batumi. Margin-sensitive. OTA commission is the known pain point. Direct booking is the strategic goal.
+
+**Top pain (validated):** Labour costs are #1, but the walkthrough does not solve that. OTA commission leakage is #2 and is the walkthrough's lever. Pricing discipline is #3.
+
+**Walkthrough fit:** Medium-strong. Hits the validated #2 pain directly.
 
 ### Title and meta
 
-- Title: `Spaces for medical clinics — Your patient picks the clinic she has walked through`
-- Meta description: `3D walkthroughs for medical tourism clinics. Reception, consultation, theatre, recovery. Privacy SOP standard. No patients in frame.`
-- OG title: `Walkthroughs that close medical tourism bookings`
-- OG description: `The patient who walks your theatre books your clinic, not Istanbul's. Privacy SOP. Multilingual deployment.`
+- Title: `Spaces for boutique hotels — Recover the commission OTAs take`
+- Meta description: `3D suite walkthroughs that close the gap photos cannot. Guests book direct on your site. You keep the 15-25% OTAs would have taken.`
+- OG title: `Walkthroughs that recover OTA commission for boutique hotels`
+- OG description: `Guests who walk the suite book direct. You keep the margin. Built for boutique hotels and design properties.`
 
-### Hero
+### Hero (sharpened — was "Booking takes" → "OTAs take" to broaden beyond one platform)
 
-- H1: `Your patient picks the clinic she has walked through.`
-- Subhead: `Reception. Consultation. Theatre. Recovery. No patients in frame. Privacy SOP standard.`
-- Primary CTA: `Book a clinic pilot`
-- Secondary CTA: `See a clinic-built tour →`
+- **H1:** `Recover the commission OTAs take.`
+- **Subhead:** `Walkthroughs that close the trust gap photographs cannot. Guests book direct. You keep the margin.`
+- **Primary CTA:** `Book a free suite pilot`
+- **Secondary CTA:** `See a hotel-built tour →`
 
 ### Demo block caption
 
-`Sample tour from Spatial Studio. Real Tbilisi clinic captures shipping this quarter, captured under our privacy SOP.`
+`Sample tour from Spatial Studio. Real Tbilisi and Batumi suite captures shipping this month.`
 
-### Outcomes (4 cards)
+### Outcomes (4 cards — sharpened to remove overlap)
 
-**1. The trust gap, closed.**
-Photos of equipment do not convey clinical competence. A walkthrough does. The patient deciding between you and an Istanbul clinic, after reading the same reviews, books the clinic she has walked through.
+**1. More guests book direct.**
+Photographs sold the listing on Booking. The walkthrough sells the room on your own site. Guests who walk the suite before booking do not hedge to the OTA.
 
-**2. Bookimed dependency, shrunk.**
-Patients who arrive through your own website convert at higher margins. The walkthrough turns enquiries into bookings without an aggregator taking the cut. The fee saved on one procedure usually covers the engagement.
+**2. One avoided OTA booking pays back the scan.**
+On the average Tbilisi ADR over a four-night stay, a single avoided OTA commission covers a Compact engagement. Every direct booking after is pure margin.
 
-**3. Privacy by design.**
-We capture without patients present. SOP documented and signed off before shoot day. GDPR-aligned. We sign a BAA on request. Your reputation is not at risk.
+**3. Suite-level differentiation.**
+Every suite type gets its own scene. The Deluxe is no longer "another room with a king bed." The visitor walks it. Cross-sell happens at the walkthrough, not at check-in.
 
-**4. Multilingual deployment.**
-One walkthrough. Captions, hotspots, and CTAs deployed in Russian, Hebrew, Farsi, Arabic, English. One link per language, each pointed at your paid acquisition campaigns in that market.
+**4. Forever asset.**
+Hosted under your domain. Embedded on your booking engine. Live for the lifetime of the hotel. New suites added as you refurbish, at module pricing.
 
-### Objection block
+### Objection block (kept — strong)
 
-**Title:** `"Our reception is already on Instagram."`
-**Reply:** A photograph proves the room exists. A walkthrough proves the room is competent. The patient deciding between you and an Istanbul clinic is not deciding from Instagram. She is deciding from the depth of trust your website conveys. The walkthrough is the depth.
+**Title:** `"Our photographer just shot the whole hotel."`
+**Reply:** Keep them. Walkthroughs do not replace photography. Photographs do the seducing on Instagram. The walkthrough does the closing on your direct-booking flow.
 
 ### Pricing anchor line
 
-`From £1,250 for a Standard engagement. Modules for additional treatment suites, recovery rooms, multilingual overlays. Hospital-scale captures at Major tier.`
+`From $500 for a Compact engagement on one suite. Modules for additional suite types. Hotels above 40 rooms or with conference space at Major tier from $3,000.`
 
 ### Calculator pre-config
 
-- Step 01 default: Clinic
-- Step 02 label: `What is the size?`
-- Step 02 options: `Single-floor clinic` / `Multi-floor clinic` / `Hospital — talk to us`
-- Step 03 label: `How many treatment or surgery suites beyond reception?` (modules)
-- Pricing display: package tier + modules, in £
+- Step 01 default: `Boutique hotel`
+- Step 02 label: `How big is the hotel?`
+- Step 02 options: `Boutique under 20 rooms` / `Hotel 20+ rooms` / `Hotel with conference centre — talk to us`
+- Step 03 label: `How many suite types do you want shown?` (modules active)
+- Pricing display: package tier + modules, USD with GEL toggle
 
-### FAQ (5 items)
+### FAQ (5 items — unchanged from v1)
 
-- **How do you handle patient privacy?** We capture when the clinic is closed to patients or between cases on a planned non-patient day. A privacy SOP is agreed and signed before shoot day. No identifiable patient information is captured. We sign a BAA on request.
-- **Can we capture our operating theatre between cases?** Yes. Theatre captures are scheduled around your case calendar. About 30 minutes per theatre with the lights up.
-- **Do you sign a Business Associate Agreement?** Yes, on request, before capture day. Standard BAA template available, or we sign yours.
-- **Can we update the walkthrough when we expand?** Yes. Re-captures of expanded floors at module pricing. New theatre or recovery suite captured in 48 hours.
-- **Can the walkthrough be paid-acquired against?** Yes. Each multilingual variant is a distinct asset for paid campaigns in each market. We can co-build the landing pages if you do not have an in-house team.
+- Can we capture during off-season?
+- Do we need to close rooms during capture?
+- How does this work with our booking engine?
+- Can we add new suites later?
+- Can guests view it on mobile?
 
-### Final CTA
+### Final CTA (refined — "One night" ambiguity fixed)
 
-- H2: `One floor. One walkthrough. Zero patients in frame.`
-- Body: `Free pilot on one floor of the clinic. Link the next morning. Send it to your highest-value enquiry. If the result lands, we scope the rest. If it does not, you keep the pilot. No obligation.`
+- **H2:** `One free suite. Live the next morning. In and out before housekeeping.`
+- **Body:** `Book a pilot. We capture one suite, send you the link the next morning. If it lands, we scope the rest of the property. If not, you keep the pilot. No charge, no obligation.`
+- **Buttons:** `Book a free suite pilot` / `See the hotel packages →`
+- **Sticky mobile CTA label:** `Book a suite pilot`
 
 ---
 
-# 7. Restaurants, bars, design hospitality — `/restaurants`
+# 4. STR property managers — `/managers`
 
-**Buyer:** owner or events manager of a design-led restaurant or bar in Tbilisi or Batumi. Private hire is the revenue lever.
-**Mental model:** private hire conversion, viewing-loop elimination, interior-as-marketing.
-**Price frame:** Compact or Standard package, £500 to £1,250, plus modules for private floor, terrace, dressing room.
+**Buyer:** ops director or founder of an STR management company, 20-300 units across multiple owners.
+
+**Top pain (validated):** Owner trust and retention — three independent reports rank this #1. Operational reliability at scale #2. Demand pressure / channel dependence #3.
+
+**Walkthrough fit:** Medium. Walkthrough is part of the owner-trust toolkit, not a churn lever. The framing must be owner-facing professionalism + per-door operational standardisation, not direct-booking maximisation.
 
 ### Title and meta
 
-- Title: `Spaces for restaurants — Your interior is the marketing. Show it properly.`
-- Meta description: `3D walkthroughs for design-led restaurants and bars. Private hire enquiries close before the call ends. The dining room walks itself.`
-- OG title: `Walkthroughs that close private hire enquiries`
-- OG description: `The corporate planner walks your private floor from her desk. The bride walks your dining room from her phone. The call closes.`
+- Title: `Spaces for STR managers — Show owners you are investing in their door`
+- Meta description: `Per-door subscription walkthroughs. The asset your owners see when they ask what they pay you for. Onboard your fleet in two weeks.`
+- OG title: `Owner-facing proof for STR managers`
+- OG description: `Per-door walkthroughs that prove you are operating the property, not just listing it. Built for managers running 20 to 300 units.`
 
-### Hero
+### Hero (REFRAMED — was supplier-side "fleet pricing", now owner-facing)
 
-- H1: `Your interior is the marketing. Show it properly.`
-- Subhead: `Private hire enquiries close before the call ends. The dining room walks itself.`
-- Primary CTA: `Book a venue pilot`
-- Secondary CTA: `See a restaurant-built tour →`
+- **H1:** `Show owners you are investing in their door.`
+- **Subhead:** `Per-door walkthroughs. The proof your owners see when they ask what they pay you for. Onboard the fleet in two weeks.`
+- **Primary CTA:** `Book a fleet pilot`
+- **Secondary CTA:** `See a manager-built tour →`
 
 ### Demo block caption
 
-`Sample tour from Spatial Studio. Real Tbilisi restaurant captures shipping this month.`
+`Sample tour from Spatial Studio. Live fleet capture programmes start in Tbilisi this month.`
 
-### Outcomes (3 cards)
+### Outcomes (4 cards — owner-facing, then operational)
 
-**1. Private hire conversion.**
-The corporate planner walks your private floor from her desk. The bride walks your dining room from her phone. The call closes faster. The "can we come and see the space?" loop ends.
+**1. The asset your owner sees.**
+When an owner asks what their management fee is paying for, the walkthrough is the answer. Proof of investment in their property. The artefact that demonstrates you are operating the unit, not just listing it.
 
-**2. The interior, finally working.**
-You spent on the build. The interior is the differentiator. A walkthrough is the only medium that conveys it. Instagram captures moments. The walkthrough captures the space.
+**2. Every door, working harder.**
+Listings with a walkthrough convert better on your own site than they do on Booking. Higher click-through. Higher booked rates. Fewer surprise-driven bad reviews from guests who arrive expecting something different.
 
-**3. The wasted-evening fix.**
-No more in-person viewing appointments that block your reservation grid for a planner who is comparison-shopping. The walkthrough does that visit for you. On every device. Forever.
+**3. Predictable rollout.**
+Two weeks to capture your initial fleet. New takeovers captured within 48 hours of you taking the keys. One line in your budget. No per-unit haggling.
 
-### Objection block
+**4. The fleet standard.**
+Every listing in your portfolio looks distinct. The whole fleet becomes a differentiator. Owners see what their unit looks like next to the others — and so do guests.
 
-**Title:** `"Our Instagram has every angle of the room."`
-**Reply:** Instagram sells the moment. The walkthrough sells the space. The corporate planner pitching her CEO needs to walk the room with her, on a screen. Instagram does not do that. The walkthrough does.
+### Objection block (kept — strong)
+
+**Title:** `"We already pay for professional photos."`
+**Reply:** Keep them. Walkthroughs do not replace photographs. Photographs sell at the listing-tile level: the click, the swipe, the favourite. Walkthroughs sell at the decision stage: the confident booking. They work together. The walkthrough is the differentiator photographs no longer are.
 
 ### Pricing anchor line
 
-`From £500 for a Compact engagement. Modules for private floor, terrace, bar, dressing room. Multi-site groups at bespoke pricing.`
+`From $35 per door per month, plus a one-off onboarding capture fee. Two-week initial rollout. Talk to us about fleets over 150 doors.`
 
-### Calculator pre-config
+### Calculator pre-config (calculator label fix — "For property manager" → "For STR property managers")
 
-- Step 01 default: Restaurant or bar
-- Step 02 label: `What is the scope?`
-- Step 02 options: `Single dining space` / `Restaurant + private floor`
-- Step 03 label: `Private floor, terrace, bar, dressing room?` (modules)
-- Pricing display: package tier + modules, in £
+- Step 01 default: `For STR property managers`
+- Step 02 label: `How many units in your fleet?`
+- Step 02 options: `20 to 50` / `50 to 150` / `150 to 300` / `300+ — talk to us`
+- Pricing display: subscription (per door / month) + one-off onboarding line, USD with GEL toggle
+- One-off onboarding line: `By quote` (calibrated to fleet size on the scoping call)
 
 ### FAQ (5 items)
 
-- **Can you capture between services?** Yes. We capture between lunch and dinner service, or on a closed day. About 20 minutes per defined space.
-- **Do you capture the kitchen?** Optional. Some restaurants want the open kitchen captured to show craft. Others prefer the front-of-house only. Your call.
-- **Can we update for a refurb?** Yes. Re-captures of changed scenes at module pricing.
-- **How does this work with our private-hire enquiry form?** The walkthrough link drops into your auto-responder, into the enquiry confirmation, and into your sales deck. The planner walks before the call.
-- **Can the walkthrough live on our reservation platform?** Most reservation platforms accept external links in the description field. We confirm fit on the scoping call.
+- **What happens when we acquire new units?** New takeovers are captured within 48 hours of you taking the keys. Your owner sees the asset is live before their previous manager has finished the handover.
+- **Do we own the walkthroughs or do you?** You do. Hosted on our infrastructure, white-labelled, transferable if you ever change manager systems.
+- **Can we white-label the viewer to our brand?** Yes. Your colours, your logo, your domain if you have one.
+- **What if a unit churns?** Subscription pauses on that door. No exit fee. If the unit returns within twelve months, it relights without a re-capture.
+- **How does the onboarding run?** Day 1: scoping call. Days 3-12: capture every door in clusters of 6-10 per day. Days 13-14: review, publish, hand the embed snippets to your listings team.
 
 ### Final CTA
 
-- H2: `Capture this week. Watch your private hire close rate move.`
-- Body: `Free pilot on one space — the dining room, the private floor, your call. Link the next morning. Send it to a planner mid-enquiry. Watch what happens. No obligation if it does not land.`
+- **H2:** `Capture one door this week. Onboard the fleet next.`
+- **Body:** `Free pilot on one of your most contested listings. The link the next morning. If the result lands, we scope the fleet rollout. If it does not, you keep the pilot. No obligation.`
+- **Buttons:** `Book a fleet pilot` / `See the manager packages →`
+- **Sticky mobile CTA label:** `Book a fleet pilot`
 
 ---
 
-# 8. Galleries, museums, cultural venues — `/galleries`
+# 5. Galleries, cultural venues, and museums — `/galleries`
 
-**Buyer:** gallery director, museum head, or cultural foundation programme lead. Tbilisi or regional.
-**Mental model:** permanent archive, curator and critic access, grant evidence, programming record.
-**Price frame:** Standard package, £1,250, plus modules for additional exhibition rooms. Recurring per-show capture is the natural follow-on.
+**Buyer:** institutional gallery director, museum head, or cultural foundation programme lead. **Excludes** commercial galleries (white-cube art-sales venues) — those are a different buyer with different concerns (collector confidence, online viewing rooms) and the walkthrough framing is different. This page leads with the institutional buyer.
+
+**Top pain (validated):** Funding instability and grant evidence #1. Attendance / visitor competition #2. Operational reporting burden #3.
+
+**Walkthrough fit:** Medium. Strongest lever is venue-hire revenue (a new revenue line for under-monetised space) and grant evidence (walkable documentation in funding applications).
 
 ### Title and meta
 
-- Title: `Spaces for galleries — The exhibition is temporary. The record does not have to be.`
-- Meta description: `3D walkthroughs for galleries, museums, and cultural venues. Curators in Frieze, Venice, Berlin have permanent access to the show.`
-- OG title: `Walkthroughs that preserve the exhibition`
-- OG description: `Your show runs for six weeks. The walkthrough is on forever. International curators and critics walk it after it closes.`
+- Title: `Spaces for cultural venues — Permanent record. New revenue line.`
+- Meta description: `Walkthroughs for galleries, museums, and cultural foundations. Donor access after closing. Venue hire enquiries that close before the call. Grant evidence that stands out.`
+- OG title: `Walkthroughs that fund cultural venues`
+- OG description: `The exhibition is temporary. The record does not have to be. Curators, donors, jurors, and grant assessors walk the show after it closes.`
 
-### Hero
+### Hero (unchanged — strong)
 
-- H1: `The exhibition is temporary. The record does not have to be.`
-- Subhead: `Curators in Frieze, Venice, Berlin have a permanent way back into your show.`
-- Primary CTA: `Book a gallery pilot`
-- Secondary CTA: `See a gallery-built tour →`
+- **H1:** `The exhibition is temporary. The record does not have to be.`
+- **Subhead (refined — "Frieze" was awkward as a place):** `Curators, donors, jurors, and grant assessors walk the show after it closes.`
+- **Primary CTA:** `Book a venue pilot`
+- **Secondary CTA:** `See a venue-built tour →`
 
 ### Demo block caption
 
-`Sample tour from Spatial Studio. Real Tbilisi gallery captures shipping with the next exhibition cycle.`
+`Sample tour from Spatial Studio. Real Tbilisi cultural venue captures shipping with the next exhibition cycle.`
 
-### Outcomes (3 cards)
+### Outcomes (3 cards — institutional focus)
 
-**1. The curator who cannot fly.**
-International curators, critics, and jurors access your show after it closes. Your artist's reach is no longer time-bound. The exhibition is permanent.
+**1. Donor and grant evidence.**
+Funding applications and institutional bids reference walkable documentation, not slide decks. Your case for next year strengthens. Grant assessors see the work as it was installed.
 
-**2. The grant evidence.**
-Funding applications and institutional bids reference walkable documentation, not slide decks. Your case strengthens. Your application stands above peer institutions still submitting installation photos.
+**2. A new revenue line: venue hire.**
+Corporate and private events booked from the walkthrough. The under-monetised space outside opening hours becomes a paid asset. Event planners commit without a site visit.
 
-**3. The archive that grows.**
-Every show captured. Year after year. A walkable, searchable record of your programming. The institution's history becomes an accessible asset.
+**3. The archive that stays alive.**
+Every show captured. Year after year. The institution's history becomes an accessible record, not a folder of installation photographs.
 
-### Objection block
+### Objection block (kept — strong)
 
 **Title:** `"We already photograph every show."`
-**Reply:** Installation photos document the work. A walkthrough documents the experience. Walking a show is what curators, jurors, and grant assessors are deciding from. The walkthrough is what they want.
+**Reply:** Installation photographs document the work. A walkthrough documents the experience. Walking a show is what curators, jurors, donors, and grant assessors are deciding from. The walkthrough is what they want.
 
 ### Pricing anchor line
 
-`From £1,250 for a Standard engagement. Modules for additional exhibition rooms. Annual programming partnerships at bespoke pricing.`
+`From $1,500 for a Standard exhibition capture. Modules for additional rooms. Annual programming partnerships at bespoke pricing.`
 
 ### Calculator pre-config
 
-- Step 01 default: Gallery or cultural venue
+- Step 01 default: `Cultural venue or museum`
 - Step 02 label: `What is the size?`
 - Step 02 options: `Single floor` / `Multi-floor` / `Museum — talk to us`
-- Step 03 label: `How many exhibition rooms?` (modules)
-- Pricing display: package tier + modules, in £
+- Step 03 label: `How many exhibition rooms?` (modules active)
+- Pricing display: package tier + modules, USD with GEL toggle
 
-### FAQ (5 items)
+### FAQ (5 items — newsletter embed claim corrected)
 
-- **Can we capture before the show opens to the public?** Yes, and we recommend it. Capture is scheduled in the install-week window, after the work is hung but before opening night.
-- **How long does capture take?** About 20-30 minutes per room. A typical single-floor gallery is captured in a single morning.
-- **Can the walkthrough be embedded in our newsletter?** Yes. The embed snippet works in Mailchimp, Substack, and most newsletter platforms.
-- **Do we hold the rights?** Yes. You hold the rights to the walkthrough. We hold no claim to the work, the artist's IP, or your archive. Standard clause in the engagement.
-- **Can you do recurring capture for every show?** Yes. Annual programming partnerships are bespoke. Most galleries run six to ten shows a year; we structure that as a per-show retainer.
+- **Can we capture before the show opens to the public?** Yes. Capture is scheduled in the install-week window, after the work is hung but before opening night.
+- **How long does capture take?** About 20-30 minutes per room. A typical single-floor venue is captured in a single morning.
+- **Can we share the walkthrough in our newsletter?** Yes. We provide a hosted link and preview asset for newsletters, plus embed code for your website. Email clients do not render interactive iframes reliably, so newsletters use the link; the site uses the embed.
+- **Do we hold the rights?** Yes. You hold the rights to the walkthrough. We hold no claim to the work, the artist's IP, or your archive.
+- **Can you do recurring capture for every show?** Yes. Annual programming partnerships are bespoke. Most institutions run six to ten shows a year; we structure that as a per-show retainer.
 
 ### Final CTA
 
-- H2: `Capture this show. Forever access for everyone who could not fly in.`
-- Body: `Free pilot on the current exhibition. Link the next morning. Share it with the curators on your invite list who could not travel. If the result lands, we scope the programming year. If it does not, you keep the pilot. No obligation.`
+- **H2:** `Capture this show. Forever access for everyone who could not fly in.`
+- **Body:** `Free pilot on the current exhibition. Link the next morning. Share it with the curators on your invite list who could not travel. If it lands, we scope the programming year. No obligation.`
+- **Buttons:** `Book a venue pilot` / `See the venue packages →`
+- **Sticky mobile CTA label:** `Book a venue pilot`
 
 ---
 
-# Build verification checklist
+# Demoted segments — pages held as-is
 
-After Claude Code applies these changes, every segment page must pass:
+The following three pages stay live and accessible by direct URL. They are removed from hub segment grid, hub navigation, and footer "FOR" column. They retain all engineering fixes from v2/v3 (security headers, calculator, paint fix, etc.) but no copy reframing in v4.
+
+## /clinics — Medical tourism clinics (inbound-only)
+
+**Status:** Demoted. Research flagged forced fit. Walkthrough does not solve the actual decision-driving pains (clinical trust, response speed, aftercare).
+
+**Action in v4:**
+- Page stays live
+- Remove from hub segment grid
+- Remove from footer "FOR" column
+- Remove from hub navigation
+- No copy changes
+- Currency updated to USD/GEL like all other pages
+- Pricing-consistency fix applied like all other pages
+
+If a future Phase 2 effort reframes /clinics with clinical-transparency / credential-anchoring framing, that is a separate task.
+
+## /hosts — Solo Airbnb hosts (inbound-only)
+
+**Status:** Demoted. Research flagged forced fit. Unit economics fail after CAC.
+
+**Action in v4:** same as /clinics. Page stays live, removed from navigation surfaces, no copy reframing.
+
+## /restaurants — Design-led restaurants (Phase 2 hold)
+
+**Status:** Phase 2. Real fit for private-hire venues but addressable pool small and sector cash-strapped. Revisit after Phase 1 traction.
+
+**Action in v4:** same as /clinics. Page stays live, removed from navigation surfaces, no copy reframing.
+
+---
+
+# Build verification checklist for v4
+
+After Claude Code / Codex applies these changes, every Phase 1 page must pass:
 
 - [ ] Hero H1 and subhead match this document exactly
-- [ ] Eight-card segment grid is REMOVED from the page (lives only on `/`)
-- [ ] Filter tab strip above outcomes is REMOVED (outcomes are pre-curated, nothing to filter)
-- [ ] "Built for spaces. Pick yours." line is REMOVED
-- [ ] Outcomes section has 3 or 4 cards matching this document, NOT the six-card hub set
-- [ ] Objection block is present, with the exact reflex/reply pairing from this document
+- [ ] Hero emphasis clause (`.rd-win`) renders visibly (regression check from V2-001)
+- [ ] Demo block caption is segment-specific
+- [ ] Outcomes section has the correct 3 or 4 cards from this document
+- [ ] Objection block content matches and visual treatment renders (tint, italic serif, breathing room)
 - [ ] Calculator Step 01 default matches the segment
-- [ ] Calculator Step 02 options match this document
-- [ ] FAQ has the 5 segment-specific items from this document
-- [ ] Demo block caption matches this document
-- [ ] Final CTA H2 and body match this document
-- [ ] No reference to other segments anywhere on the page below the hero
-- [ ] Title, meta description, OG tags match this document
-- [ ] Page is internally consistent: pricing display, CTA framing, vocabulary all align with one buyer
+- [ ] Calculator Step 02 label and options match
+- [ ] Pricing anchor line above calculator matches and is in USD with GEL toggle visible
+- [ ] FAQ has the 5 items from this document
+- [ ] Final CTA H2, body, and buttons match (segment-flavoured, not hub-generic)
+- [ ] Sticky mobile CTA label matches the hero primary CTA verb-language
+- [ ] No "Multi-property & subscription." section
+- [ ] No "Operators, not a marketplace." block on segment pages
+- [ ] Footer "FOR" column shows 5 Phase 1 segments only
+- [ ] Currency toggle works: clicking GEL updates all USD prices on the page to GEL; clicking USD reverts
+- [ ] Title, meta description, OG tags match
+- [ ] No cross-segment vocabulary below the hero
+- [ ] Page passes the v3 24-check verifier plus the new v4 checks
 
-If any of the above fails, that page is still the hub-with-pre-selection variant and not a real segment page.
+For the hub `/`:
+
+- [ ] Hero H1 unchanged: "They are somewhere else. Win them anyway."
+- [ ] Hero subhead matches v4: "When the buyer is somewhere else, they need to walk the space before they commit."
+- [ ] Segment grid has 5 cards (not 8): Developers, Weddings, Hotels, Managers, Galleries
+- [ ] Footer "FOR" column has 5 segment links
+- [ ] About RD block collapsed to one sentence at full width
+- [ ] Matterport FAQ rewritten per this document
+- [ ] Demo pill caption updates on pill click (V2-014 regression check)
+
+For demoted pages (`/clinics`, `/hosts`, `/restaurants`):
+
+- [ ] Page serves HTTP 200 by direct URL
+- [ ] Page is NOT linked from hub segment grid
+- [ ] Page is NOT linked from footer "FOR" column
+- [ ] Page is NOT in hub navigation
+- [ ] Currency on page updated to USD/GEL
+- [ ] No other copy changes
