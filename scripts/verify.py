@@ -46,6 +46,7 @@ REQUIRED_SECURITY_HEADERS = {
 }
 
 CHECKS = [
+    # v3 baseline (24)
     "h1_matches",
     "subhead_matches",
     "segments_grid_removed",
@@ -70,7 +71,17 @@ CHECKS = [
     "footer_segments_list_present",
     "security_headers_present_on_segment",
     "hub_pill_caption_updates",
+    # v4 additions (6) per docs/AUDIT-V4.md verifier extension
+    "currency_no_gbp",
+    "currency_toggle_propagates",
+    "pricing_schema_consistent",
+    "hub_grid_five_cards",
+    "footer_five_segments",
+    "demoted_pages_unlinked",
 ]
+
+PHASE1_SLUGS = ["developers", "weddings", "hotels", "managers", "galleries"]
+DEMOTED_SLUGS = ["clinics", "hosts", "restaurants"]
 
 
 class QuietHandler(SimpleHTTPRequestHandler):
@@ -143,8 +154,15 @@ def expected_h1(cfg: dict) -> str:
 
 
 def body_text_below_hero(soup: BeautifulSoup) -> str:
+    """Visible text BELOW hero and ABOVE footer — used for cross-segment leak detection.
+
+    Excludes:
+    - <script> / <style> bodies (string literals are not user-visible)
+    - The <footer> (legitimate cross-segment navigation; "Boutique hotels" is the
+      brand-acceptable footer label for the hotels segment regardless of current page)
+    """
     clone = BeautifulSoup(str(soup), "html.parser")
-    for s in clone(["script", "style"]):
+    for s in clone(["script", "style", "footer"]):
         s.decompose()
     hero = clone.select_one(".sx-hero")
     if not hero:
@@ -207,9 +225,10 @@ def security_headers_ok(slug: str) -> bool:
 
 
 def footer_links_ok(soup: BeautifulSoup) -> bool:
-    expected = {f"/{slug}" for slug in SEGMENT_SLUGS}
+    """v4: footer 'FOR' column lists exactly the 5 Phase 1 segments on every page."""
+    expected = {f"/{slug}" for slug in PHASE1_SLUGS}
     actual = {a.get("href") for a in soup.select(".sx-footer__col--segments a")}
-    return expected.issubset(actual)
+    return expected == actual
 
 
 def check_static_page(slug: str, cfg: dict, soup: BeautifulSoup) -> dict[str, bool | list[tuple[str, str]]]:
@@ -225,7 +244,10 @@ def check_static_page(slug: str, cfg: dict, soup: BeautifulSoup) -> dict[str, bo
     if is_hub:
         results["segments_grid_removed"] = soup.select_one("#segments") is not None
         results["filter_strip_removed"] = soup.select_one("#outcome-filter") is not None
-        results["built_for_spaces_removed"] = "built for spaces" in page_text and "pick yours" in page_text
+        # v4 (CT-007 + segment-copy): hub subhead reframed; the "Built for spaces. Pick yours." H2
+        # is gone from the hub (was inside the 8-card grid section). The hub now goes straight from
+        # outcomes to the 5-card phase1 grid with no H2.
+        results["built_for_spaces_removed"] = "built for spaces" not in page_text
         results["outcomes_correct"] = len(soup.select(".sx-outcome")) >= 6
         results["objection_present"] = soup.select_one(".sx-objection") is None
         results["calc_step1_correct"] = soup.select_one("[data-step-id='kind']") is not None
@@ -304,10 +326,23 @@ def check_static_page(slug: str, cfg: dict, soup: BeautifulSoup) -> dict[str, bo
         if leaks:
             results["_leaks"] = leaks[:5]
 
+    # v4 currency_no_gbp — applies to every page
+    results["currency_no_gbp"] = check_currency_no_gbp(soup)
+    # v4 footer_five_segments — checked on every page
+    expected = {f"/{s}" for s in PHASE1_SLUGS}
+    actual = {a.get("href") for a in soup.select(".sx-footer__col--segments a")}
+    results["footer_five_segments"] = expected == actual
+
     results["demo_pill_row_absent_on_segment"] = soup.select_one(".sx-demo__pills") is not None if is_hub else soup.select_one(".sx-demo__pills") is None
     results["multi_property_section_absent_on_segment"] = soup.select_one(".sx-multi-wrap") is not None if is_hub else soup.select_one(".sx-multi-wrap") is None
+    # v4 CT-010: hub collapses About RD to a single sentence at full width, NO H2.
+    # Segment pages strip the section entirely.
+    about_oneliner = soup.select_one(".sx-about__oneliner")
     about_h2 = any("Operators, not a marketplace." == normalized_text(h) for h in soup.select(".sx-h2"))
-    results["about_rd_treatment"] = about_h2 if is_hub else not about_h2
+    if is_hub:
+        results["about_rd_treatment"] = about_oneliner is not None and not about_h2
+    else:
+        results["about_rd_treatment"] = about_oneliner is None and not about_h2
     if is_hub:
         results["final_cta_buttons_segment_flavoured"] = True
     else:
@@ -324,6 +359,11 @@ def check_static_page(slug: str, cfg: dict, soup: BeautifulSoup) -> dict[str, bo
     results["step_numbers_sequential"] = False
     results["currency_consistency"] = False
     results["hub_pill_caption_updates"] = False
+    # v4 cross-page checks populated by main() after all soups are loaded.
+    results.setdefault("hub_grid_five_cards", False)
+    results.setdefault("demoted_pages_unlinked", False)
+    results.setdefault("pricing_schema_consistent", False)
+    results.setdefault("currency_toggle_propagates", False)
     return results
 
 
@@ -419,17 +459,19 @@ def browser_currency_ok(page, slug: str) -> bool:
         if not row_visible or "By quote" not in one_off_text:
             return False
 
-    checks = [("GBP", "£", "$"), ("USD", "$", "£")]
+    # v4: currency stack is USD primary, GEL secondary. No GBP. Toggle must propagate
+    # to all visible price strings on the page (anchor line, calc options, total, add-ons).
+    checks = [("USD", "$", "₾"), ("GEL", "₾", "$")]
     for cur, desired, forbidden in checks:
         page.locator(f"[data-cur='{cur}']").click()
         page.wait_for_timeout(50)
         texts = page.locator(
-            "[data-money-gbp], [data-addon-price], .sx-calc2__opt-price, [data-total], [data-one-off-value]"
+            "[data-money-usd], [data-addon-price], .sx-calc2__opt-price, [data-total], [data-one-off-value]"
         ).evaluate_all(
             """els => els
               .filter(el => el.offsetParent !== null)
               .map(el => el.textContent.trim())
-              .filter(text => text.includes('£') || text.includes('$'))"""
+              .filter(text => text.includes('$') || text.includes('₾'))"""
         )
         if not texts:
             return False
@@ -439,13 +481,110 @@ def browser_currency_ok(page, slug: str) -> bool:
     return True
 
 
+# ──────────────────────────────────────────────────────────────────────
+# v4 verification helpers
+# ──────────────────────────────────────────────────────────────────────
+
+def check_currency_no_gbp(soup: BeautifulSoup) -> bool:
+    """CT-004 acceptance: no £ or GBP substring anywhere in rendered HTML
+    (excluding <script>/<style> blocks where the runtime FX object may live)."""
+    clone = BeautifulSoup(str(soup), "html.parser")
+    for s in clone(["script", "style"]):
+        s.decompose()
+    text = clone.get_text(" ", strip=True)
+    return "£" not in text and "GBP" not in text
+
+
+def check_pricing_schema_consistent(hub_soup: BeautifulSoup, segment_soups: dict) -> dict:
+    """CT-005 acceptance: hub card 'From $X' must match the segment-page pricing anchor.
+
+    Returns a dict[slug] = bool indicating whether each phase1 segment's hub-card price
+    matches the lead "From $X" in the corresponding segment page's pricing anchor.
+    """
+    results = {}
+    for slug in PHASE1_SLUGS:
+        seg_soup = segment_soups.get(slug)
+        if seg_soup is None:
+            results[slug] = False
+            continue
+        # Extract "From $X" from segment-page pricing anchor (must be USD).
+        anchor = seg_soup.select_one(".sx-pricing-anchor")
+        anchor_text = normalized_text(anchor) if anchor else ""
+        m = re.search(r"From \$([0-9][0-9,]*)", anchor_text)
+        seg_low = m.group(1) if m else None
+        # Extract from hub card (sx-segcards entry with this data-seg).
+        hub_card = hub_soup.select_one(f"#seg-cards .sx-segcard[data-seg='{slug}'] .sx-segcard__range-mini")
+        hub_text = normalized_text(hub_card) if hub_card else ""
+        m2 = re.search(r"From \$([0-9][0-9,]*)", hub_text)
+        hub_low = m2.group(1) if m2 else None
+        results[slug] = bool(seg_low) and seg_low == hub_low
+    return results
+
+
+def check_hub_grid_five_cards(hub_soup: BeautifulSoup) -> bool:
+    """CT-001 acceptance: hub renders exactly 5 segment cards (Phase 1)."""
+    cards = hub_soup.select("#seg-cards .sx-segcard")
+    if len(cards) != 5:
+        return False
+    actual_slugs = {c.get("data-seg") for c in cards}
+    return actual_slugs == set(PHASE1_SLUGS)
+
+
+def check_demoted_pages_unlinked(hub_soup: BeautifulSoup) -> bool:
+    """CT-003 acceptance: hub does NOT link to /clinics, /hosts, /restaurants
+    from segment grid, nav, or footer."""
+    bad_hrefs = {f"/{s}" for s in DEMOTED_SLUGS}
+    # Check nav
+    nav_hrefs = {a.get("href") for a in hub_soup.select(".sx-nav a")}
+    if bad_hrefs & nav_hrefs:
+        return False
+    # Check segment grid
+    grid_hrefs = {a.get("href") for a in hub_soup.select("#seg-cards a")}
+    if bad_hrefs & grid_hrefs:
+        return False
+    # Check footer 'For' column
+    footer_hrefs = {a.get("href") for a in hub_soup.select(".sx-footer__col--segments a")}
+    if bad_hrefs & footer_hrefs:
+        return False
+    return True
+
+
 def main() -> None:
     configs = json.loads((SRC / "segments.json").read_text(encoding="utf-8"))
     slugs = ["hub"] + SEGMENT_SLUGS
     cfgs = {"hub": configs["main"], **{slug: configs[slug] for slug in SEGMENT_SLUGS}}
     soups = {slug: load_soup(slug) for slug in slugs}
     all_results = {slug: check_static_page(slug, cfgs[slug], soups[slug]) for slug in slugs}
+
+    # ── v4 cross-page checks ─────────────────────────────────────────
+    hub_soup = soups["hub"]
+    # CT-001: hub grid has exactly 5 Phase 1 cards
+    hub_grid_ok = check_hub_grid_five_cards(hub_soup)
+    for slug in slugs:
+        all_results[slug]["hub_grid_five_cards"] = hub_grid_ok if slug == "hub" else True
+
+    # CT-003: hub does not link to demoted segments
+    demoted_unlinked = check_demoted_pages_unlinked(hub_soup)
+    for slug in slugs:
+        all_results[slug]["demoted_pages_unlinked"] = demoted_unlinked if slug == "hub" else True
+
+    # CT-005: hub card "From $X" matches segment-page pricing anchor "From $X"
+    schema = check_pricing_schema_consistent(hub_soup, {s: soups[s] for s in PHASE1_SLUGS})
+    for slug in slugs:
+        if slug == "hub":
+            all_results[slug]["pricing_schema_consistent"] = all(schema.values())
+        elif slug in PHASE1_SLUGS:
+            all_results[slug]["pricing_schema_consistent"] = schema.get(slug, False)
+        else:
+            all_results[slug]["pricing_schema_consistent"] = True
+
     run_browser_checks(all_results, slugs)
+
+    # currency_toggle_propagates: alias for currency_consistency (Playwright toggle test)
+    # but only required on Phase 1 + hub (demoted pages still pass currency_consistency in v4
+    # via the same toggle plumbing — they get the check for free since the calc JS is shared).
+    for slug in slugs:
+        all_results[slug]["currency_toggle_propagates"] = all_results[slug].get("currency_consistency", False)
 
     print()
     print(f"{'Check':<43} " + " ".join(f"{s[:10]:>10}" for s in slugs))

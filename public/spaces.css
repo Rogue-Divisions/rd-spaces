@@ -1630,3 +1630,54 @@ p { margin: 0 0 1em; text-wrap: pretty; }
   font-size: 13px;
   color: rgba(255,255,255,0.62);
 }
+
+/* ============================================================
+   v4 components — pricing transparency, About RD one-liner
+   ============================================================ */
+
+/* Pricing transparency — currently used only on /weddings.
+   Sits above the calculator, between objection and pricing-anchor.
+   Visually adjacent to objection block but distinct (not italic; not a quote). */
+.sx-pricing-transparency {
+  background: #161616;
+  padding: 64px 32px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.sx-pricing-transparency__inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.sx-pricing-transparency__head {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.55);
+  margin: 0 0 14px;
+  font-weight: 600;
+}
+.sx-pricing-transparency__body {
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.82);
+  margin: 0;
+  max-width: 64ch;
+}
+@media (max-width: 700px) {
+  .sx-pricing-transparency { padding: 48px 22px; }
+  .sx-pricing-transparency__body { font-size: 16px; }
+}
+
+/* About-RD one-liner (CT-010) — replaces the two-paragraph two-column block.
+   Single sentence, centred, no empty right column. */
+.sx-section--tight { padding-top: 72px; padding-bottom: 72px; }
+.sx-about--oneliner { display: block; }
+.sx-about__oneliner {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 19px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.78);
+  text-align: center;
+}
+.sx-about__oneliner .rd-link-arrow { white-space: nowrap; margin-left: 8px; }

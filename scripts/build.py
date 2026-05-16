@@ -65,19 +65,24 @@ def replace_string(el, new_text):
 
 
 def fill_currency_text(soup, el, text):
-    """Render text, wrapping GBP amounts so runtime currency can update them."""
+    """Render text, wrapping USD amounts so the runtime currency toggle can update them.
+
+    v4: text is authored in USD ($X). Every $-amount becomes a
+    <span data-money-usd="N" data-money-suffix="+?">$N</span> wrapper that the
+    runtime JS rewrites when the user clicks the GEL toggle.
+    """
     if el is None:
         return
     el.clear()
     cursor = 0
-    for match in re.finditer(r"£([0-9][0-9,]*)(\+?)", text):
+    for match in re.finditer(r"\$([0-9][0-9,]*)(\+?)", text):
         if match.start() > cursor:
             el.append(text[cursor:match.start()])
         amount = int(match.group(1).replace(",", ""))
         suffix = match.group(2)
         price = soup.new_tag(
             "span",
-            attrs={"data-money-gbp": str(amount), "data-money-suffix": suffix},
+            attrs={"data-money-usd": str(amount), "data-money-suffix": suffix},
         )
         price.string = match.group(0)
         el.append(price)
@@ -102,10 +107,112 @@ def renumber_calculator_steps(soup, modules_active):
 
 
 # ──────────────────────────────────────────────────────────────────────
+# v4 helpers
+# ──────────────────────────────────────────────────────────────────────
+
+def phase1_segments(configs):
+    """Return [(slug, cfg)] for Phase 1 segments, sorted by phase1_order."""
+    out = []
+    for slug, cfg in configs.items():
+        if slug == "main" or slug.startswith("_") or not isinstance(cfg, dict):
+            continue
+        if cfg.get("phase") == "phase1":
+            out.append((slug, cfg))
+    out.sort(key=lambda x: x[1].get("phase1_order", 99))
+    return out
+
+
+def fill_footer_segments(soup, p1):
+    """Populate the Phase 1 footer 'For' column on EVERY page.
+
+    Per v4 CT-002: footer 'FOR' column shows the 5 Phase 1 segments only.
+    Demoted segments (clinics, hosts, restaurants) are never linked here.
+    """
+    ul = soup.select_one("[data-footer-segments]")
+    if ul is None:
+        return
+    ul.clear()
+    for slug, cfg in p1:
+        li = soup.new_tag("li")
+        a = soup.new_tag("a", attrs={"href": f"/{cfg['slug']}"})
+        # Footer uses short labels; pull from hub_card.label, trimmed.
+        label = cfg.get("hub_card", {}).get("label", cfg["slug"].title())
+        # The footer is tight; shorten "Galleries and cultural venues" to "Cultural venues" etc.
+        # We use the segment's natural footer label if present, else label as-is.
+        a.string = cfg.get("footer_label", label)
+        li.append(a)
+        ul.append(li)
+
+
+def render_hub_grid(soup, p1):
+    """Generate the Phase 1 segment grid for the hub.
+
+    Replaces the placeholder <div data-segments-grid-placeholder> with one
+    <details class="sx-segcard"> per Phase 1 segment, using the segment's
+    hub_card { label, hook, price_anchor } payload from segments.json.
+    """
+    placeholder = soup.select_one("[data-segments-grid-placeholder]")
+    if placeholder is None:
+        return
+    for i, (slug, cfg) in enumerate(p1):
+        card = cfg.get("hub_card", {})
+        det = soup.new_tag(
+            "details",
+            attrs={"class": "sx-segcard", "data-seg": slug, **({"open": ""} if i == 0 else {})},
+        )
+        summary = soup.new_tag("summary", attrs={"class": "sx-segcard__head"})
+        label_span = soup.new_tag("span", attrs={"class": "sx-segcard__label"})
+        label_span.string = card.get("label", slug.title())
+        price_span = soup.new_tag("span", attrs={"class": "sx-segcard__range-mini"})
+        # Price is plain text on the hub card (no money wrappers — the segment-page
+        # anchor below the hero is the runtime-toggleable rendering).
+        price_span.string = card.get("price_anchor", "")
+        chev = soup.new_tag("span", attrs={"class": "sx-segcard__chev", "aria-hidden": "true"})
+        chev.string = "+"
+        summary.append(label_span)
+        summary.append(price_span)
+        summary.append(chev)
+        body = soup.new_tag("div", attrs={"class": "sx-segcard__body"})
+        pitch = soup.new_tag("h3", attrs={"class": "sx-segcard__pitch"})
+        pitch.string = card.get("hook", "")
+        body.append(pitch)
+        # Each card has a "More for X →" outline link to its segment page.
+        foot = soup.new_tag("div", attrs={"class": "sx-segcard__foot"})
+        more = soup.new_tag(
+            "a",
+            attrs={"href": f"/{cfg['slug']}", "class": "rd-btn rd-btn--outline"},
+        )
+        more.string = f"More for {card.get('label','').lower()} →"
+        foot.append(more)
+        body.append(foot)
+        det.append(summary)
+        det.append(body)
+        placeholder.append(det)
+    # Clear the placeholder marker (cards are now its children).
+    del placeholder["data-segments-grid-placeholder"]
+
+
+def inject_currency_config(soup, currency_config):
+    """Inject window.__SX_CURRENCY__ before the calc IIFE for runtime FX state."""
+    if not currency_config:
+        return
+    # Find a <script data-sx-cfg> or fall back to creating a new script tag in <head>.
+    cfg_script = soup.select_one("[data-sx-cfg]")
+    payload = (
+        f"window.__SX_CURRENCY__ = {json.dumps(currency_config, ensure_ascii=False)};\n"
+    )
+    if cfg_script and cfg_script.string:
+        # Append to the existing payload so __SX_CURRENCY__ is set BEFORE __SX_CFG__.
+        cfg_script.string = payload + cfg_script.string
+    elif cfg_script:
+        cfg_script.string = payload
+
+
+# ──────────────────────────────────────────────────────────────────────
 # Hub renderer — minimal changes from template (keeps everything)
 # ──────────────────────────────────────────────────────────────────────
 
-def render_hub(cfg, template_html):
+def render_hub(cfg, template_html, currency_config=None, all_configs=None):
     soup = BeautifulSoup(template_html, "html.parser")
 
     # ── Head ───────────────────────────────────────────────────────────
@@ -191,14 +298,21 @@ def render_hub(cfg, template_html):
         else:
             fill_currency_text(soup, cap, cfg["demo_caption"])
 
-    # ── Segment accordion: open the configured one (hub only) ─────────
-    active_seg = cfg.get("active_segment", "hotel")
-    for det in soup.select(".sx-segcard"):
-        is_match = det.get("data-seg") == active_seg
-        if is_match:
-            det["open"] = ""
-        elif det.has_attr("open"):
-            del det["open"]
+    # ── Hub segment grid: populate from Phase 1 segments (CT-001, CT-017) ────
+    if all_configs:
+        p1 = phase1_segments(all_configs)
+        render_hub_grid(soup, p1)
+        # Footer 'For' column: same 5 segments (CT-002).
+        fill_footer_segments(soup, p1)
+        # Active segment accordion: open the configured one if it's a phase1 slug.
+        active_seg = cfg.get("active_segment")
+        for det in soup.select("#seg-cards .sx-segcard"):
+            is_match = det.get("data-seg") == active_seg
+            if is_match:
+                det["open"] = ""
+            elif det.has_attr("open") and active_seg:
+                # Only override the default-open card if active_seg names a phase1 segment.
+                del det["open"]
 
     # ── Calculator: active kind on hub (preserves interactive grid) ───
     active_kind = cfg.get("active_kind", "apartment")
@@ -218,12 +332,34 @@ def render_hub(cfg, template_html):
             classes.append("is-active")
         btn["class"] = classes
 
-    # ── Remove all segment-only elements (objection block, pricing anchor,
-    #    segment-only footer "More" column) ─────────────────────────────
+    # ── Hub Matterport FAQ rewrite (CT-009) ───────────────────────────
+    matterport = soup.select_one("[data-matterport-answer]")
+    if matterport and cfg.get("matterport_faq_answer"):
+        matterport.string = cfg["matterport_faq_answer"]
+
+    # ── Hub About-RD one-liner (CT-010) ───────────────────────────────
+    about_oneliner = soup.select_one("[data-about-rd-body] .sx-about__oneliner")
+    if about_oneliner and cfg.get("about_rd_oneliner"):
+        about_oneliner.clear()
+        about_oneliner.append(cfg["about_rd_oneliner"] + " ")
+        a = soup.new_tag("a", attrs={"href": "https://roguedivisions.com", "class": "rd-link-arrow"})
+        a.append("About Rogue Divisions ")
+        arrow = soup.new_tag("span", attrs={"class": "arrow"})
+        arrow.string = "→"
+        a.append(arrow)
+        about_oneliner.append(a)
+
+    # ── Remove all segment-only elements (objection, pricing anchor,
+    #    wedding pricing transparency, segment-only footer column) ────
     for el in soup.select("[data-segment-only]"):
+        el.decompose()
+    for el in soup.select("[data-pricing-transparency-only]"):
         el.decompose()
     for el in soup.select("[data-segment-only-footer]"):
         el.decompose()
+
+    # ── Currency injection (CT-004) ───────────────────────────────────
+    inject_currency_config(soup, currency_config)
 
     # ── Body data attrs for runtime JS ─────────────────────────────────
     body = soup.find("body")
@@ -240,7 +376,7 @@ def render_hub(cfg, template_html):
 # Segment renderer — heavy DOM transforms
 # ──────────────────────────────────────────────────────────────────────
 
-def render_segment(cfg, template_html):
+def render_segment(cfg, template_html, currency_config=None, all_configs=None):
     soup = BeautifulSoup(template_html, "html.parser")
     slug = cfg["slug"]
 
@@ -376,6 +512,22 @@ def render_segment(cfg, template_html):
         fill_currency_text(soup, anchor, cfg["pricing_anchor"])
         del anchor["data-segment-only"]
 
+    # ── Pricing transparency block (CT-012; only segments that author one) ─
+    pt_block = soup.select_one("[data-pricing-transparency-only]")
+    pt_body = soup.select_one("[data-pricing-transparency-body]")
+    pt_text = cfg.get("pricing_transparency")
+    if pt_block:
+        if pt_text and pt_body:
+            fill_currency_text(soup, pt_body, pt_text)
+            del pt_block["data-pricing-transparency-only"]
+        else:
+            pt_block.decompose()
+
+    # ── Calculator H2 per segment (CT-015) ─────────────────────────────
+    calc_h2 = soup.select_one("[data-calc-h2]")
+    if calc_h2 and cfg.get("calculator", {}).get("h2"):
+        calc_h2.string = cfg["calculator"]["h2"]
+
     # ── Calculator Step 01: replace 8-button grid with locked indicator
     calc = cfg["calculator"]
     step1_block = soup.select_one("[data-step-id='kind']")
@@ -478,6 +630,14 @@ def render_segment(cfg, template_html):
         sticky.string = sticky_label
         sticky["aria-label"] = sticky_label
 
+    # ── Footer 'For' column: same 5 Phase 1 segments on every page (CT-002) ──
+    if all_configs:
+        p1 = phase1_segments(all_configs)
+        fill_footer_segments(soup, p1)
+
+    # ── Currency injection (CT-004) ───────────────────────────────────
+    inject_currency_config(soup, currency_config)
+
     return str(soup)
 
 
@@ -500,22 +660,30 @@ def main():
     if "main" not in configs:
         sys.exit("segments.json must include a 'main' entry")
 
+    # v4: top-level currency_config drives the runtime FX state on every page.
+    currency_config = configs.get("currency_config")
+    if currency_config is None:
+        sys.exit("segments.json must include a top-level 'currency_config' entry (v4).")
+
     # Hub
-    hub_html = render_hub(configs["main"], template_html)
+    hub_html = render_hub(configs["main"], template_html,
+                         currency_config=currency_config, all_configs=configs)
     (PUBLIC / "index.html").write_text(hub_html, encoding="utf-8")
     print(f"  ✓ public/index.html  ({len(hub_html):,} bytes)  [hub]")
 
     # Segments
     for slug, cfg in configs.items():
-        if slug == "main" or slug.startswith("_"):
+        if slug == "main" or slug.startswith("_") or slug == "currency_config":
             continue
-        if cfg.get("is_hub"):
+        if not isinstance(cfg, dict) or cfg.get("is_hub"):
             continue
         out_dir = PUBLIC / cfg["slug"]
         out_dir.mkdir(parents=True, exist_ok=True)
-        page_html = render_segment(cfg, template_html)
+        page_html = render_segment(cfg, template_html,
+                                   currency_config=currency_config, all_configs=configs)
         (out_dir / "index.html").write_text(page_html, encoding="utf-8")
-        print(f"  ✓ public/{cfg['slug']}/index.html  ({len(page_html):,} bytes)  [segment]")
+        phase = cfg.get("phase", "?")
+        print(f"  ✓ public/{cfg['slug']}/index.html  ({len(page_html):,} bytes)  [{phase}]")
 
 
 if __name__ == "__main__":
