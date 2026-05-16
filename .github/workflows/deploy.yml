@@ -20,14 +20,22 @@ jobs:
           python-version: "3.12"
 
       - name: Install build dependencies
-        run: pip install --quiet beautifulsoup4
+        run: pip install --quiet beautifulsoup4 playwright
+
+      - name: Install Chromium for headless paint + currency-toggle checks
+        # verify.py spins up a local HTTP server and runs Playwright/Chromium against
+        # the generated pages to assert hero emphasis renders, calculator step numbers
+        # are sequential, and the USD/GEL currency toggle propagates to every visible
+        # price string. Chromium is the only required engine.
+        run: python3 -m playwright install --with-deps chromium
 
       - name: Build per-segment pages
         run: python3 scripts/build.py
 
       - name: Verify segment pages against checklist
-        # Halts the deploy if any segment page regresses against the v2 spec
-        # (cross-segment leak, missing objection block, wrong outcomes count, etc.)
+        # Halts the deploy if any segment page regresses against the v4 spec
+        # (cross-segment leak, missing objection block, currency toggle, etc.).
+        # 30-check matrix; see docs/AUDIT-V4.md.
         run: python3 scripts/verify.py
 
       - name: Deploy
