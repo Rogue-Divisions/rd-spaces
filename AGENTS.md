@@ -118,8 +118,20 @@ If `verify.py` does not yet have a paint check, add one before declaring done.
 - The HLS hero video pipeline (`public/hls/`)
 - The Spatial Studio iframe URL in the demo block (until we publish our own captures)
 - The form CTA backend (mailto: stays until Sage picks a destination)
-- New currencies (no EUR, no GEL, no JPY)
+- New currencies. The site is USD primary, GEL secondary. No EUR, no GBP, no JPY. GBP was retired in v4.
 - The "Selected credits" placeholder strip (hidden until real client logos arrive)
+
+## Decisions to preserve (do not roll back)
+
+- **Hub calculator Step 01 keeps all 8 segment options.** Even though only five segments
+  drive paid acquisition (developers / weddings / hotels / managers / galleries), the hub
+  calculator is utility infrastructure: any direct-hub visitor may want to price an
+  apartment, a clinic, or a restaurant. Demoting a segment from acquisition focus does
+  NOT mean removing it from the calculator's kind grid. The pre-selection on hub
+  was removed in v4.1 (Step 01 shows no `is-active` button on first load and prompts
+  "Pick a kind of space to continue.") but the 8 options remain.
+- **Hub Step 01 default is no pre-selection.** Per-segment pages (e.g. `/managers`)
+  still pre-select their segment as a locked indicator. Hub does not.
 
 ## How to talk to Sage
 

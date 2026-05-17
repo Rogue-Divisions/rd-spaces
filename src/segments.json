@@ -24,11 +24,11 @@
     "hero_cta_secondary": "See a sample walkthrough →",
     "active_tour": "rest",
     "active_segment": "developers",
-    "active_kind": "dev",
+    "active_kind": null,
     "outcomes_filter": "all",
     "demo_caption": "BlueTokai Coffee · sample tour from Spatial Studio. Real Tbilisi captures shipping shortly.",
-    "about_rd_oneliner": "Spaces is a Rogue Divisions studio. We capture, host, and publish — your relationship is with operators, not a platform.",
-    "matterport_faq_answer": "For buyer-decision visualisation, this is sharper and faster. For property workflows that need precise floor plans and measurements, Matterport is stronger. Spaces is built for buyer confidence — faster capture, hosted walkthrough, embedded in your sales channels."
+    "about_rd_oneliner": "Spaces is a Rogue Divisions studio. We capture, host, and publish. Your relationship is with operators, not a marketplace.",
+    "matterport_faq_answer": "For buyer-decision visualisation, this is sharper and faster. For property workflows that need precise floor plans and measurements, Matterport is stronger. Spaces is built for buyer confidence: faster capture, hosted walkthrough, embedded in your sales channels."
   },
   "developers": {
     "is_hub": false,
@@ -113,7 +113,7 @@
       },
       {
         "q": "Can the walkthrough be sent via email?",
-        "a": "Yes — as a hosted link. Some email clients do not render interactive iframes reliably, so we deliver a click-through link plus a preview thumbnail. The link works in Mailchimp, WhatsApp, brochure PDFs, and your project website."
+        "a": "Yes, as a hosted link. Some email clients do not render interactive iframes reliably, so we deliver a click-through link plus a preview thumbnail. The link works in Mailchimp, WhatsApp, brochure PDFs, and your project website."
       },
       {
         "q": "Multilingual captions and CTAs in Russian, Hebrew, Farsi, Arabic?",
@@ -241,7 +241,7 @@
     ],
     "final_cta": {
       "h2": "Capture before the season. Book solid through it.",
-      "body": "Free pilot on one space — the ceremony hall, the bridal suite, your call. Link the next morning. Send it to the planner choosing between six venues. If it moves the conversation, we scope the estate. No obligation if it does not land.",
+      "body": "Free pilot on one space: the ceremony hall, the bridal suite, your call. Link the next morning. Send it to the planner choosing between six venues. If it moves the conversation, we scope the estate. No obligation if it does not land.",
       "button_primary": "Book a venue pilot",
       "button_secondary": "See the venue packages →"
     },
@@ -303,7 +303,7 @@
       "step2_options": [
         {
           "id": "compact",
-          "name": "One suite — Compact",
+          "name": "One suite (Compact)",
           "sub": "Single suite or suite type",
           "pack": "Compact",
           "price": 500,
@@ -327,7 +327,7 @@
         },
         {
           "id": "group",
-          "name": "Hotel with conference centre — talk to us",
+          "name": "Hotel with conference centre (talk to us)",
           "sub": "Multi-property or mixed-use",
           "pack": "Bespoke",
           "price": null,
@@ -409,7 +409,7 @@
       },
       {
         "title": "The fleet standard.",
-        "body": "Every listing in your portfolio looks distinct. The whole fleet becomes a differentiator. Owners see what their unit looks like next to the others — and so do guests."
+        "body": "Every listing in your portfolio looks distinct. The whole fleet becomes a differentiator. Owners see what their unit looks like next to the others, and so do guests."
       }
     ],
     "objection": {
@@ -419,7 +419,7 @@
     "pricing_anchor": "From $35 per door per month, plus a one-off onboarding capture fee. Two-week initial rollout. Talk to us about fleets over 150 doors.",
     "calculator": {
       "h2": "Price your fleet rollout",
-      "step1_kind_label": "For STR property managers",
+      "step1_kind_label": "STR property managers",
       "step1_kind_sub": "Per-door fleet pricing",
       "step2_label": "How many units in your fleet?",
       "step2_options": [
@@ -452,7 +452,7 @@
         },
         {
           "id": "bespoke",
-          "name": "300+ — talk to us",
+          "name": "300+ (talk to us)",
           "sub": "Enterprise rollout",
           "pack": "Bespoke",
           "price_units": null,
@@ -464,7 +464,7 @@
       "pricing_mode": "subscription",
       "subscription_rate_per_door": 35,
       "subscription_unit_label": "per door / month",
-      "onboarding_label": "One-off onboarding capture — by quote"
+      "onboarding_label": "One-off onboarding capture (by quote)"
     },
     "faq": [
       {
@@ -564,7 +564,7 @@
         },
         {
           "id": "museum",
-          "name": "Museum — talk to us",
+          "name": "Museum (talk to us)",
           "sub": "Large or historical institution",
           "pack": "Bespoke",
           "price": null,
@@ -609,7 +609,7 @@
   "hosts": {
     "is_hub": false,
     "phase": "demoted",
-    "demoted_reason": "Forced fit per research — unit economics fail after CAC.",
+    "demoted_reason": "Forced fit per research : unit economics fail after CAC.",
     "slug": "hosts",
     "url": "https://spaces.roguedivisions.com/hosts",
     "title": "Spaces for Airbnb hosts — The listing with the walkthrough button",
@@ -681,7 +681,7 @@
     },
     "faq": [
       {
-        "q": "I have three listings — do I get a discount?",
+        "q": "I have three listings, do I get a discount?",
         "a": "Yes. Tell us at the booking call. The second and third units are captured at a reduced rate in the same visit."
       },
       {
@@ -711,7 +711,7 @@
   "clinics": {
     "is_hub": false,
     "phase": "demoted",
-    "demoted_reason": "Forced fit per research — walkthrough is not the decision driver.",
+    "demoted_reason": "Forced fit per research : walkthrough is not the decision driver.",
     "slug": "clinics",
     "url": "https://spaces.roguedivisions.com/clinics",
     "title": "Spaces for medical clinics — Your patient picks the clinic she has walked through",
@@ -775,7 +775,7 @@
         },
         {
           "id": "hospital",
-          "name": "Hospital — talk to us",
+          "name": "Hospital (talk to us)",
           "sub": "Multi-wing facility",
           "pack": "Bespoke",
           "price": null,
@@ -819,7 +819,7 @@
   "restaurants": {
     "is_hub": false,
     "phase": "demoted",
-    "demoted_reason": "Phase 2 hold — real fit but narrow pool, sector cash-strapped. Revisit after Phase 1 traction.",
+    "demoted_reason": "Phase 2 hold : real fit but narrow pool, sector cash-strapped. Revisit after Phase 1 traction.",
     "slug": "restaurants",
     "url": "https://spaces.roguedivisions.com/restaurants",
     "title": "Spaces for restaurants — Your interior is the marketing. Show it properly.",
@@ -907,7 +907,7 @@
     ],
     "final_cta": {
       "h2": "Capture this week. Watch your private hire close rate move.",
-      "body": "Free pilot on one space — the dining room, the private floor, your call. Link the next morning. Send it to a planner mid-enquiry. Watch what happens. No obligation if it does not land.",
+      "body": "Free pilot on one space: the dining room, the private floor, your call. Link the next morning. Send it to a planner mid-enquiry. Watch what happens. No obligation if it does not land.",
       "button_primary": "Book a venue pilot",
       "button_secondary": "See the venue packages →"
     }

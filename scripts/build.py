@@ -91,6 +91,24 @@ def fill_currency_text(soup, el, text):
         el.append(text[cursor:])
 
 
+def step1_sentence_label(label):
+    """Lowercase a kind label for the Step 01 'For <label>.' heading, preserving acronyms.
+
+    v4.1: closes a bug where "STR property managers" was being .lower()-ed into "str ...",
+    breaking the acronym. Now: all-uppercase words of length >= 2 are kept as-is, others
+    are lowercased. Also defensively strips a leading "For " if an author left it in
+    segments.json (which produced the doubled "For for str ..." in v4 live).
+    """
+    label = re.sub(r"^[Ff]or\s+", "", label).strip()
+    out = []
+    for w in label.split():
+        if w.isupper() and len(w) >= 2:
+            out.append(w)  # acronym — STR, OTA, ICP, etc.
+        else:
+            out.append(w.lower())
+    return " ".join(out)
+
+
 def renumber_calculator_steps(soup, modules_active):
     """Keep visible calculator step numbers sequential after optional steps are hidden."""
     visible_steps = []
@@ -315,9 +333,12 @@ def render_hub(cfg, template_html, currency_config=None, all_configs=None):
                 del det["open"]
 
     # ── Calculator: active kind on hub (preserves interactive grid) ───
-    active_kind = cfg.get("active_kind", "apartment")
+    # v4.1: hub default is no pre-selection (active_kind=null in segments.json).
+    # Setting active_kind=null means no [data-kind] button gets is-active on first load,
+    # and the JS sees window.__SX_CFG__.kind===null and shows "Pick a kind of space to continue."
+    active_kind = cfg.get("active_kind")  # may be None (hub) or a kind id (legacy)
     for btn in soup.select("[data-kind]"):
-        is_match = btn.get("data-kind") == active_kind
+        is_match = active_kind is not None and btn.get("data-kind") == active_kind
         classes = [c for c in btn.get("class", []) if c != "is-active"]
         if is_match:
             classes.append("is-active")
@@ -361,12 +382,21 @@ def render_hub(cfg, template_html, currency_config=None, all_configs=None):
     # ── Currency injection (CT-004) ───────────────────────────────────
     inject_currency_config(soup, currency_config)
 
+    # ── Hub calc CFG: v4.1 UX-1. Inject window.__SX_CFG__ = {kind: null} so the calc IIFE
+    #    knows the hub has no pre-selected kind and renders the "Pick a kind of space to
+    #    continue." placeholder instead of pre-populating Step 02 size options.
+    cfg_script = soup.select_one("[data-sx-cfg]")
+    if cfg_script:
+        hub_cfg_payload = f"window.__SX_CFG__ = {json.dumps({'kind': active_kind}, ensure_ascii=False)};"
+        existing = cfg_script.string or ""
+        cfg_script.string = existing + ("\n" if existing else "") + hub_cfg_payload
+
     # ── Body data attrs for runtime JS ─────────────────────────────────
     body = soup.find("body")
     if body is not None:
         body["data-segment"] = ""
         body["data-active-tour"] = active_tour
-        body["data-active-kind"] = active_kind
+        body["data-active-kind"] = active_kind if active_kind else ""
         body["data-outcomes-filter"] = outcomes_filter
 
     return str(soup)
@@ -532,10 +562,11 @@ def render_segment(cfg, template_html, currency_config=None, all_configs=None):
     calc = cfg["calculator"]
     step1_block = soup.select_one("[data-step-id='kind']")
     if step1_block:
-        # Title rewrite: "What kind of space is it?" → "For [segment label]"
+        # Title rewrite: "What kind of space is it?" → "For [segment label]."
+        # Use acronym-preserving lowercaser so "STR property managers" doesn't become "str ...".
         step1_title = step1_block.select_one("[data-step1-title]")
         if step1_title:
-            step1_title.string = f"For {calc['step1_kind_label'].lower()}."
+            step1_title.string = f"For {step1_sentence_label(calc['step1_kind_label'])}."
         # Replace the grid with a locked indicator
         grid = step1_block.select_one(".sx-calc2__grid--kinds")
         if grid:
